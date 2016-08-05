@@ -17,161 +17,142 @@ toc-depth: 2
 
 # Descripción
 
-*Musictory (Musicians directory)* es un sistema de gestión dirigido al público joven
-que toque instrumentos. El sistema modela músicos, personas que tocan uno o varios
-instrumentos, los grupos en los que participan y
-información de contacto, así como bares o eventos que busquen músicos.
-Esto facilita poner en contacto a músicos de una determinada ciudad, por ejemplo,
-para formar grupos, poder formular peticiones a otros músicos de tocar juntos, o
-contratar a músicos para tocar.
+*Musictory (Music directory)* es un sistema de información orientado a
+almacenar la información (stock, facturación, pedidos) de una
+tienda de discos.
 
 ## Áreas funcionales
 
 Entre las áreas funcionales a las que pretendemos dar soporte mediante este
 sistema de información, podemos citar:
 
-* Gestión de músicos: Permite registrar y consultar un músico con una información
-acerca de los instrumentos que toca. También almacena información sobre los bares
-o eventos en los que ha tocado un músico, o los músicos con los que alguna vez ha
-tocado.
+* Gestión de stock: Permite registrar, consultar y borrar información sobre el
+stock almacenado en una tienda.
 
-* Gestión de eventos: Permite registrar, consultar y borrar un evento para el que
-se precisen músicos, y los músicos que participaron en él, caso de que se trate de
-un evento pasado.
+* Gestión de facturación: Permite registrar, actualizar y cancelar la información
+de facturación referente a una venta o un adeudo.
 
-* Gestión de bares: Permite registrar, consultar y borrar un bar, así como
-adscribirle eventos (que pueden ser periódicos, p.e., concierto todos los
-domingos).
-
-* Gestión de grupos y estilos musicales: Permite introducir, actualizar o eliminar
-información acerca de un determinado grupo musical, o un estilo de música. Esta
-información podrá adscribirse a los gustos musicales de un músico del sistema.
+* Gestión de pedidos: Permite registrar, actualizar y borrar un pedido en el
+sistema.
 
 ## Usuarios del sistema
 
-Los usuarios del sistema pueden ser tanto músicos, como gestores de bares/pubs o
-organizadores de eventos.
+El usuario del sistema es el gestor de la tienda de música.
 
 # Análisis de requisitos
 
 ## Requisitos funcionales
+### Funcionalidad "Gestión de stock"
 
-### Funcionalidad "Gestión de músicos"
+#### RF1: Dar de alta stock de un disco
 
-La gestión de músicos permite registrar perfiles de músicos, con unas características definidas: gustos musicales, instrumento que tocan, experiencia,
-otros músicos relacionados (con los que han tocado), participación en eventos, o
-experiencia tocando en bares, ciudad a la que pertenecen, datos de contacto,...
-
-Son los propios usuarios los que se registran en el sistema, y pueden actualizar o
-borrar información. En caso de introducir algún evento aún no registrado en el sistema como experiencia, se pide introducir información sobre el mismo.
-
-#### Requisitos funcionales
-
-##### RF1: Dar de alta un nuevo músico
-
-* *Actor:* Músico
+* *Actor:* Gestor de tienda
 * *Entrada:* RD1
-* *Procesamiento:* Crear el perfil de un nuevo músico, asociado a un identificador
-único en el sistema.
+* *Procesamiento:* Crear el perfil de un nuevo disco, introduciendo el stock
+disponible a mano.
 * *Salida:* Ninguna
 
-##### RF2: Actualizar un músico
+#### RF1: Modificar stock de un disco
 
-* *Actor:* Músico
+* *Actor:* Gestor de tienda
 * *Entrada:* RD2
-* *Procesamiento:* Actualizar el perfil de un músico
-* *Salida*: Ninguna
+* *Procesamiento:* Modificar el stock de un disco, incrementándolo o decrementándolo.
+* *Salida*: Ninguna.
 
-##### RF3: Mostrar los datos de un músico
+#### RF1: Consultar stock de un disco
 
-* *Actor:* Cualquier actor
-* *Entrada:* RD3
-* *Procesamiento:* Mostrar los datos disponibles sobre el perfil de un músico
-* *Salida*: RD4
-
-
-
-#### Requisitos de datos
-
-##### RD1: DATOS ALMACENADOS EN \underline{MÚSICO}
-
-* ID Músico
-* Nombre [cadena de caracteres]
-* Instrumentos [cadena de caracteres]
-* Ciudad [cadena de caracteres]
-* Eventos en los que ha participado [lista de EVENTOS RDX]
-* Bares en los que ha tocado [lista de BARES RDX]
-* Datos de contacto(mail o teléfono) [cadena de caracteres]
-* Estilos musicales [lista de ESTILOS RDX]
-* Grupos musicales [lista de GRUPOS RDX]
-
-##### RD2: DATOS DE ENTRADA PARA ACTUALIZAR \underline{MÚSICO}
-
-* ID Músico
-* Nombre [cadena de caracteres]
-* Instrumentos [cadena de caracteres]
-* Ciudad [cadena de caracteres]
-* Eventos en los que ha participado [lista de EVENTOS RDX]
-* Bares en los que ha tocado [lista de BARES RDX]
-* Datos de contacto(mail o teléfono) [cadena de caracteres]
-* Estilos musicales [lista de ESTILOS RDX]
-* Grupos musicales [lista de GRUPOS RDX]
+* *Actor:* Gestor de tienda
+* *Entrada:* RD2
+* *Procesamiento:* Consultar stock disponible sobre un disco.
+* *Salida*: Ninguna.
 
 
-##### RD3: DATOS DE ENTRADA PARA MOSTRAR \underline{MÚSICO}
+-------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
+### Funcionalidad "Gestión de facturación"
 
-* ID Músico
+#### RFX: Consultar operación
 
-##### RD4: DATOS DE SALIDA PARA MOSTRAR \underline{MÚSICO}
-
-* ID Músico
-* Nombre [cadena de caracteres]
-* Instrumentos [cadena de caracteres]
-* Ciudad [cadena de caracteres]
-* Eventos en los que ha participado [lista de EVENTOS RDX]
-* Bares en los que ha tocado [lista de BARES RDX]
-* Datos de contacto(mail o teléfono) [cadena de caracteres]
-* Estilos musicales [lista de ESTILOS RDX]
-* Grupos musicales [lista de GRUPOS RDX]
-
-### Funcionalidad "Gestión de eventos"
-
-La gestión de eventos posibilita almacenar, modificar y/o eliminar información
-sobre algún evento musical (p.e. una *jam session*, un concierto, ...)
-
-#### Requisitos funcionales
-
-##### RFX: Dar de alta un nuevo evento
-
-* *Actor:* Cualquiera
-* *Entrada:* RDX
-* *Procesamiento:* Crear un evento introduciendo la información requerida.
+* *Actor:* Gestor de tienda
+* *Entrada:* ID de operación
+* *Procesamiento:* Consultar información referente a una venta o pago.
 * *Salida:* Ninguna
 
-##### RFX: Actualizar un evento
+#### RFX: Modificar operación
 
-* *Actor:* Cualquiera
-* *Entrada:* RDX
-* *Procesamiento:* Actualizar un evento.
+* *Actor:* Gestor de tienda
+* *Entrada:* ID de operación
+* *Procesamiento:* Modificar una operación
 * *Salida*: Ninguna
 
-##### RF3: Mostrar los datos de un evento
+#### RF3: Borrar operación
 
-* *Actor:* Cualquiera
+* *Actor:* Gestor de tienda
 * *Entrada:* RDX
-* *Procesamiento:* Mostrar los datos disponibles sobre un determinado evento
+* *Procesamiento:* Borrar una tupla referente a una operación
 * *Salida*: RDX
 
+-------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
+### Funcionalidad "Gestión de pedido"
 
-#### Requisitos de datos
+#### RFX: Realizar pedido
 
-##### RD1: DATOS ALMACENADOS EN \underline{EVENTO}
+* *Actor:* Gestor de tienda
+* *Entrada:* RDX
+* *Procesamiento:* Borrar una tupla referente a una operación
+* *Salida*: RDX
 
-* ID Evento
-* Nombre del evento[cadena de caracteres]
-* Ciudad [cadena de caracteres]
-* Fecha [fecha]
-* Descripción [cadena de caracteres]
+#### RFX: Mostrar datos de un pedido
+
+* *Actor:* Gestor de tienda
+* *Entrada:* RDX
+* *Procesamiento:* Mostrar información referente a un pedido realizado
+* *Salida*: Ninguna
+
+#### RFX: Cancelar pedido
+
+* *Actor:* Gestor de tienda
+* *Entrada:* RDX
+* *Procesamiento:* Cancelar un pedido
+* *Salida*: Ninguna
+
+#### RFX: Marcar pedido como recibido
+
+* *Actor:* Gestor de tienda
+* *Entrada:* RDX
+* *Procesamiento:* Marcar un pedido como efectuado correctamente, y almacenar
+la información relativa al stock en la tienda
+* *Salida*: Ninguna
+
+----------------------------------------------------------------------------
+----------------------------------------------------------------------------
+----------------------------------------------------------------------------
+----------------------------------------------------------------------------
+## Requisitos de datos
+### RDX: DATOS ALMACENADOS EN \underline{STOCK}
+
+* ID
+* Título
+* Año
+* Nombre grupo
+* CD/Vinilo
+
+
+##### RDX: DATOS ALMACENADOS EN \underline{OPERACIÓN}
+
+* ID Operación
+* ID Artículo
+* Cantidad
+* Facturación
+* Descripción
+* Fecha
+
+##### RDX: DATOS ALMACENADOS EN \underline{PEDIDO}
+
+* ID Pedido
+* ID Artículo
+* Fecha
 
 ### Funcionalidad "Gestión de bares"
 
