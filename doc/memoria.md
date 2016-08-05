@@ -66,6 +66,7 @@ Son los propios usuarios los que se registran en el sistema, y pueden actualizar
 borrar información. En caso de introducir algún evento aún no registrado en el sistema como experiencia, se pide introducir información sobre el mismo.
 
 #### Requisitos funcionales
+
 ##### RF1: Dar de alta un nuevo músico
 
 * *Actor:* Músico
@@ -85,7 +86,7 @@ borrar información. En caso de introducir algún evento aún no registrado en e
 
 * *Actor:* Cualquier actor
 * *Entrada:* RD3
-* *Procesamiento:* Actualizar el perfil de un músico
+* *Procesamiento:* Mostrar los datos disponibles sobre el perfil de un músico
 * *Salida*: RD4
 
 
@@ -132,6 +133,58 @@ borrar información. En caso de introducir algún evento aún no registrado en e
 * Datos de contacto(mail o teléfono) [cadena de caracteres]
 * Estilos musicales [lista de ESTILOS RDX]
 * Grupos musicales [lista de GRUPOS RDX]
+
+### Funcionalidad "Gestión de eventos"
+
+La gestión de eventos posibilita almacenar, modificar y/o eliminar información
+sobre algún evento musical (p.e. una *jam session*, un concierto, ...)
+
+#### Requisitos funcionales
+
+##### RFX: Dar de alta un nuevo evento
+
+* *Actor:* Cualquiera
+* *Entrada:* RDX
+* *Procesamiento:* Crear un evento introduciendo la información requerida.
+* *Salida:* Ninguna
+
+##### RFX: Actualizar un evento
+
+* *Actor:* Cualquiera
+* *Entrada:* RDX
+* *Procesamiento:* Actualizar un evento.
+* *Salida*: Ninguna
+
+##### RF3: Mostrar los datos de un evento
+
+* *Actor:* Cualquiera
+* *Entrada:* RDX
+* *Procesamiento:* Mostrar los datos disponibles sobre un determinado evento
+* *Salida*: RDX
+
+
+#### Requisitos de datos
+
+##### RD1: DATOS ALMACENADOS EN \underline{EVENTO}
+
+* ID Evento
+* Nombre del evento[cadena de caracteres]
+* Ciudad [cadena de caracteres]
+* Fecha [fecha]
+* Descripción [cadena de caracteres]
+
+### Funcionalidad "Gestión de bares"
+
+#### Requisitos funcionales
+
+#### Requisitos de datos
+
+
+### Funcionalidad "Gestión de grupos musicales"
+
+#### Requisitos funcionales
+
+#### Requisitos de datos
 
 
 # Diseño
