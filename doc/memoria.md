@@ -67,8 +67,6 @@ disponible a mano.
 * *Salida*: Ninguna.
 
 
--------------------------------------------------------------------------------
--------------------------------------------------------------------------------
 ### Funcionalidad "Gestión de facturación"
 
 #### RFX: Consultar operación
@@ -92,8 +90,7 @@ disponible a mano.
 * *Procesamiento:* Borrar una tupla referente a una operación
 * *Salida*: RDX
 
--------------------------------------------------------------------------------
--------------------------------------------------------------------------------
+
 ### Funcionalidad "Gestión de pedido"
 
 #### RFX: Realizar pedido
@@ -125,17 +122,14 @@ disponible a mano.
 la información relativa al stock en la tienda
 * *Salida*: Ninguna
 
-----------------------------------------------------------------------------
-----------------------------------------------------------------------------
-----------------------------------------------------------------------------
-----------------------------------------------------------------------------
+
 ## Requisitos de datos
 ### RDX: DATOS ALMACENADOS EN \underline{STOCK}
 
 * ID
 * Título
 * Año
-* Nombre grupo
+* Grupo
 * CD/Vinilo
 
 
@@ -181,3 +175,23 @@ la información relativa al stock en la tienda
 ## Diseño físico
 
 ## Descripción de la solución implementada
+
+
+
+
+
+# Implementación
+## Tecnologías usadas
+
+## Guía de instalación
+
+Se ha usado como base de datos local `sqlite3`, que puede instalarse usando:
+
+`sudo apt-get install sqlite3`
+
+Como base de datos de *test* se ha empleado la base de datos proporcionada por
+la UGR con SGBD Oracle para efectuar dichas prácticas. Para conectar a dicha base
+de datos, es necesario tener instalado localmente el *Instant Client* de Oracle. Se necesitan también las *gemas* de Ruby `ruby-oci8` y `activerecord-oracle_enhanced-adapter`, que pueden instalarse de la siguiente forma:
+
+`sudo gem install mysql2`
+`activerecord-oracle_enhanced-adapter`

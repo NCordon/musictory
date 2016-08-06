@@ -1,0 +1,2 @@
+class Disco < ApplicationRecord
+end
