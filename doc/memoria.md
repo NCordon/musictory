@@ -3,8 +3,8 @@ author:
 - Ignacio Cordón Castillo
 
 title: "Musictory: Musicians directory, sistema de información orientado al público"
-date: \today
 lang: spanish
+date: \today
 papersize: A4
 
 # Especifica que queremos un índice
