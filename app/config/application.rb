@@ -6,6 +6,9 @@ require 'rails/all'
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
+
+config.active_record.schema_format = :sql
+
 module App
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.
