@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class OperacionTest < ActiveSupport::TestCase
+class CatalogoTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

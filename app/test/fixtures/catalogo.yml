@@ -2,10 +2,12 @@
 
 one:
   titulo: MyString
-  anio: 1
   grupo: MyString
+  genero: MyString
+  precio: 9.99
 
 two:
   titulo: MyString
-  anio: 1
   grupo: MyString
+  genero: MyString
+  precio: 9.99

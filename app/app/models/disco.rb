@@ -1,2 +1,0 @@
-class Disco < ApplicationRecord
-end

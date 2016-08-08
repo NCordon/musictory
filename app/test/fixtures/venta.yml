@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  catalogo: one
+  precio: 9.99
+  fechaVenta: 2016-08-08 01:35:07
+
+two:
+  catalogo: two
+  precio: 9.99
+  fechaVenta: 2016-08-08 01:35:07

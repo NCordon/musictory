@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  catalogo: one
+  cantidad: 1
+  adeudo: 9.99
+  fechaRealizacion: 2016-08-08 01:35:48
+  fechaEntrada: 2016-08-08 01:35:48
+  fechaDefecto: 2016-08-08 01:35:48
+  fechaCancelacion: 2016-08-08 01:35:48
+  fechaFinalizacion: 2016-08-08 01:35:48
+  proveedor: one
+
+two:
+  catalogo: two
+  cantidad: 1
+  adeudo: 9.99
+  fechaRealizacion: 2016-08-08 01:35:48
+  fechaEntrada: 2016-08-08 01:35:48
+  fechaDefecto: 2016-08-08 01:35:48
+  fechaCancelacion: 2016-08-08 01:35:48
+  fechaFinalizacion: 2016-08-08 01:35:48
+  proveedor: two

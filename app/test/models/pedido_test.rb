@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class DiscoTest < ActiveSupport::TestCase
+class PedidoTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end
