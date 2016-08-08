@@ -13,6 +13,10 @@ toc: true
 toc-depth: 2
 ---
 
+\newcommand{\pk}[1]{\underline{#1}}
+\newcommand{\fk}[2]{{#1} $\longrightarrow$ {#2}}
+
+
 \newpage
 
 # Descripción
@@ -159,7 +163,7 @@ la información relativa al stock en la tienda
 * Título (cadena de caracteres)
 * Grupo (cadena de caracteres)
 * CD/Vinilo
-* Sección
+* Genero
 
 **RD2: Datos almacenados en \underline{OPERACIÓN}**
 
@@ -176,7 +180,6 @@ la información relativa al stock en la tienda
 
 * ID Venta
 * ID Artículo
-* Cantidad
 * Precio
 * Fecha
 
@@ -185,14 +188,14 @@ la información relativa al stock en la tienda
 
 * ID Pedido
 * ID Artículo
-* Cantidad
-* Adeudo
+* Cantidad (entero)
+* Adeudo (número real)
 * Fecha realización
 * Fecha entrada
 * Fecha defecto
 * Fecha cancelación
 * Fecha finalización
-* Proveedor
+* ID Proveedor
 
 ## Restricciones semánticas
 
@@ -249,6 +252,29 @@ de realización, pero no tendrá ninguna otra fecha.
 ## Diagrama conceptual completo
 ## Esquemas de operación y navegación
 ## Diseño lógico
+
+Catálogo(\pk{id}, Titulo, Grupo, Genero, Precio)
+
+
+CD(\pk{id}, Cantidad)
+\fk{CD.id}{Catálogo.id}
+
+
+Vinilo(\pk{id}, Cantidad)
+\fk{Vinilo.id Disco}{Catálogo.id}
+
+
+Pedido(\pk{id Pedido}, id Catálogo, Cantidad, Adeudo, Fecha Realización, Fecha
+Entrada, Fecha Defecto, Fecha Cancelación, Fecha Finalización, id Proveedor)
+\fk{Vinilo.id Catálogo}{Catálogo.id}
+\fk{Vinilo.id Proveedor}{Proveedor.id}
+
+Proveedor(\pk{id}, Nombre)
+
+Venta(\pk{id Venta}, id Catálogo, Precio, Fecha Venta)
+
+
+### Disparadores PL/SQL
 
 ## Diseño físico
 ## Descripción de la solución implementada
