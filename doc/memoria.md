@@ -43,9 +43,8 @@ pedidos efectuados.
 
 ## Usuarios del sistema
 
-El único usuario de la tienda podemos considerar que es el administrador del
-comercio, que efectúa labores de gestión de *stock*, así como gestión de
-pedidos y ventas.
+Los usuarios del sistema son el gestor de ventas, gestor de *stock* y gestor de
+pedidos.
 
 # Análisis de requisitos
 
@@ -61,28 +60,28 @@ pedidos y ventas.
 
 **RF2: Introducir el stock disponible en CD**
 
-* *Actor:* Gestor de comercio
+* *Actor:* Gestor de *stock*
 * *Entrada:* RD2
 * *Procesamiento:* Introducir el stock disponible de un álbum en formato CD
 * *Salida:* Ninguna
 
 **RF3: Introducir el stock disponible en Vinilo**
 
-* *Actor:* Gestor de comercio
+* *Actor:* Gestor de *stock*
 * *Entrada:* RD3
 * *Procesamiento:* Introducir el stock disponible de un álbum en formato Vinilo
 * *Salida:* Ninguna
 
 **RF4: Modificar información asociada a un álbum en el catálogo**
 
-* *Actor:* Gestor de comercio
+* *Actor:* Gestor de *stock*
 * *Entrada:* RD1
 * *Procesamiento:* Modificar la información asociada a un álbum
 * *Salida*: Ninguna.
 
 **RF5: Consultar stock de un disco**
 
-* *Actor:* Gestor de comercio
+* *Actor:* Gestor de *stock*
 * *Entrada:* Identificador
 * *Procesamiento:* Consultar stock disponible sobre un disco.
 * *Salida*:
@@ -96,7 +95,7 @@ pedidos y ventas.
 
 **RF6: Realizar venta**
 
-* *Actor:* Gestor de comercio
+* *Actor:* Gestor de ventas
 * *Entrada:* RD4
 * *Procesamiento:* Generar la información asociada a una venta, y disminuir el
   stock asociado al artículo.
@@ -104,21 +103,21 @@ pedidos y ventas.
 
 **RF7: Mostrar datos de una venta**
 
-* *Actor:* Gestor de comercio
+* *Actor:* Gestor de ventas
 * *Entrada:* ID de venta
 * *Procesamiento:* Mostrar información referente a una venta realizada
 * *Salida*: RD4
 
 **RF8: Cancelar venta**
 
-* *Actor:* Gestor de comercio
+* *Actor:* Gestor de ventas
 * *Entrada:* ID de venta
 * *Procesamiento:* Eliminar una venta
 * *Salida*: Ninguna
 
 **RF9: Modificar venta**
 
-* *Actor:* Gestor de comercio
+* *Actor:* Gestor de ventas
 * *Entrada:* RD4
 * *Procesamiento:* Modificar los datos asociados a una venta
 * *Salida*: Ninguna
@@ -128,28 +127,28 @@ pedidos y ventas.
 
 **RF10: Realizar pedido**
 
-* *Actor:* Gestor de comercio
+* *Actor:* Gestor de pedidos
 * *Entrada:* RD5
 * *Procesamiento:* Generar la información de un pedido
 * *Salida*: Ninguna
 
 **RF11: Mostrar datos de un pedido**
 
-* *Actor:* Gestor de comercio
+* *Actor:* Gestor de pedidos
 * *Entrada:* ID de pedido
 * *Procesamiento:* Mostrar información referente a un pedido realizado
 * *Salida*: RD5
 
 **RF12: Cancelar pedido**
 
-* *Actor:* Gestor de comercio
+* *Actor:* Gestor de pedidos
 * *Entrada:* ID de pedido
 * *Procesamiento:* Cancelar un pedido, estableciendo una fecha de cancelación
 * *Salida*: Ninguna
 
 **RF13: Marcar pedido como recibido**
 
-* *Actor:* Gestor de comercio
+* *Actor:* Gestor de pedidos
 * *Entrada:* ID pedido
 * *Procesamiento:* Marcar un pedido como recibido en el comercio.
 * *Salida*: Ninguna
@@ -157,7 +156,7 @@ pedidos y ventas.
 
 **RF14: Marcar pedido como correcto**
 
-* *Actor:* Gestor de comercio
+* *Actor:* Gestor de pedidos
 * *Entrada:* ID pedido
 * *Procesamiento:* Marcar un pedido como efectuado correctamente, y almacenar
 la información relativa al stock en la tienda
@@ -166,7 +165,7 @@ la información relativa al stock en la tienda
 
 **RF15: Marcar pedido como defectuoso**
 
-* *Actor:* Gestor de comercio
+* *Actor:* Gestor de pedidos
 * *Entrada:* ID pedido
 * *Procesamiento:* Marcar un pedido como recibido pero no correcto.
 * *Salida*: Ninguna
@@ -203,7 +202,7 @@ la información relativa al stock en la tienda
 <!--* Descripción (cadena de caracteres)-->
 
 
-**RD4: Datos almacenados en \underline{PEDIDO}**
+**RD5: Datos almacenados en \underline{PEDIDO}**
 
 * ID Pedido
 * ID Artículo
@@ -271,6 +270,8 @@ de realización, pero no tendrá ninguna otra fecha.
 # Diseño
 
 ## Diagrama de flujo de datos y esquemas externos
+### Armazón
+#### Diagrama de caja negra
 ## Diagrama conceptual completo
 ## Esquemas de operación y navegación
 ## Diseño lógico
