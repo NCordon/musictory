@@ -11,11 +11,20 @@ papersize: A4
 toc-title: "Índice de contenidos"
 toc: true
 toc-depth: 2
+
+# Paquetes a usar en la compilación de latex
+header-includes:
+  - \usepackage{graphicx}
 ---
 
 \newcommand{\pk}[1]{\underline{#1}}
 \newcommand{\fk}[2]{\qquad FK: {#1} $\longrightarrow$ {#2}}
 
+\newcommand{\imgn}[2]{
+  \begin{center}
+    \includegraphics[width=#1\textwidth]{#2}
+  \end{center}
+}
 
 \newpage
 
@@ -270,10 +279,22 @@ de realización, pero no tendrá ninguna otra fecha.
 # Diseño
 
 ## Diagrama de flujo de datos y esquemas externos
+
 ### Armazón
-#### Diagrama de caja negra
+
+#### Armazón de caja negra
+
+\imgn{1.1}{./diagramas/caja_negra.png}
+
+#### Armazón F
+
+\imgn{1.1}{./diagramas/armazon_F.png}
+
+
 ## Diagrama conceptual completo
+
 ## Esquemas de operación y navegación
+
 ## Diseño lógico
 
 **Catálogo**(\pk{id}, Titulo, Grupo, Genero, Precio)
