@@ -2,7 +2,7 @@
 author:
 - Ignacio Cordón Castillo
 
-title: "Musictory: Musicians directory, sistema de información orientado al público"
+title: "Musictory: Music directory, sistema de información orientado a la gestión de *stock* discográfico"
 lang: spanish
 date: \today
 papersize: A4
@@ -14,7 +14,7 @@ toc-depth: 2
 ---
 
 \newcommand{\pk}[1]{\underline{#1}}
-\newcommand{\fk}[2]{{#1} $\longrightarrow$ {#2}}
+\newcommand{\fk}[2]{\qquad FK: {#1} $\longrightarrow$ {#2}}
 
 
 \newpage
@@ -23,7 +23,9 @@ toc-depth: 2
 
 *Musictory (Music directory)* es un sistema de información orientado a
 almacenar la información (stock, facturación, pedidos) de una
-tienda de discos.
+tienda de discos. Almacena información referente a álbumes, tanto en formato
+como vinilo.
+
 
 ## Áreas funcionales
 
@@ -33,94 +35,92 @@ sistema de información, podemos citar:
 * Gestión de stock: Permite registrar, consultar y borrar información sobre el
 *stock* almacenado en una tienda.
 
-* Gestión de facturación: Permite registrar, actualizar y cancelar la información de facturación referente a una venta o un adeudo.
+* Gestión de ventas: Permite gestionar las ventas realizadas a diario en el
+comercio, actualizando el *stock*.
 
-* Gestión de ventas: Permite registrar, actualizar y borrar un pedido en el
-sistema.
-
-* Gestión de pedidos: Permite registrar, actualizar y borrar un pedido en el
-sistema.
+* Gestión de pedidos: Permite realizar, cancelar y marcar la corrección de
+pedidos efectuados.
 
 ## Usuarios del sistema
 
-El usuario del sistema es el gestor de la tienda de música.
+El único usuario de la tienda podemos considerar que es el administrador del
+comercio, que efectúa labores de gestión de *stock*, así como gestión de
+pedidos y ventas.
 
 # Análisis de requisitos
 
 ## Requisitos funcionales
 ### Funcionalidad "Gestión de stock"
 
-**RF1: Dar de alta stock de un disco**
+**RF1: Dar de alta información en el catálogo*
 
-* *Actor:* Gestor de pedidos
+* *Actor:* Gestor de comercio
 * *Entrada:* RD1
-* *Procesamiento:* Crear el perfil de un nuevo disco, introduciendo el stock
-disponible a mano.
+* *Procesamiento:* Crear el perfil de un nuevo álbum.
 * *Salida:* Ninguna
 
-**RF2: Modificar stock de un disco**
+**RF2: Introducir el stock disponible en CD**
 
-* *Actor:* Gestor de tienda
+* *Actor:* Gestor de comercio
+* *Entrada:* RD2
+* *Procesamiento:* Introducir el stock disponible de un álbum en formato CD
+* *Salida:* Ninguna
+
+**RF3: Introducir el stock disponible en Vinilo**
+
+* *Actor:* Gestor de comercio
+* *Entrada:* RD3
+* *Procesamiento:* Introducir el stock disponible de un álbum en formato Vinilo
+* *Salida:* Ninguna
+
+**RF4: Modificar información asociada a un álbum en el catálogo**
+
+* *Actor:* Gestor de comercio
 * *Entrada:* RD1
-* *Procesamiento:* Modificar el stock de un disco, incrementándolo o decrementándolo.
+* *Procesamiento:* Modificar la información asociada a un álbum
 * *Salida*: Ninguna.
 
-**RF3: Consultar stock de un disco**
+**RF5: Consultar stock de un disco**
 
-* *Actor:* Gestor de tienda
+* *Actor:* Gestor de comercio
 * *Entrada:* Identificador
 * *Procesamiento:* Consultar stock disponible sobre un disco.
 * *Salida*:
   - RD1
+  - RD2
+  - RD3
   - Histórico de ventas
-
-### Funcionalidad "Gestión de facturación"
-
-**RF4: Consultar operación**
-
-* *Actor:* Gestor de tienda
-* *Entrada:* ID de operación
-* *Procesamiento:* Consultar información referente a una venta o pago.
-* *Salida:* RD2
-
-**RF5: Modificar operación**
-
-* *Actor:* Gestor de tienda
-* *Entrada:* RD2
-* *Procesamiento:* Modificar los datos asoaciados una operación
-* *Salida*: Ninguna
-
-**RF6: Borrar operación**
-
-* *Actor:* Gestor de tienda
-* *Entrada:* ID de operación
-* *Procesamiento:* Borrar una tupla referente a una operación de la facturación
-  de la tienda
-* *Salida*: Ninguna
 
 
 ### Funcionalidad "Gestión de ventas"
 
-**RF7: Realizar venta**
+**RF6: Realizar venta**
 
-* *Actor:* Gestor de tienda
-* *Entrada:* RD3
+* *Actor:* Gestor de comercio
+* *Entrada:* RD4
 * *Procesamiento:* Generar la información asociada a una venta, y disminuir el
   stock asociado al artículo.
 * *Salida*: Ninguna
 
-**RF8: Mostrar datos de una venta**
+**RF7: Mostrar datos de una venta**
 
-* *Actor:* Gestor de tienda
+* *Actor:* Gestor de comercio
 * *Entrada:* ID de venta
 * *Procesamiento:* Mostrar información referente a una venta realizada
-* *Salida*: RD3
+* *Salida*: RD4
 
-**RF9: Cancelar venta**
+**RF8: Cancelar venta**
 
-* *Actor:* Gestor de tienda
+* *Actor:* Gestor de comercio
 * *Entrada:* ID de venta
 * *Procesamiento:* Eliminar una venta
+* *Salida*: Ninguna
+
+**RF9: Modificar venta**
+
+* *Actor:* Gestor de comercio
+* *Entrada:* RD4
+* *Procesamiento:* Modificar los datos asociados a una venta
 * *Salida*: Ninguna
 
 
@@ -128,60 +128,79 @@ disponible a mano.
 
 **RF10: Realizar pedido**
 
-* *Actor:* Gestor de tienda
-* *Entrada:* RD4
+* *Actor:* Gestor de comercio
+* *Entrada:* RD5
 * *Procesamiento:* Generar la información de un pedido
 * *Salida*: Ninguna
 
 **RF11: Mostrar datos de un pedido**
 
-* *Actor:* Gestor de tienda
+* *Actor:* Gestor de comercio
 * *Entrada:* ID de pedido
 * *Procesamiento:* Mostrar información referente a un pedido realizado
-* *Salida*: RD4
+* *Salida*: RD5
 
 **RF12: Cancelar pedido**
 
-* *Actor:* Gestor de tienda
+* *Actor:* Gestor de comercio
 * *Entrada:* ID de pedido
 * *Procesamiento:* Cancelar un pedido, estableciendo una fecha de cancelación
 * *Salida*: Ninguna
 
 **RF13: Marcar pedido como recibido**
 
-* *Actor:* Gestor de tienda
+* *Actor:* Gestor de comercio
+* *Entrada:* ID pedido
+* *Procesamiento:* Marcar un pedido como recibido en el comercio.
+* *Salida*: Ninguna
+
+
+**RF14: Marcar pedido como correcto**
+
+* *Actor:* Gestor de comercio
 * *Entrada:* ID pedido
 * *Procesamiento:* Marcar un pedido como efectuado correctamente, y almacenar
 la información relativa al stock en la tienda
 * *Salida*: Ninguna
 
 
+**RF15: Marcar pedido como defectuoso**
+
+* *Actor:* Gestor de comercio
+* *Entrada:* ID pedido
+* *Procesamiento:* Marcar un pedido como recibido pero no correcto.
+* *Salida*: Ninguna
+
+
 ## Requisitos de datos
-**RD1: Datos almacenados en \underline{PRODUCTO}**
+**RD1: Datos almacenados en \underline{CATÁLOGO}**
 
 * ID
 * Título (cadena de caracteres)
 * Grupo (cadena de caracteres)
-* CD/Vinilo
-* Genero
-
-**RD2: Datos almacenados en \underline{OPERACIÓN}**
-
-* ID Operación
-* ID Artículo
-* Cantidad (entero)
-* Facturación (número real)
-* Descripción (cadena de caracteres)
-* Fecha facturación
-* Fecha ejecución
+* Genero (cadena de caracteres)
 
 
-**RD3: Datos almacenados en \underline{VENTA}**
+**RD2: Datos almacenados en \underline{CD}**
+
+* ID del catálogo
+* Cantidad de CDs en *stock*(entero)
+
+
+**RD3: Datos almacenados en \underline{VINILO}**
+
+* ID del catálogo
+* Cantidad de Vinilos en *stock*(entero)
+
+
+**RD4: Datos almacenados en \underline{VENTA}**
 
 * ID Venta
 * ID Artículo
-* Precio
+* Formato (cadena de caracteres)
+* Precio (número real)
 * Fecha
+<!--* Descripción (cadena de caracteres)-->
 
 
 **RD4: Datos almacenados en \underline{PEDIDO}**
@@ -199,47 +218,50 @@ la información relativa al stock en la tienda
 
 ## Restricciones semánticas
 
-**RS1: Producto**
+**RS1: Catálogo**
 
-Al dar de alta un producto, el grupo, título y formato (CD/Vinilo) no pueden ser vacíos, aparte por supuesto del identificador.
+Al dar de alta un álbum en el catálogo, el grupo, título y formato (CD/Vinilo)
+no pueden ser vacíos, aparte por supuesto del identificador.
 
+<!--
 **RS2: Operaciones**
 
 La fecha de ejecución (fecha real de cobro o de pago), debe ser posterior (o
 nula, en caso apropiado) a la fecha de facturación.
+-->
 
-**RS3: Venta**
+**RS2: Venta**
 
 ID Artículo, cantidad, precio (precio del artículo vendido) y fecha
 no pueden ser vacíos.
 
-**RS4: Pedido**
+**RS3: Pedido**
 
 ID Artículo, cantidad, precio (precio del artículo pedido) y fecha realización
 no pueden ser vacíos.
 
-**RS5: Pedido no recibido**
+**RS4: Pedido no recibido**
 
 Un pedido no recibido tendrá únicamente fecha realización.
 
-**RS6: Pedido recibido**
+**RS5: Pedido recibido**
 
 Un pedido recibido tendrá fecha realización y fecha de entrada, con fecha
 entrada posterior a la fecha de realización.
 
-**RS7: Pedido recibido correctamente**
+**RS6: Pedido recibido correctamente**
 
 Un pedido recibido correctamente será un pedido recibido con fecha de
 finalización no nula y posterior a la fecha de entrada.
 
-**RS8: Pedido no correcto**
+**RS7: Pedido no correcto**
 
 Un pedido recibido pero no correcto cumplirá las restricciones semánticas de
 los pedidos recibidos, pero tendrá fecha defecto no nula y posterior a la de
 entrada. Fecha defecto podría considerarse como una fecha de reclamación o de
 devolución.
 
-**RS9: Pedido cancelado**
+**RS8: Pedido cancelado**
 
 Un pedido cancelado tendrá fecha de cancelación no nula, y posterior a la fecha
 de realización, pero no tendrá ninguna otra fecha.
@@ -253,25 +275,26 @@ de realización, pero no tendrá ninguna otra fecha.
 ## Esquemas de operación y navegación
 ## Diseño lógico
 
-Catálogo(\pk{id}, Titulo, Grupo, Genero, Precio)
+**Catálogo**(\pk{id}, Titulo, Grupo, Genero, Precio)
 
+**CD**(\pk{id}, Cantidad)
 
-CD(\pk{id}, Cantidad)
 \fk{CD.id}{Catálogo.id}
 
+**Vinilo**(\pk{id}, Cantidad)
 
-Vinilo(\pk{id}, Cantidad)
 \fk{Vinilo.id Disco}{Catálogo.id}
 
-
-Pedido(\pk{id Pedido}, id Catálogo, Cantidad, Adeudo, Fecha Realización, Fecha
+**Pedido**(\pk{id Pedido}, id Catálogo, Cantidad, Adeudo, Fecha Realización, Fecha
 Entrada, Fecha Defecto, Fecha Cancelación, Fecha Finalización, id Proveedor)
+
 \fk{Vinilo.id Catálogo}{Catálogo.id}
+
 \fk{Vinilo.id Proveedor}{Proveedor.id}
 
-Proveedor(\pk{id}, Nombre)
+**Proveedor**(\pk{id}, Nombre)
 
-Venta(\pk{id Venta}, id Catálogo, Precio, Fecha Venta)
+**Venta**(\pk{id Venta}, id Catálogo, Precio, Fecha Venta)
 
 
 ### Disparadores PL/SQL
