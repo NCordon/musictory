@@ -3,9 +3,11 @@
 one:
   catalogo: one
   precio: 9.99
-  fechaVenta: 2016-08-08 01:35:07
+  fechaVenta: 2016-08-10 21:33:05
+  formato: MyString
 
 two:
   catalogo: two
   precio: 9.99
-  fechaVenta: 2016-08-08 01:35:07
+  fechaVenta: 2016-08-10 21:33:05
+  formato: MyString

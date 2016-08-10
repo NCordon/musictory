@@ -60,7 +60,7 @@ pedidos.
 ## Requisitos funcionales
 ### Funcionalidad "Gestión de stock"
 
-**RF1: Dar de alta información en el catálogo*
+**RF1: Dar de alta información en el catálogo**
 
 * *Actor:* Gestor de comercio
 * *Entrada:* RD1
@@ -226,9 +226,9 @@ la información relativa al stock en la tienda
 
 ## Restricciones semánticas
 
-**RS1: Catálogo**
+**RS1: Nuevo álbum en catálogo**
 
-Al dar de alta un álbum en el catálogo, el grupo, título y formato (CD/Vinilo)
+Al dar de alta un álbum en el catálogo, el grupo y título
 no pueden ser vacíos, aparte por supuesto del identificador.
 
 <!--
@@ -238,38 +238,43 @@ La fecha de ejecución (fecha real de cobro o de pago), debe ser posterior (o
 nula, en caso apropiado) a la fecha de facturación.
 -->
 
-**RS2: Venta**
+**RS2: Nueva venta**
 
-ID Artículo, cantidad, precio (precio del artículo vendido) y fecha
-no pueden ser vacíos.
+ID Artículo, cantidad, precio (precio del artículo vendido), fecha
+y venta no pueden ser vacíos.
 
-**RS3: Pedido**
+
+**RS3: Formato de venta**
+
+El formato de venta debe ser o bien CD o Vinilo.
+
+**RS4: Pedido**
 
 ID Artículo, cantidad, precio (precio del artículo pedido) y fecha realización
 no pueden ser vacíos.
 
-**RS4: Pedido no recibido**
+**RS5: Pedido no recibido**
 
 Un pedido no recibido tendrá únicamente fecha realización.
 
-**RS5: Pedido recibido**
+**RS6: Pedido recibido**
 
 Un pedido recibido tendrá fecha realización y fecha de entrada, con fecha
 entrada posterior a la fecha de realización.
 
-**RS6: Pedido recibido correctamente**
+**RS7: Pedido recibido correctamente**
 
 Un pedido recibido correctamente será un pedido recibido con fecha de
 finalización no nula y posterior a la fecha de entrada.
 
-**RS7: Pedido no correcto**
+**RS8: Pedido no correcto**
 
 Un pedido recibido pero no correcto cumplirá las restricciones semánticas de
 los pedidos recibidos, pero tendrá fecha defecto no nula y posterior a la de
 entrada. Fecha defecto podría considerarse como una fecha de reclamación o de
 devolución.
 
-**RS8: Pedido cancelado**
+**RS9: Pedido cancelado**
 
 Un pedido cancelado tendrá fecha de cancelación no nula, y posterior a la fecha
 de realización, pero no tendrá ninguna otra fecha.
@@ -297,6 +302,20 @@ de realización, pero no tendrá ninguna otra fecha.
 #### Armazón D
 
 \imgn{0.4}{./diagramas/armazon_D.png}
+
+### Primer refinamiento
+
+#### Refinamiento parcial del proceso 1
+
+\imgn{0.9}{./diagramas/gestion_stock.png}
+
+#### Refinamiento parcial del proceso 2
+
+\imgn{0.9}{./diagramas/gestion_ventas.png}
+
+#### Refinamiento parcial del proceso 3
+
+\imgn{0.9}{./diagramas/gestion_pedidos.png}
 
 
 ## Diagrama conceptual completo
