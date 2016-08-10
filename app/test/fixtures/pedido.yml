@@ -4,20 +4,22 @@ one:
   catalogo: one
   cantidad: 1
   adeudo: 9.99
-  fechaRealizacion: 2016-08-08 01:35:48
-  fechaEntrada: 2016-08-08 01:35:48
-  fechaDefecto: 2016-08-08 01:35:48
-  fechaCancelacion: 2016-08-08 01:35:48
-  fechaFinalizacion: 2016-08-08 01:35:48
+  fechaRealizacion: 2016-08-10 03:59:48
+  fechaEntrada: 2016-08-10 03:59:48
+  fechaDefecto: 2016-08-10 03:59:48
+  fechaCancelacion: 2016-08-10 03:59:48
+  fechaFinalizacion: 2016-08-10 03:59:48
   proveedor: one
+  formato: MyString
 
 two:
   catalogo: two
   cantidad: 1
   adeudo: 9.99
-  fechaRealizacion: 2016-08-08 01:35:48
-  fechaEntrada: 2016-08-08 01:35:48
-  fechaDefecto: 2016-08-08 01:35:48
-  fechaCancelacion: 2016-08-08 01:35:48
-  fechaFinalizacion: 2016-08-08 01:35:48
+  fechaRealizacion: 2016-08-10 03:59:48
+  fechaEntrada: 2016-08-10 03:59:48
+  fechaDefecto: 2016-08-10 03:59:48
+  fechaCancelacion: 2016-08-10 03:59:48
+  fechaFinalizacion: 2016-08-10 03:59:48
   proveedor: two
+  formato: MyString

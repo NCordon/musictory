@@ -307,14 +307,15 @@ de realización, pero no tendrá ninguna otra fecha.
 
 \fk{Vinilo.id Disco}{Catálogo.id}
 
-**Pedido**(\pk{id Pedido}, id Catálogo, Cantidad, Adeudo, Fecha Realización, Fecha
+**Pedido**(\pk{id Pedido}, id Catálogo, Cantidad, Formato, Adeudo, Fecha Realización, Fecha
 Entrada, Fecha Defecto, Fecha Cancelación, Fecha Finalización, id Proveedor)
 
 \fk{Vinilo.id Catálogo}{Catálogo.id}
-
+<!--
 \fk{Vinilo.id Proveedor}{Proveedor.id}
 
 **Proveedor**(\pk{id}, Nombre)
+-->
 
 **Venta**(\pk{id Venta}, id Catálogo, Precio, Fecha Venta)
 

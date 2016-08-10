@@ -10,6 +10,7 @@ class CreatePedido < ActiveRecord::Migration[5.0]
       t.datetime :fechaCancelacion
       t.datetime :fechaFinalizacion
       t.references :proveedor, foreign_key: true
+      t.string :formato
 
       t.timestamps
     end
