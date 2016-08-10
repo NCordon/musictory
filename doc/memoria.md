@@ -290,6 +290,14 @@ de realización, pero no tendrá ninguna otra fecha.
 
 \imgn{1.1}{./diagramas/armazon_F.png}
 
+#### Esquemas externos armazón F
+
+\imgn{0.9}{./diagramas/externos_F.png}
+
+#### Armazón D
+
+\imgn{0.4}{./diagramas/armazon_D.png}
+
 
 ## Diagrama conceptual completo
 
