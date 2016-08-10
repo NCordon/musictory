@@ -4,6 +4,7 @@ class CreateVenta < ActiveRecord::Migration[5.0]
       t.references :catalogo, foreign_key: true
       t.decimal :precio
       t.datetime :fechaVenta
+      t.string :formato
 
       t.timestamps
     end
