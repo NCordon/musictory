@@ -1,0 +1,20 @@
+<%= form_for :catalogo, url: catalogos_path do |c| %>
+  <p>
+    <%= c.label :titulo %><br>
+    <%= c.text_field :titulo %>
+  </p>
+
+  <p>
+    <%= c.label :grupo %><br>
+    <%= c.text_area :grupo %>
+  </p>
+
+  <p>
+    <%= c.label :genero %><br>
+    <%= c.text_area :genero %>
+  </p>
+
+  <p>
+    <%= c.submit %>
+  </p>
+<% end %>
