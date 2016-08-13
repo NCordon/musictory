@@ -22,13 +22,25 @@
 
   <p>
     <%= c.label :grupo %><br>
-    <%= c.text_field :grupo, value: @album.grupo %>
+    <%= c.text_field :grupo, value: @album.grupo, list: 'grupos-list' %>
   </p>
+
+  <datalist id="grupos-list">
+    <%= Catalogo.select(:grupo).distinct.each do |album| %>
+      <option value='<%=album.grupo%>'></option>
+    <%end%>
+  </datalist>
 
   <p>
     <%= c.label :genero %><br>
-    <%= c.text_field :genero, value: @album.genero %>
+    <%= c.text_field :genero, value: @album.genero, list: 'generos-list' %>
   </p>
+  <datalist id='generos-list'>
+    <%= Catalogo.select(:genero).distinct.each do |album| %>
+      <option value='<%=album.genero%>'></option>
+    <%end%>
+  </datalist>
+
 
   <p>
     <%= c.submit %>
