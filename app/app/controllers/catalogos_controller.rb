@@ -3,8 +3,15 @@ class CatalogosController < ApplicationController
     @albums = Catalogo.all
   end
 
+
   def new
   end
+
+
+  def edit
+    @album = Catalogo.find(params[:id])
+  end
+
 
   def create
     #render plain: params[:catalogo].inspect
@@ -13,6 +20,26 @@ class CatalogosController < ApplicationController
     @album.save
     redirect_to @album
   end
+
+
+  def update
+    @album = Catalogo.find(params[:id])
+
+    if @album.update(album_params)
+      redirect_to @album
+    else
+      render 'edit'
+    end
+  end
+
+
+  def destroy
+    @album = Catalogo.find(params[:id])
+    @album.destroy
+
+    redirect_to catalogo_path
+  end
+
 
   def show
     @album = Catalogo.find(params[:id])

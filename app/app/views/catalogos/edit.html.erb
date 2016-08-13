@@ -1,0 +1,39 @@
+<h1>Editar stock</h1>
+
+<%= form_for :catalogo, url: catalogo_path(@album), method: :patch do |c| %>
+
+  <% if @album.errors.any? %>
+    <div id="error">
+      <h2>
+        <%= "#{@album.errors.count} error/es" %> al intentar editar el álbum.
+      </h2>
+      <ul>
+        <% @album.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <p>
+    <%= c.label :titulo %><br>
+    <%= c.text_field :titulo, value: @album.titulo %>
+  </p>
+
+  <p>
+    <%= c.label :grupo %><br>
+    <%= c.text_area :grupo, value: @album.grupo %>
+  </p>
+
+  <p>
+    <%= c.label :genero %><br>
+    <%= c.text_area :genero, value: @album.genero %>
+  </p>
+
+  <p>
+    <%= c.submit %>
+  </p>
+
+<% end %>
+
+<%= link_to 'Back', catalogos_path %>
