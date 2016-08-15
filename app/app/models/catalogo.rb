@@ -4,4 +4,5 @@ class Catalogo < ApplicationRecord
   validates :genero, presence: true
 
   has_one :cd
+  has_one :vinilo
 end

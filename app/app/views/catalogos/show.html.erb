@@ -18,6 +18,8 @@
 <p>
   Stock CDs disponible:
   <%= @album.cd ? @album.cd.cantidad : 0 %>
+  Stock Vinilos disponible:
+  <%= @album.vinilo ? @album.vinilo.cantidad : 0 %>
 </p>
 
 
@@ -28,6 +30,16 @@
     <%= f.text_field :cantidad %>
   </p>
   <p>
-    <%= f.submit %>
+    <%= f.submit "Cambiar cantidad"%>
+  </p>
+<% end %>
+
+<%= form_for([@album, @album.build_vinilo]) do |f| %>
+  <p>
+    <%= f.label :cantidad %><br>
+    <%= f.text_field :cantidad %>
+  </p>
+  <p>
+    <%= f.submit "Cambiar cantidad"%>
   </p>
 <% end %>
