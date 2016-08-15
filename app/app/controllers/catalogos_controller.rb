@@ -37,7 +37,7 @@ class CatalogosController < ApplicationController
     @album = Catalogo.find(params[:id])
     @album.destroy
 
-    redirect_to catalogo_path
+    redirect_to catalogos_path
   end
 
 

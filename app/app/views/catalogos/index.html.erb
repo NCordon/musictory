@@ -13,10 +13,13 @@
       <td><%= a.titulo %></td>
       <td><%= a.grupo %></td>
       <td><%= a.genero %></td>
-      <td><%= link_to 'Show', catalogo_path(a) %></td>
-      <td><%= link_to 'Edit', edit_catalogo_path(a) %></td>
+      <td><%= link_to 'Consultar', catalogo_path(a) %></td>
+      <td><%= link_to 'Modificar', edit_catalogo_path(a) %></td>
+      <td><%= link_to 'Eliminar',  catalogo_path(a),
+                    method: :delete,
+                    data: { confirm: '¿Seguro que quieres eliminar la información de este álbum?' } %></td>
     </tr>
   <% end %>
 </table>
 
-<%= link_to 'New Album', new_catalogo_path %>
+<%= link_to 'Nuevo álbum', new_catalogo_path %>
