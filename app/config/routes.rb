@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
-  resources :catalogos
+  resources :catalogos do
+    resources :cds
+  end
+
   resources :ventas
 
   root 'catalogos#index'

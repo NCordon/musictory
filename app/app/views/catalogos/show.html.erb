@@ -13,3 +13,21 @@
   Genero:
   <%= @album.genero %>
 </p>
+
+<h2>Stock</h2>
+<p>
+  Stock CDs disponible:
+  <%= @album.cd ? @album.cd.cantidad : 0 %>
+</p>
+
+
+<h2>Añade stock:</h2>
+<%= form_for([@album, @album.build_cd]) do |f| %>
+  <p>
+    <%= f.label :cantidad %><br>
+    <%= f.text_field :cantidad %>
+  </p>
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>
