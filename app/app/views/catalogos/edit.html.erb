@@ -1,6 +1,6 @@
 <h1>Editar stock</h1>
 
-<%= form_for :catalogo, url: catalogo_path(@album), method: :patch do |c| %>
+<%= form_for :catalogo, url: catalogo_path(@album), method: :patch do |album| %>
 
   <% if @album.errors.any? %>
     <div id="error">
@@ -16,13 +16,13 @@
   <% end %>
 
   <p>
-    <%= c.label :titulo %><br>
-    <%= c.text_field :titulo, value: @album.titulo %>
+    <%= album.label :titulo %><br>
+    <%= album.text_field :titulo, value: @album.titulo %>
   </p>
 
   <p>
-    <%= c.label :grupo %><br>
-    <%= c.text_field :grupo, value: @album.grupo, list: 'grupos-list' %>
+    <%= album.label :grupo %><br>
+    <%= album.text_field :grupo, value: @album.grupo, list: 'grupos-list' %>
   </p>
 
   <datalist id="grupos-list">
@@ -32,8 +32,8 @@
   </datalist>
 
   <p>
-    <%= c.label :genero %><br>
-    <%= c.text_field :genero, value: @album.genero, list: 'generos-list' %>
+    <%= album.label :genero %><br>
+    <%= album.text_field :genero, value: @album.genero, list: 'generos-list' %>
   </p>
   <datalist id='generos-list'>
     <%= Catalogo.select(:genero).distinct.each do |album| %>
@@ -42,10 +42,25 @@
   </datalist>
 
 
+  <%= fields_for @album.cd do |cd| %>
+    <p>
+      <%= cd.label :cantidad %><br>
+      <%= cd.text_field :cantidad %>
+    </p>
+  <% end %>
+
+  <%= fields_for @album.vinilo do |cd| %>
+    <p>
+      <%= cd.label :cantidad %><br>
+      <%= cd.text_field :cantidad %>
+    </p>
+  <% end %>
+
   <p>
-    <%= c.submit %>
+    <%= album.submit %>
   </p>
 
 <% end %>
+
 
 <%= link_to 'Back', catalogos_path %>
