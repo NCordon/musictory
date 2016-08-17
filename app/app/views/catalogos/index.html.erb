@@ -6,6 +6,8 @@
     <th>Título</th>
     <th>Grupo</th>
     <th>Género</th>
+    <th>Stock CD</th>
+    <th>Stock Vinilo</th>
   </tr>
 
   <% @albums.each do |a| %>
@@ -13,11 +15,14 @@
       <td><%= a.titulo %></td>
       <td><%= a.grupo %></td>
       <td><%= a.genero %></td>
+      <td><%= a.cd.cantidad ? a.cd.cantidad : 0 %></td>
+      <td><%= a.vinilo.cantidad ? a.vinilo.cantidad : 0 %></td>
       <td><%= link_to 'Consultar', catalogo_path(a) %></td>
       <td><%= link_to 'Modificar', edit_catalogo_path(a) %></td>
       <td><%= link_to 'Eliminar',  catalogo_path(a),
                     method: :delete,
                     data: { confirm: '¿Seguro que quieres eliminar la información de este álbum?' } %></td>
+      <td><%= link_to_if a.vinilo.cantidad > 0, 'Vender Vinilo', new_venta_path(:catalogo_id => a.id, :formato => "Vinilo") %></td>
     </tr>
   <% end %>
 </table>

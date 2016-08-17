@@ -6,7 +6,7 @@
 
   <p>
     <%= venta.label :fechaVenta %><br>
-    <%= venta.date_field :fechaVenta %>
+    <%= venta.date_select :fechaVenta %>
   </p>
 
   <p>
@@ -15,6 +15,6 @@
   </p>
 
   <p>
-    <%= venta.submit %>
+    <%= venta.submit "Guardar" %>
   </p>
 <% end %>
