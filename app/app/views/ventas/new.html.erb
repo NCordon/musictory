@@ -1,0 +1,20 @@
+<%= form_for :venta, url: ventas_path do |venta| %>
+  <p>
+    <%= venta.label :precio %><br>
+    <%= venta.number_field :precio, step: 0.01, min:0 %>
+  </p>
+
+  <p>
+    <%= venta.label :fechaVenta %><br>
+    <%= venta.date_field :fechaVenta %>
+  </p>
+
+  <p>
+    <%= venta.label :formato %><br>
+    <%= venta.text_field :text_field %>
+  </p>
+
+  <p>
+    <%= venta.submit %>
+  </p>
+<% end %>

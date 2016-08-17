@@ -45,14 +45,14 @@
   <%= fields_for @album.cd do |cd| %>
     <p>
       <%= cd.label :cantidad %><br>
-      <%= cd.text_field :cantidad %>
+      <%= cd.number_field :cantidad, min: 0 %>
     </p>
   <% end %>
 
   <%= fields_for @album.vinilo do |cd| %>
     <p>
       <%= cd.label :cantidad %><br>
-      <%= cd.text_field :cantidad %>
+      <%= cd.number_field :cantidad, min: 0 %>
     </p>
   <% end %>
 
