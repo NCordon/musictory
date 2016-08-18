@@ -13,6 +13,8 @@ class VentasController < ApplicationController
   end
 
   def show
+    @venta = Venta.find params[:id]
+    @catalogo = @venta.catalogo
   end
 
   private
