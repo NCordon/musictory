@@ -1,0 +1,54 @@
+<%= form_for :catalogo, url: catalogos_path do |album| %>
+
+  <%= render partial: '/shared/errors', object: @catalogo %>
+
+  <p>
+    <%= album.label :titulo%><br>
+    <%= album.text_field :titulo, value: @catalogo.titulo %>
+  </p>
+
+  <p>
+    <%= album.label :grupo %><br>
+    <%= album.text_field :grupo, value: @catalogo.grupo, list: 'grupos-list' %>
+  </p>
+
+  <datalist id="grupos-list">
+    <%= Catalogo.select(:grupo).distinct.each do |album| %>
+      <option value='<%=album.grupo%>'></option>
+    <%end%>
+  </datalist>
+
+  <p>
+    <%= album.label :genero %><br>
+    <%= album.text_field :genero, value: @catalogo.genero, list: 'generos-list' %>
+  </p>
+  <datalist id='generos-list'>
+    <%= Catalogo.select(:genero).distinct.each do |album| %>
+      <option value='<%=album.genero%>'></option>
+    <%end%>
+  </datalist>
+
+
+
+  <% if local_assigns[:full] %>
+    <%= fields_for @catalogo.cd do |cd| %>
+      <p>
+        <%= cd.label :cantidad %><br>
+        <%= cd.number_field :cantidad, min: 0 %>
+      </p>
+    <% end %>
+
+    <%= fields_for @catalogo.vinilo do |cd| %>
+      <p>
+        <%= cd.label :cantidad %><br>
+        <%= cd.number_field :cantidad, min: 0 %>
+      </p>
+    <% end %>
+  <% end %>
+
+
+  <p>
+    <%= album.submit %>
+  </p>
+
+<% end %>
