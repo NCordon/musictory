@@ -3,11 +3,8 @@ class VentasController < ApplicationController
   end
 
 
-
   def create
     v = Venta.require(new(params[:id])
-
-
   end
 
   private

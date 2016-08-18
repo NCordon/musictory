@@ -6,8 +6,8 @@ class Catalogo < ApplicationRecord
   has_one :cd, dependent: :destroy
   has_one :vinilo, dependent: :destroy
   after_create :setStock
-  #accepts_nested_attributes_for :cd
-  #accepts_nested_attributes_for :vinilo
+  accepts_nested_attributes_for :cd
+  accepts_nested_attributes_for :vinilo
 
   has_many :ventas
 

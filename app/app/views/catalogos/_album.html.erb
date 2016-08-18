@@ -1,4 +1,4 @@
-<%= form_for :catalogo, url: catalogos_path do |album| %>
+<%= form_for @catalogo do |album| %>
 
   <%= render partial: '/shared/errors', object: @catalogo %>
 
@@ -31,14 +31,14 @@
 
 
   <% if local_assigns[:full] %>
-    <%= fields_for @catalogo.cd do |cd| %>
+    <%= album.fields_for :cd do |cd| %>
       <p>
         <%= cd.label :cantidad %><br>
         <%= cd.number_field :cantidad, min: 0 %>
       </p>
     <% end %>
 
-    <%= fields_for @catalogo.vinilo do |cd| %>
+    <%= album.fields_for :vinilo do |cd| %>
       <p>
         <%= cd.label :cantidad %><br>
         <%= cd.number_field :cantidad, min: 0 %>

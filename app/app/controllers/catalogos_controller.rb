@@ -29,10 +29,8 @@ class CatalogosController < ApplicationController
 
   def update
     @catalogo = Catalogo.find(params[:id])
-    @cd = @catalogo.cd
-    @vinilo = @catalogo.vinilo
 
-    if @catalogo.update album_params and @cd.update cd_params and @vinilo.update vinilo_params
+    if @catalogo.update album_params
       redirect_to @catalogo
     else
       render 'edit'
@@ -54,15 +52,9 @@ class CatalogosController < ApplicationController
 
   private
     def album_params
-      params.require(:catalogo).permit(:titulo,:grupo,:genero)
-    end
-
-    def cd_params
-      params.require(:cd).permit(:cantidad)
-    end
-
-    def vinilo_params
-      params.require(:vinilo).permit(:cantidad)
+      params.require(:catalogo).permit(:titulo,:grupo,:genero,
+        cd_attributes: [:cantidad],
+        vinilo_atributes: [:cantidad])
     end
 
 end
