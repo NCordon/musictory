@@ -1,5 +1,6 @@
 class VentasController < ApplicationController
   def new
+    @venta = Venta.new
   end
 
   def edit
@@ -7,9 +8,13 @@ class VentasController < ApplicationController
 
   def create
     @catalogo = Catalogo.find params[:venta][:catalogo_id]
-    @venta = @catalogo.ventas.create venta_params
+    @venta = @catalogo.ventas.build venta_params
 
-    redirect_to venta_path @venta
+    if @venta.save
+      redirect_to venta_path @venta
+    else
+      render 'new'
+    end
   end
 
   def show

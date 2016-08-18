@@ -1,4 +1,6 @@
-<%= form_for :venta, url: ventas_path do |venta| %>
+<%= form_for @venta, url: ventas_path do |venta| %>
+  <%= render partial: '/shared/errors', object: @venta %>
+
   <p>
     <%= venta.label :precio %><br>
     <%= venta.number_field :precio, step: 0.01, min:0 %>
@@ -10,8 +12,7 @@
   </p>
 
   <p>
-    <%= venta.label :formato %><br>
-    <%= venta.text_field :formato %>
+    <%= venta.select :formato, options_for_select([["CD","CD"],["Vinilo","Vinilo"]]) %>
   </p>
 
   <%= venta.hidden_field :catalogo_id, value: params[:catalogo_id] %>
