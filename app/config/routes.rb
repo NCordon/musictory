@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   resources :catalogos do
     resources :cds
     resources :vinilos
+  #  resources :ventas
   end
 
   resources :ventas

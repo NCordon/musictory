@@ -2,9 +2,17 @@ class VentasController < ApplicationController
   def new
   end
 
+  def edit
+  end
 
   def create
-    v = Venta.require(new(params[:id])
+    @catalogo = Catalogo.find params[:venta][:catalogo_id]
+    @venta = @catalogo.ventas.create venta_params
+
+    redirect_to venta_path @venta
+  end
+
+  def show
   end
 
   private

@@ -11,8 +11,10 @@
 
   <p>
     <%= venta.label :formato %><br>
-    <%= venta.text_field :text_field %>
+    <%= venta.text_field :formato %>
   </p>
+
+  <%= venta.hidden_field :catalogo_id, value: params[:catalogo_id] %>
 
   <p>
     <%= venta.submit "Guardar" %>

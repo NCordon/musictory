@@ -1,7 +1,10 @@
 class Catalogo < ApplicationRecord
-  validates :titulo, presence: {message: "es necesario"}
-  validates :grupo, presence: {message: "es necesario"}
-  validates :genero, presence: {message: "es necesario"}
+  validates :titulo,
+    presence: {message: "%{value} no puede ser vacío"}
+  validates :grupo,
+    presence: {message: "%{value} no puede ser vacío"}
+  validates :genero,
+    presence: {message: "%{value} no puede ser vacío"}
 
   has_one :cd, dependent: :destroy
   has_one :vinilo, dependent: :destroy
