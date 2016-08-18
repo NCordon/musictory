@@ -2,18 +2,7 @@
 
 <%= form_for :catalogo, url: catalogos_path do |album| %>
 
-  <% if @catalogo.errors.any? %>
-    <div id="error">
-      <h2>
-        <%= "#{@catalogo.errors.count} error/es" %> al intentar editar el álbum.
-      </h2>
-      <ul>
-        <% @catalogo.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <%= render partial: '/shared/errors', object: @catalogo %>
 
   <p>
     <%= album.label :titulo%><br>

@@ -1,0 +1,12 @@
+<% if errors.errors.any? %>
+  <div id="error">
+    <h2>
+      <%= "#{errors.errors.count} error/es" %>
+    </h2>
+    <ul>
+      <% errors.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
