@@ -1,16 +1,22 @@
-<%= form_for @catalogo do |album| %>
+<%= form_for @catalogo, :html => {:autocomplete => "off"}  do |album| %>
 
   <%= render partial: '/shared/errors', object: @catalogo %>
 
   <p>
     <%= album.label :titulo%><br>
-    <%= album.text_field :titulo, value: @catalogo.titulo %>
+    <%= album.text_field :titulo %>
   </p>
 
   <p>
     <%= album.label :grupo %><br>
-    <%= album.text_field :grupo, value: @catalogo.grupo, list: 'grupos-list' %>
+    <%= album.text_field :grupo, list: 'grupos-list' %>
   </p>
+
+  <p>
+    <%= album.label :genero %><br>
+    <%= album.text_field :genero, list: 'generos-list' %>
+  </p>
+
 
   <datalist id="grupos-list">
     <%= Catalogo.select(:grupo).distinct.each do |album| %>
@@ -18,10 +24,6 @@
     <%end%>
   </datalist>
 
-  <p>
-    <%= album.label :genero %><br>
-    <%= album.text_field :genero, value: @catalogo.genero, list: 'generos-list' %>
-  </p>
   <datalist id='generos-list'>
     <%= Catalogo.select(:genero).distinct.each do |album| %>
       <option value='<%=album.genero%>'></option>
@@ -31,17 +33,25 @@
 
 
   <% if local_assigns[:full] %>
-    <%= album.fields_for :cd do |cd| %>
+    <%= album.fields_for :cd do |product| %>
       <p>
-        <%= cd.label :cantidad %><br>
-        <%= cd.number_field :cantidad, min: 0 %>
+        <%= product.label :cantidad %><br>
+        <%= product.number_field :cantidad, min: 0 %>
+      </p>
+      <p>
+        <%= product.label :precio %><br>
+        <%= product.number_field :precio, min: 0, step: 0.01 %>
       </p>
     <% end %>
 
-    <%= album.fields_for :vinilo do |cd| %>
+    <%= album.fields_for :vinilo do |product| %>
       <p>
-        <%= cd.label :cantidad %><br>
-        <%= cd.number_field :cantidad, min: 0 %>
+        <%= product.label :cantidad %><br>
+        <%= product.number_field :cantidad, min: 0  %>
+      </p>
+      <p>
+        <%= product.label :precio %><br>
+        <%= product.number_field :precio, min: 0, step: 0.01 %>
       </p>
     <% end %>
   <% end %>

@@ -6,8 +6,6 @@
     <th>Título</th>
     <th>Grupo</th>
     <th>Género</th>
-    <th>Stock CD</th>
-    <th>Stock Vinilo</th>
   </tr>
 
   <% @catalogos.each do |a| %>
@@ -15,8 +13,6 @@
       <td><%= a.titulo %></td>
       <td><%= a.grupo %></td>
       <td><%= a.genero %></td>
-      <td><%= a.cd.cantidad ? a.cd.cantidad : 0 %></td>
-      <td><%= a.vinilo.cantidad ? a.vinilo.cantidad : 0 %></td>
       <td><%= link_to 'Consultar', catalogo_path(a) %></td>
       <td><%= link_to 'Modificar', edit_catalogo_path(a) %></td>
       <td><%= link_to 'Eliminar',  catalogo_path(a),

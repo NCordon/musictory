@@ -16,14 +16,21 @@
 
 
 <h2>Stock</h2>
-<p>
-  Stock CDs disponible:
-  <%= @catalogo.cd.cantidad || 0 %>
-</p>
-<p>
-  Stock Vinilos disponible:
-  <%= @catalogo.vinilo.cantidad || 0 %>
-</p>
+<table>
+  <tr>
+    <th>Stock CDs </th>
+    <th>Precio </th>
+    <th>Stock Vinilos </th>
+    <th>Precio </th>
+  </tr>
+  <tr>
+    <td> <%= @catalogo.cd.cantidad %> </td>
+    <td> <%= @catalogo.cd.precio %> </td>
+    <td> <%= @catalogo.vinilo.cantidad %> </td>
+    <td> <%= @catalogo.vinilo.precio %> </td>
+  </tr>
+</table>
+
 
 
 <td><%= link_to 'Modificar', edit_catalogo_path(@catalogo) %></td>
