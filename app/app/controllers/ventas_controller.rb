@@ -3,16 +3,16 @@ class VentasController < ApplicationController
   end
 
 
-=begin
+
   def create
     v = Venta.require(new(params[:id])
+
 
   end
 
   private
     def venta_params
-      params.require(:venta).permit(:titulo,:grupo,:genero)
+      params.require(:venta).permit(:precio,:fechaVenta,:formato)
     end
-=end
 
 end

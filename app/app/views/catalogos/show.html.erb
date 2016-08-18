@@ -1,29 +1,29 @@
 
 <p>
   Título:
-  <%= @album.titulo %>
+  <%= @catalogo.titulo %>
 </p>
 
 <p>
   Grupo:
-  <%= @album.grupo %>
+  <%= @catalogo.grupo %>
 </p>
 
 <p>
   Genero:
-  <%= @album.genero %>
+  <%= @catalogo.genero %>
 </p>
 
 
 <h2>Stock</h2>
 <p>
   Stock CDs disponible:
-  <%= @album.cd.cantidad ? @album.cd.cantidad : 0 %>
+  <%= @catalogo.cd.cantidad || 0 %>
 </p>
 <p>
   Stock Vinilos disponible:
-  <%= @album.vinilo.cantidad ? @album.vinilo.cantidad : 0 %>
+  <%= @catalogo.vinilo.cantidad || 0 %>
 </p>
 
 
-<td><%= link_to 'Modificar', edit_catalogo_path(@album) %></td>
+<td><%= link_to 'Modificar', edit_catalogo_path(@catalogo) %></td>

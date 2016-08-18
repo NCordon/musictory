@@ -1,7 +1,7 @@
 class Catalogo < ApplicationRecord
-  validates :titulo, presence: true
-  validates :grupo, presence: true
-  validates :genero, presence: true
+  validates :titulo, presence: {message: "es necesario"}
+  validates :grupo, presence: {message: "es necesario"}
+  validates :genero, presence: {message: "es necesario"}
 
   has_one :cd, dependent: :destroy
   has_one :vinilo, dependent: :destroy

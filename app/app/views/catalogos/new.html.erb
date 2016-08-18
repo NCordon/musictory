@@ -1,4 +1,18 @@
 <%= form_for :catalogo, url: catalogos_path do |c| %>
+
+  <% if @catalogo.errors.any? %>
+    <div id="error">
+      <h2>
+        <%= "#{@catalogo.errors.count} error/es" %> al intentar editar el álbum.
+      </h2>
+      <ul>
+        <% @catalogo.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
   <p>
     <%= c.label :titulo %><br>
     <%= c.text_field :titulo %>

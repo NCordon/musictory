@@ -1,34 +1,39 @@
 class CatalogosController < ApplicationController
   def index
-    @albums = Catalogo.all
+    @catalogos = Catalogo.all
   end
 
 
   def new
+    @catalogo = Catalogo.new
   end
 
 
   def edit
-    @album = Catalogo.find(params[:id])
+    @catalogo = Catalogo.find(params[:id])
   end
 
 
   def create
     #render plain: params[:catalogo].inspect
 
-    @album = Catalogo.new(album_params)
-    @album.save
-    redirect_to @album
+    @catalogo = Catalogo.new(album_params)
+
+    if @catalogo.save
+      redirect_to @catalogo
+    else
+      render 'new'
+    end
   end
 
 
   def update
-    @album = Catalogo.find(params[:id])
-    @cd = @album.cd
-    @vinilo = @album.vinilo
+    @catalogo = Catalogo.find(params[:id])
+    @cd = @catalogo.cd
+    @vinilo = @catalogo.vinilo
 
-    if @album.update album_params and @cd.update cd_params and @vinilo.update vinilo_params
-      redirect_to @album
+    if @catalogo.update album_params and @cd.update cd_params and @vinilo.update vinilo_params
+      redirect_to @catalogo
     else
       render 'edit'
     end
@@ -36,15 +41,15 @@ class CatalogosController < ApplicationController
 
 
   def destroy
-    @album = Catalogo.find(params[:id])
-    @album.destroy
+    @catalogo = Catalogo.find(params[:id])
+    @catalogo.destroy
 
     redirect_to catalogos_path
   end
 
 
   def show
-    @album = Catalogo.find(params[:id])
+    @catalogo = Catalogo.find(params[:id])
   end
 
   private
