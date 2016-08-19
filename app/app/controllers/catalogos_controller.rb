@@ -15,8 +15,6 @@ class CatalogosController < ApplicationController
 
 
   def create
-    #render plain: params[:catalogo].inspect
-
     @catalogo = Catalogo.new(album_params)
 
     if @catalogo.save

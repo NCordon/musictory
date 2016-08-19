@@ -1,4 +1,8 @@
 class VentasController < ApplicationController
+  def index
+    @ventas = Venta.all
+  end
+
   def new
     @venta = Venta.new
   end
@@ -20,6 +24,14 @@ class VentasController < ApplicationController
   def show
     @venta = Venta.find params[:id]
     @catalogo = @venta.catalogo
+  end
+
+
+  def destroy
+    @venta = Venta.find(params[:id])
+    @venta.destroy
+
+    redirect_to ventas_path
   end
 
   private

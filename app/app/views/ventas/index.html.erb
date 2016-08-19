@@ -1,0 +1,27 @@
+<h1>Listado de ventas</h1>
+
+<table>
+  <tr>
+    <th>Título</th>
+    <th>Grupo</th>
+    <th>Precio</th>
+    <th>Fecha Venta</th>
+    <th>Formato</th>
+  </tr>
+
+  <% @ventas.each do |v| %>
+    <tr>
+      <td><%= v.catalogo.titulo %></td>
+      <td><%= v.catalogo.grupo %></td>
+      <td><%= v.catalogo.genero %></td>
+      <td><%= v.precio %></td>
+      <td><%= v.fechaVenta %></td>
+      <td><%= v.formato %></td>
+      <td><%= link_to 'Consultar', venta_path(v) %></td>
+      <td><%= link_to 'Ir a album', catalogo_path(v.catalogo) %></td>
+      <td><%= link_to 'Eliminar',  venta_path(v),
+                    method: :delete,
+                    data: { confirm: '¿Seguro que quieres eliminar la información de esta venta?' } %></td>
+    </tr>
+  <% end %>
+</table>
