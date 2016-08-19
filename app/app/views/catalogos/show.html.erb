@@ -31,5 +31,6 @@
   </tr>
 </table>
 
-<td><%= link_to 'Vender cd', new_venta_path(:catalogo_id => @catalogo.id) %></td>
+<td><%= link_to_if @catalogo.cd.cantidad > 0, 'Vender cd', new_venta_path(:catalogo_id => @catalogo.id, :formato => "CD") %></td>
+<td><%= link_to_if @catalogo.vinilo.cantidad > 0, 'Vender vinilo', new_venta_path(:catalogo_id => @catalogo.id, :formato => "Vinilo") %></td>
 <td><%= link_to 'Modificar', edit_catalogo_path(@catalogo) %></td>

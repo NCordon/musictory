@@ -17,4 +17,31 @@ class Venta < ApplicationRecord
       in: %w(CD Vinilo),
       message: "%{value} no es un formato válido. Se esperaba CD o Vinilo"
     }
+
+  validate :empty_stock?
+  after_create :update_stock
+
+  def empty_stock?
+    errors.add(:base, 'No hay stock de CDs disponible') if stock_cds?
+    errors.add(:base, 'No hay stock de Vinilos disponible') if stock_vinilos?
+  end
+
+  def stock_cds?
+    not Cd.where("catalogo_id = catalogo_id and cantidad>0") if formato==="CD"
+  end
+
+  def stock_vinilos?
+    not Vinilo.where("catalogo_id = catalogo_id and cantidad>0") if formato==="Vinilo"
+  end
+
+  def update_stock
+    if formato==="CD"
+      @cd = Cd.where(catalogo_id: catalogo_id)
+      @cd.update cantidad: (@cd.first[:cantidad] - 1)
+    elsif formato==="Vinilo"
+      @vinilo = Vinilo.find(catalogo_id: catalogo_id)
+      @vinilo.update cantidad: (@vinilo.first[:cantidad] - 1)
+    end
+  end
+
 end

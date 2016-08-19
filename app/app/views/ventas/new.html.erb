@@ -12,7 +12,7 @@
   </p>
 
   <p>
-    <%= venta.select :formato, options_for_select([["CD","CD"],["Vinilo","Vinilo"]]) %>
+    <%= venta.select :formato, options_for_select(["CD","Vinilo"],params[:formato])  %>
   </p>
 
   <%= venta.hidden_field :catalogo_id, value: params[:catalogo_id] %>
