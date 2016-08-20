@@ -12,7 +12,7 @@ class Catalogo < ApplicationRecord
   accepts_nested_attributes_for :cd
   accepts_nested_attributes_for :vinilo
 
-  has_many :ventas, dependent: :destroy
+  has_many :ventas
 
   def setStock
     create_cd cantidad:0

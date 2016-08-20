@@ -15,7 +15,7 @@
     <%= venta.select :formato, options_for_select(["CD","Vinilo"],params[:formato])  %>
   </p>
 
-  <%= venta.hidden_field :catalogo_id, value: params[:catalogo_id] %>
+  <%= hidden_field_tag :catalogo_id, params[:catalogo_id] %>
 
   <p>
     <%= venta.submit "Guardar" %>

@@ -22,15 +22,15 @@ class Venta < ApplicationRecord
   after_create :update_stock
 
   def empty_stock?
-    errors.add(:base, 'No hay stock de CDs disponible') if stock_cds?
-    errors.add(:base, 'No hay stock de Vinilos disponible') if stock_vinilos?
+    errors.add(:base, 'No hay stock de CDs disponible') if none_cds?
+    errors.add(:base, 'No hay stock de Vinilos disponible') if none_vinilos?
   end
 
-  def stock_cds?
-    not Cd.where("catalogo_id = catalogo_id and cantidad>0") if formato==="CD"
+  def none_cds?
+    not Cd.exists?(["catalogo_id = #{catalogo_id} and cantidad>0"]) if formato==="CD"
   end
 
-  def stock_vinilos?
+  def none_vinilos?
     not Vinilo.where("catalogo_id = catalogo_id and cantidad>0") if formato==="Vinilo"
   end
 
@@ -39,7 +39,7 @@ class Venta < ApplicationRecord
       @cd = Cd.where(catalogo_id: catalogo_id)
       @cd.update cantidad: (@cd.first[:cantidad] - 1)
     elsif formato==="Vinilo"
-      @vinilo = Vinilo.find(catalogo_id: catalogo_id)
+      @vinilo = Vinilo.where(catalogo_id: catalogo_id)
       @vinilo.update cantidad: (@vinilo.first[:cantidad] - 1)
     end
   end

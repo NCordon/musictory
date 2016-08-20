@@ -11,13 +11,13 @@ class VentasController < ApplicationController
   end
 
   def create
-    @catalogo = Catalogo.find params[:venta][:catalogo_id]
+    @catalogo = Catalogo.find params[:catalogo_id]
     @venta = @catalogo.ventas.build venta_params
 
     if @venta.save
       redirect_to venta_path @venta
     else
-      render 'new'
+      render partial: '/shared/errors', object: @venta
     end
   end
 
