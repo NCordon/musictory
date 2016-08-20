@@ -1,4 +1,6 @@
 class Venta < ApplicationRecord
+  enum formato: [:cd, :vinilo]
+
   belongs_to :catalogo
 
   validates :precio,
@@ -12,11 +14,7 @@ class Venta < ApplicationRecord
     presence: {message: "%{value} no puede ser vacío"}
 
   validates :formato,
-    presence: {message: "%{value} no puede ser vacío"},
-    inclusion: {
-      in: %w(CD Vinilo),
-      message: "%{value} no es un formato válido. Se esperaba CD o Vinilo"
-    }
+    presence: {message: "%{value} no puede ser vacío"}
 
   validate :empty_stock?
   after_create :update_stock
@@ -27,21 +25,28 @@ class Venta < ApplicationRecord
   end
 
   def none_cds?
-    not Cd.exists?(["catalogo_id = #{catalogo_id} and cantidad>0"]) if formato==="CD"
+    not Cd.exists?(["catalogo_id = #{catalogo_id} and cantidad>0"]) if cd?
   end
 
   def none_vinilos?
-    not Vinilo.where("catalogo_id = catalogo_id and cantidad>0") if formato==="Vinilo"
+    not Vinilo.exists?(["catalogo_id = #{catalogo_id} and cantidad>0"]) if vinilo?
   end
 
   def update_stock
-    if formato==="CD"
+    if cd?
       @cd = Cd.where(catalogo_id: catalogo_id)
       @cd.update cantidad: (@cd.first[:cantidad] - 1)
-    elsif formato==="Vinilo"
+    elsif vinilo?
       @vinilo = Vinilo.where(catalogo_id: catalogo_id)
       @vinilo.update cantidad: (@vinilo.first[:cantidad] - 1)
     end
   end
 
+  def cd?
+    formato == "cd"
+  end
+
+  def vinilo?
+    formato == "vinilo"
+  end
 end
