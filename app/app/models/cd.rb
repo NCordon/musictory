@@ -5,8 +5,7 @@ class Cd < ApplicationRecord
     presence: {message: "%{value} no puede ser vacío"},
     numericality: {
       greater_than_or_equal: 0,
-      only_integer: true,
-      message: "%{value} debe ser mayor que 0"
+      only_integer: true
     }
 
   validates :precio,

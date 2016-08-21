@@ -1,66 +1,70 @@
-<%= form_for @catalogo, :html => {:autocomplete => "off"}  do |album| %>
+<%= form_for @catalogo, :html => {:autocomplete => "off"}  do |form| %>
 
   <%= render partial: '/shared/errors', object: @catalogo %>
 
   <p>
-    <%= album.label :titulo%><br>
-    <%= album.text_field :titulo %>
+    <%= form.label :titulo%><br>
+    <%= form.text_field :titulo %>
   </p>
 
   <p>
-    <%= album.label :grupo %><br>
-    <%= album.text_field :grupo, list: 'grupos-list' %>
+    <%= form.label :grupo %><br>
+    <%= form.text_field :grupo, list: 'grupos-list' %>
   </p>
 
   <p>
-    <%= album.label :genero %><br>
-    <%= album.text_field :genero, list: 'generos-list' %>
+    <%= form.label :genero %><br>
+    <%= form.text_field :genero, list: 'generos-list' %>
   </p>
 
-  <%= album.file_field :portada %>
+  <p>
+    <%= image_tag @catalogo.portada(:medium) %>
+  </p>
+
+  <%= form.file_field :portada %>
 
 
   <datalist id="grupos-list">
-    <%= Catalogo.select(:grupo).distinct.each do |album| %>
-      <option value='<%=album.grupo%>'></option>
+    <%= Catalogo.select(:grupo).distinct.each do |form| %>
+      <option value='<%=form.grupo%>'></option>
     <%end%>
   </datalist>
 
   <datalist id='generos-list'>
-    <%= Catalogo.select(:genero).distinct.each do |album| %>
-      <option value='<%=album.genero%>'></option>
+    <%= Catalogo.select(:genero).distinct.each do |form| %>
+      <option value='<%=form.genero%>'></option>
     <%end%>
   </datalist>
 
 
 
   <% if local_assigns[:full] %>
-    <%= album.fields_for :cd do |product| %>
+    <%= form.fields_for :cd do |f| %>
       <p>
-        <%= product.label :cantidad %><br>
-        <%= product.number_field :cantidad, min: 0 %>
+        <%= f.label :cantidad %><br>
+        <%= f.number_field :cantidad, min: 0 %>
       </p>
       <p>
-        <%= product.label :precio %><br>
-        <%= product.number_field :precio, min: 0, step: 0.05 %>
+        <%= f.label :precio %><br>
+        <%= f.number_field :precio, min: 0, step: 0.05 %>
       </p>
     <% end %>
 
-    <%= album.fields_for :vinilo do |product| %>
+    <%= form.fields_for :vinilo do |f| %>
       <p>
-        <%= product.label :cantidad %><br>
-        <%= product.number_field :cantidad, min: 0  %>
+        <%= f.label :cantidad %><br>
+        <%= f.number_field :cantidad, min: 0  %>
       </p>
       <p>
-        <%= product.label :precio %><br>
-        <%= product.number_field :precio, min: 0, step: 0.05 %>
+        <%= f.label :precio %><br>
+        <%= f.number_field :precio, min: 0, step: 0.05 %>
       </p>
     <% end %>
   <% end %>
 
 
   <p>
-    <%= album.submit %>
+    <%= form.submit %>
   </p>
 
 <% end %>
