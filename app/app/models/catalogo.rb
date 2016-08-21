@@ -6,6 +6,10 @@ class Catalogo < ApplicationRecord
   validates :genero,
     presence: {message: "%{value} no puede ser vacío"}
 
+  has_attached_file :portada, styles: { medium: "300x300>", thumb: "100x100>" },
+    default_url: "/images/:style/missing.png"
+  validates_attachment_content_type :portada, content_type: /\Aimage\/.*\z/
+
   has_one :cd, dependent: :destroy
   has_one :vinilo, dependent: :destroy
   after_create :setStock

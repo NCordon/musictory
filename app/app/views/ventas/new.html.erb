@@ -16,6 +16,11 @@
     <%= venta.select :formato, Venta.formatos.keys  %>
   </p>
 
+  <p>
+    <%= venta.label :observaciones %><br>
+    <%= venta.text_area :observaciones%>
+  </p>
+
   <%= hidden_field_tag :catalogo_id, params[:catalogo_id] %>
 
   <p>

@@ -53,5 +53,9 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
+# Use secure credentials
 gem 'figaro'
+# Date validator
 gem 'date_validator', '~>0.9.0'
+# Uploading pictures function
+gem "paperclip", "~> 5.0.0"

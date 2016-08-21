@@ -17,6 +17,8 @@
     <%= album.text_field :genero, list: 'generos-list' %>
   </p>
 
+  <%= album.file_field :portada %>
+
 
   <datalist id="grupos-list">
     <%= Catalogo.select(:grupo).distinct.each do |album| %>

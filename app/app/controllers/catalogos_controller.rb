@@ -50,7 +50,7 @@ class CatalogosController < ApplicationController
 
   private
     def album_params
-      params.require(:catalogo).permit(:titulo,:grupo,:genero,
+      params.require(:catalogo).permit(:titulo, :grupo, :genero, :portada,
         cd_attributes: [:cantidad, :precio],
         vinilo_attributes: [:cantidad, :precio])
     end
