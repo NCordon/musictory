@@ -59,3 +59,5 @@ gem 'figaro', "~> 1.1.1"
 gem 'date_validator', '~>0.9.0'
 # Uploading pictures function
 gem "paperclip", "~> 5.0.0"
+# Simple form instead of common forms
+gem 'simple_form', "~> 3.2.1"
