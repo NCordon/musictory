@@ -1,24 +1,22 @@
-<table>
-  <tr>
-    <th>Título</th>
-    <th>Grupo</th>
-    <th>Precio</th>
-    <th>Fecha Venta</th>
-    <th>Formato</th>
-  </tr>
+<table class="index-table">
 
-  <% @ventas.each do |venta| %>
+  <% @ventas.each do |v| %>
     <tr>
-      <td><%= venta.catalogo.titulo %></td>
-      <td><%= venta.catalogo.grupo %></td>
-      <td><%= venta.precio %></td>
-      <td><%= venta.fechaVenta.to_date %></td>
-      <td><%= venta.formato.upcase %></td>
-      <td><%= link_to 'Consultar', venta_path(venta) %></td>
-      <td><%= link_to 'Album asociado', catalogo_path(venta.catalogo) %></td>
-      <td><%= link_to 'Eliminar',  venta_path(venta),
-                    method: :delete,
-                    data: { confirm: '¿Seguro que quieres eliminar la información de esta venta?' } %></td>
+      <td class=index-photo><%=image_tag v.catalogo.portada(:thumb) %> </td>
+      <td><%= v.catalogo.titulo %></td>
+      <td><%= v.catalogo.grupo %></td>
+      <td><%= v.precio %></td>
+      <td><%= v.fechaVenta.to_date %></td>
+      <td><%= v.formato.upcase %></td>
+
+      <td><ul class="index-buttons">
+
+        <li> <%= link_to 'Consultar', venta_path(v) %></li>
+        <li> <%= link_to 'Album asociado', catalogo_path(v.catalogo) %></li>
+        <li><%= link_to 'Eliminar',  venta_path(v),
+                      method: :delete,
+                      data: { confirm: '¿Seguro que quieres eliminar la información de esta venta?' } %></li>
+      </ul></td>
     </tr>
   <% end %>
 </table>

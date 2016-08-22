@@ -10,16 +10,15 @@
       <td><%= a.titulo %></td>
       <td><%= a.grupo %></td>
       <td><%= a.genero %></td>
-      <td>
 
-      <ul class="index-buttons">
+      <td><ul class="index-buttons">
 
         <li> <%= link_to 'Stock', catalogo_path(a) %></li>
         <li> <%= link_to 'Modificar', edit_catalogo_path(a) %></li>
         <li> <%= link_to 'Eliminar',  catalogo_path(a),
                   method: :delete,
                   data: { confirm: '¿Seguro que quieres eliminar la información de este álbum?' } %></li>
-      </ul>
+      </ul></td>
     </tr>
   <% end %>
 </table>
