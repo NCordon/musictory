@@ -43,10 +43,10 @@ class Venta < ApplicationRecord
   end
 
   def cd?
-    formato == "cd"
+    formato === "cd"
   end
 
   def vinilo?
-    formato == "vinilo"
+    formato === "vinilo"
   end
 end

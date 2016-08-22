@@ -2,18 +2,13 @@
   <%= render partial: '/shared/errors', object: @venta %>
 
   <p>
-    <%= venta.label :precio %><br>
-    <%= venta.number_field :precio, step: 0.01, min:0 %>
-  </p>
-
-  <p>
     <%= venta.label :fechaVenta %><br>
     <%= venta.date_select :fechaVenta %>
   </p>
 
   <p>
     <%= venta.label :formato %><br>
-    <%= venta.select :formato, Venta.formatos.keys  %>
+    <%= venta.select :formato, Venta.formatos.keys.map {|f| [f.upcase, f]}  %>
   </p>
 
   <p>

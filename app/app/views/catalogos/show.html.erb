@@ -33,7 +33,8 @@
     <ul class="buttons">
 
       <% if @catalogo.cd.cantidad > 0 %>
-        <li><%= link_to 'Vender CD', new_venta_path(:catalogo_id => @catalogo.id, :formato => "CD") %></li>
+        <li><%= link_to 'Vender CD',
+          new_venta_path(:catalogo_id => @catalogo.id, :formato => "CD") %></li>
       <%end%>
 
       <% if @catalogo.vinilo.cantidad > 0 %>

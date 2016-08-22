@@ -36,6 +36,11 @@ class VentasController < ApplicationController
 
   private
     def venta_params
+      if params[:venta][:formato] === "cd"
+        params[:venta][:precio] = Cd.where(catalogo_id: params[:catalogo_id]).first.precio
+      elsif params[:venta][:formato] === "vinilo"
+        params[:venta][:precio] = Vinilo.where(catalogo_id: params[:catalogo_id]).first.precio
+      end
       params.require(:venta).permit(:precio,:fechaVenta,:formato,:observaciones)
     end
 
