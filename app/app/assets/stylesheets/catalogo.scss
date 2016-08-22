@@ -9,14 +9,13 @@
   width: 400px;
 }
 
-.top-album img{
+.album-photo img{
   width: 100%;
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
+  border-radius: 20px;
 }
 
 
-.top-album{
+.album-photo{
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
   background: #b3cccc;
@@ -86,4 +85,9 @@
 
 .buttons li a:hover {
   background-color: #3d5c5c;
+}
+
+.show-album-photo img{
+  width: 100%;
+  border-radius: 20px;
 }

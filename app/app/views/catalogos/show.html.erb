@@ -1,6 +1,6 @@
 <div class="album">
 
-  <div class="top-album">
+  <div class="album-photo">
       <%= image_tag @catalogo.portada(:medium) %>
   </div>
 
@@ -12,8 +12,8 @@
         <li> Género </li>
         <li> Stock CDs </li>
         <li> Stock Vinilos </li>
-        <li> Precio CD </li>
-        <li> Precio Vinilo </li>
+        <li> Precio CD (€)</li>
+        <li> Precio Vinilo (€) </li>
       </ul>
     </div>
     <div class="album-sides album-content">
@@ -22,9 +22,9 @@
         <li> <%= @catalogo.grupo %> </li>
         <li> <%= @catalogo.genero %> </li>
         <li> <%= @catalogo.cd.cantidad %> </li>
-        <li> <%= @catalogo.cd.precio %> €</li>
         <li> <%= @catalogo.vinilo.cantidad %> </li>
-        <li> <%= @catalogo.vinilo.precio %> € </li>
+        <li> <%= @catalogo.cd.precio %> </li>
+        <li> <%= @catalogo.vinilo.precio %> </li>
       </ul>
     </div>
   </div>

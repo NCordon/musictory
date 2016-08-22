@@ -1,28 +1,28 @@
+<div class="album ">
 <%= form_for @catalogo, :html => {:autocomplete => "off"}  do |form| %>
 
   <%= render partial: '/shared/errors', object: @catalogo %>
 
+  <div class="show-album-photo">
+      <%= image_tag @catalogo.portada(:medium) %>
+  </div>
+
+  <%= form.file_field :portada %>
+
   <p>
-    <%= form.label :titulo%><br>
+    <%= form.label :titulo, "Título"%><br>
     <%= form.text_field :titulo %>
   </p>
 
   <p>
-    <%= form.label :grupo %><br>
+    <%= form.label :grupo, "Grupo" %><br>
     <%= form.text_field :grupo, list: 'grupos-list' %>
   </p>
 
   <p>
-    <%= form.label :genero %><br>
+    <%= form.label :genero, "Género" %><br>
     <%= form.text_field :genero, list: 'generos-list' %>
   </p>
-
-  <p>
-    <%= image_tag @catalogo.portada(:medium) %>
-  </p>
-
-  <%= form.file_field :portada %>
-
 
   <datalist id="grupos-list">
     <%= Catalogo.select(:grupo).distinct.each do |form| %>
@@ -64,7 +64,8 @@
 
 
   <p>
-    <%= form.submit %>
+    <%= form.submit "Hecho!" %>
   </p>
 
 <% end %>
+</div>
