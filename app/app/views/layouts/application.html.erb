@@ -7,12 +7,7 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <nav>
-    <ul class="navbar">
-      <li> <%= link_to 'Stock', catalogos_path %> </li>
-      <li> <%= link_to 'Ventas', ventas_path %> </li>
-    </ul>
-  </nav>
+  <%= content_for?(:navbar) ? yield(:navbar) : yield %>
 
   <body>
     <%= yield %>

@@ -1,0 +1,10 @@
+<%= content_for :navbar do %>
+  <nav>
+    <ul class="navbar">
+      <li class="active"> <%= link_to 'Stock', catalogos_path %> </li>
+      <li> <%= link_to 'Ventas', ventas_path %> </li>
+    </ul>
+  </nav>
+<% end %>
+
+<%= render template: "layouts/application" %>
