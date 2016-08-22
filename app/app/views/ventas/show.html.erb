@@ -1,35 +1,29 @@
+<div class="album">
 
-<p>
-  Título:
-  <%= @catalogo.titulo %>
-</p>
+  <div class="album-photo">
+      <%= image_tag @catalogo.portada(:medium) %>
+  </div>
 
-<p>
-  Grupo:
-  <%= @catalogo.grupo %>
-</p>
-
-<p>
-  Genero:
-  <%= @catalogo.genero %>
-</p>
-
-<p>
-  Precio:
-  <%= @venta.precio %>
-</p>
-
-<p>
-  Fecha de venta:
-  <%= @venta.fechaVenta %>
-</p>
-
-<p>
-  Formato:
-  <%= @venta.formato %>
-</p>
-
-<p>
-  Observaciones:
-  <%= @venta.observaciones %>
-</p>
+  <div class="bottom-album">
+    <div class="album-sides album-titles">
+      <ul>
+        <li> Título </li>
+        <li> Grupo </li>
+        <li> Fecha de venta </li>
+        <li> Precio </li>
+        <li> Formato </li>
+        <li> Observaciones </li>
+      </ul>
+    </div>
+    <div class="album-sides album-content">
+      <ul>
+        <li> <%= @catalogo.titulo %> </li>
+        <li> <%= @catalogo.grupo %> </li>
+        <li> <%= @venta.fechaVenta.to_date %> </li>
+        <li> <%= @venta.precio %> </li>
+        <li> <%= @venta.formato.upcase %> </li>
+        <li> <%= @venta.observaciones %> </li>
+      </ul>
+    </div>
+  </div>
+</div>
