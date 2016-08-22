@@ -1,3 +1,89 @@
 // Place all the styles related to the Catalogo controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.album{
+  margin-left: 20px;
+  margin-top: 20px;
+  width: 400px;
+}
+
+.top-album img{
+  width: 100%;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+
+
+.top-album{
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  background: #b3cccc;
+}
+
+.bottom-album{
+  width: 100%;
+  display: flex;
+}
+
+.album-sides{
+  background: #b3cccc;
+  float: left;
+}
+
+.album-bar{
+  width: 100%;
+}
+
+.album-titles{
+  flex: 1;
+  height: 100%;
+  text-align: right;
+  font-weight: bold;
+}
+
+.album-content{
+  flex: 1;
+  text-align: left;
+}
+
+.bottom-album ul{
+  list-style-type: none;
+}
+
+.bottom-album li{
+  padding: 5px 0px;
+}
+
+
+.buttons {
+  border: 1px solid #fff;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #5c8a8a;
+  border-bottom-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+}
+
+.buttons li {
+  border-bottom: 1px solid #fff;
+}
+
+.buttons li:last-child {
+  border-bottom: none;
+}
+
+.buttons li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 20px 30px;
+  text-decoration: none;
+}
+
+.buttons li a:hover {
+  background-color: #3d5c5c;
+}

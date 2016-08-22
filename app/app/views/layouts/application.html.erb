@@ -7,55 +7,6 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <style>
-
-    .album-bar{
-      position:absolute;
-      bottom:0px;
-      width: 100%;
-      background: #f2f2f2
-    }
-    .left-album{
-      float:left;
-      width:300px;
-      height:300px;
-      background: #9c9;
-    }
-
-    .right-album{
-      position: relative;
-      float:left;
-      width:500px;
-      height:300px;
-      background: #e6f2ff;
-    }
-
-    ul.navbar {
-      list-style-type: none;
-      margin: 0;
-      padding: 0;
-      overflow: hidden;
-      background-color: #333;
-    }
-
-    ul.navbar li {
-      float: left;
-    }
-
-    ul.navbar li a {
-      display: block;
-      color: white;
-      text-align: center;
-      padding: 20px 30px;
-      text-decoration: none;
-    }
-
-    ul.navbar li a:hover {
-      background-color: #111;
-    }
-
-  </style>
-
   <nav>
     <ul class="navbar">
       <li> <%= link_to 'Stock', catalogos_path %> </li>

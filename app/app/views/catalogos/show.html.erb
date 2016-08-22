@@ -1,33 +1,48 @@
-
-
 <div class="album">
 
-  <div class="left-album">
+  <div class="top-album">
       <%= image_tag @catalogo.portada(:medium) %>
   </div>
 
-  <div class="right-album">
-    <div> Título:  <%= @catalogo.titulo %> </div>
-    <div> Grupo:  <%= @catalogo.grupo %> </div>
-    <div> Género:  <%= @catalogo.genero %> </div>
-    <div> Stock CD:  <%= @catalogo.cd.cantidad %> </div>
-    <div> Precio CD: <%= @catalogo.cd.precio %> </div>
-    <div> Stock Vinilo:  <%= @catalogo.vinilo.cantidad %> </div>
-    <div> Precio Vinilo: <%= @catalogo.vinilo.precio %> </div>
-    <div class="album-bar">
-      <ul class="navbar">
-
-        <% if @catalogo.cd.cantidad > 0 %>
-          <li><%= link_to 'Vender cd', new_venta_path(:catalogo_id => @catalogo.id, :formato => "CD") %></li>
-        <%end%>
-
-        <% if @catalogo.vinilo.cantidad > 0 %>
-          <li><%= link_to 'Vender vinilo', new_venta_path(:catalogo_id => @catalogo.id, :formato => "Vinilo") %></li>
-        <%end%>
-
-        <li><%= link_to 'Modificar', edit_catalogo_path(@catalogo) %></li>
-
+  <div class="bottom-album">
+    <div class="album-sides album-titles">
+      <ul>
+        <li> Título </li>
+        <li> Grupo </li>
+        <li> Género </li>
+        <li> Stock CDs </li>
+        <li> Stock Vinilos </li>
+        <li> Precio CD </li>
+        <li> Precio Vinilo </li>
+      </ul>
+    </div>
+    <div class="album-sides album-content">
+      <ul>
+        <li> <%= @catalogo.titulo %> </li>
+        <li> <%= @catalogo.grupo %> </li>
+        <li> <%= @catalogo.genero %> </li>
+        <li> <%= @catalogo.cd.cantidad %> </li>
+        <li> <%= @catalogo.cd.precio %> €</li>
+        <li> <%= @catalogo.vinilo.cantidad %> </li>
+        <li> <%= @catalogo.vinilo.precio %> € </li>
       </ul>
     </div>
   </div>
+
+  <div class="album-bar">
+    <ul class="buttons">
+
+      <% if @catalogo.cd.cantidad > 0 %>
+        <li><%= link_to 'Vender CD', new_venta_path(:catalogo_id => @catalogo.id, :formato => "CD") %></li>
+      <%end%>
+
+      <% if @catalogo.vinilo.cantidad > 0 %>
+        <li><%= link_to 'Vender vinilo', new_venta_path(:catalogo_id => @catalogo.id, :formato => "Vinilo") %></li>
+      <%end%>
+
+      <li><%= link_to 'Modificar', edit_catalogo_path(@catalogo) %></li>
+
+    </ul>
+  </div>
+
 </div>
