@@ -9,16 +9,16 @@
     <th>Formato</th>
   </tr>
 
-  <% @ventas.each do |v| %>
+  <% @ventas.each do |venta| %>
     <tr>
-      <td><%= v.catalogo.titulo %></td>
-      <td><%= v.catalogo.grupo %></td>
-      <td><%= v.precio %></td>
-      <td><%= v.fechaVenta.to_date %></td>
-      <td><%= v.formato.upcase %></td>
-      <td><%= link_to 'Consultar', venta_path(v) %></td>
-      <td><%= link_to 'Album asociado', catalogo_path(v.catalogo) %></td>
-      <td><%= link_to 'Eliminar',  venta_path(v),
+      <td><%= venta.catalogo.titulo %></td>
+      <td><%= venta.catalogo.grupo %></td>
+      <td><%= venta.precio %></td>
+      <td><%= venta.fechaVenta.to_date %></td>
+      <td><%= venta.formato.upcase %></td>
+      <td><%= link_to 'Consultar', venta_path(venta) %></td>
+      <td><%= link_to 'Album asociado', catalogo_path(venta.catalogo) %></td>
+      <td><%= link_to 'Eliminar',  venta_path(venta),
                     method: :delete,
                     data: { confirm: '¿Seguro que quieres eliminar la información de esta venta?' } %></td>
     </tr>

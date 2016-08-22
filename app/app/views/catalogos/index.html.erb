@@ -1,24 +1,27 @@
-<h1>Stock de álbumes</h1>
+<p class="new-button">
+  <%= link_to 'Nuevo álbum', new_catalogo_path %>
+</p>
 
-<table>
-  <tr>
-    <th>Título</th>
-    <th>Grupo</th>
-    <th>Género</th>
-  </tr>
+<h1>Álbumes</h1>
+
+<table class="index-table">
 
   <% @catalogos.each do |a| %>
     <tr>
+      <td class=index-photo><%=image_tag a.portada(:thumb) %> </td>
       <td><%= a.titulo %></td>
       <td><%= a.grupo %></td>
       <td><%= a.genero %></td>
-      <td><%= link_to 'Consultar', catalogo_path(a) %></td>
-      <td><%= link_to 'Modificar', edit_catalogo_path(a) %></td>
-      <td><%= link_to 'Eliminar',  catalogo_path(a),
-                    method: :delete,
-                    data: { confirm: '¿Seguro que quieres eliminar la información de este álbum?' } %></td>
+      <td>
+
+      <ul class="index-buttons">
+
+        <li> <%= link_to 'Stock', catalogo_path(a) %></li>
+        <li> <%= link_to 'Modificar', edit_catalogo_path(a) %></li>
+        <li> <%= link_to 'Eliminar',  catalogo_path(a),
+                  method: :delete,
+                  data: { confirm: '¿Seguro que quieres eliminar la información de este álbum?' } %></li>
+      </ul>
     </tr>
   <% end %>
 </table>
-
-<%= link_to 'Nuevo álbum', new_catalogo_path %>
