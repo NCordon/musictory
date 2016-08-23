@@ -44,8 +44,8 @@
   border-left: 1px solid #fff;
 }
 
-.index-buttons li:last-child {
-  border-bottom: none;
+.index-buttons li:first-child {
+  border-left: none;
 }
 
 .index-buttons li a {
@@ -64,7 +64,7 @@
   margin-top:5em;
   margin-left:5em;
   background: #e0ebeb;
-  border-radius: 20px;
+  border-radius: 1em;
 }
 
 .index-table td{
