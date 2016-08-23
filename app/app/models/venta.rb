@@ -8,7 +8,8 @@ class Venta < ApplicationRecord
     numericality: {
       greater_than: 0,
       message: "%{value} debe ser mayor que 0"
-    }
+    },
+    on: :create
 
   validates :fechaVenta,
     presence: {message: "%{value} no puede ser vacío"}
@@ -18,9 +19,10 @@ class Venta < ApplicationRecord
     message: "Fecha de venta debe ser anterior a hoy"
 
   validates :formato,
-    presence: {message: "%{value} no puede ser vacío"}
+    presence: {message: "%{value} no puede ser vacío"},
+    on: :create
 
-  validate :empty_stock?
+  validate :empty_stock?, on: :create
   #after_create :update_stock
 
   def empty_stock?

@@ -34,11 +34,11 @@
 
       <% if @catalogo.cd.cantidad > 0 %>
         <li><%= link_to 'Vender CD',
-          new_venta_path(:catalogo_id => @catalogo.id, :formato => "CD") %></li>
+          new_venta_path(:catalogo_id => @catalogo.id, :formato => "cd") %></li>
       <%end%>
 
       <% if @catalogo.vinilo.cantidad > 0 %>
-        <li><%= link_to 'Vender vinilo', new_venta_path(:catalogo_id => @catalogo.id, :formato => "Vinilo") %></li>
+        <li><%= link_to 'Vender vinilo', new_venta_path(:catalogo_id => @catalogo.id, :formato => "vinilo") %></li>
       <%end%>
 
       <li><%= link_to 'Modificar', edit_catalogo_path(@catalogo) %></li>

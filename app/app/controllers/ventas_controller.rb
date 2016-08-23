@@ -8,6 +8,7 @@ class VentasController < ApplicationController
   end
 
   def edit
+    @venta = Venta.find(params[:id])
   end
 
   def create
@@ -16,16 +17,21 @@ class VentasController < ApplicationController
 
     if @catalogo.save
       update_stock @venta, -1
-      redirect_to @catalogo
+      redirect_to venta_path(@venta)
     else
       render 'new'
     end
   end
 
 
-  def show
-    @venta = Venta.find params[:id]
-    @catalogo = @venta.catalogo
+  def update
+    @venta = Venta.find(params[:id])
+
+    if @venta.update venta_params
+      redirect_to venta_path(@venta)
+    else
+      render 'edit'
+    end
   end
 
 
@@ -38,6 +44,13 @@ class VentasController < ApplicationController
 
     redirect_to ventas_path
   end
+
+
+  def show
+    @venta = Venta.find params[:id]
+    @catalogo = @venta.catalogo
+  end
+
 
   private
     def venta_params

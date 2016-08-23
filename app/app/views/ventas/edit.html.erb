@@ -1,0 +1,16 @@
+<%= form_for @venta, url: venta_path do |venta| %>
+  <%= render partial: '/shared/errors', object: @venta %>
+
+  <p>
+    <%= venta.label :fechaVenta %><br>
+    <%= venta.date_select :fechaVenta %>
+  </p>
+
+  <p>
+    <%= venta.label :observaciones %><br>
+    <%= venta.text_area :observaciones%>
+  </p>
+  <p>
+    <%= venta.submit "Guardar" %>
+  </p>
+<% end %>
