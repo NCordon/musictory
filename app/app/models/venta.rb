@@ -13,11 +13,15 @@ class Venta < ApplicationRecord
   validates :fechaVenta,
     presence: {message: "%{value} no puede ser vacío"}
 
+  validates_date_of :fechaVenta,
+    before:  Proc.new { Time.now },
+    message: "Fecha de venta debe ser anterior a hoy"
+
   validates :formato,
     presence: {message: "%{value} no puede ser vacío"}
 
   validate :empty_stock?
-  after_create :update_stock
+  #after_create :update_stock
 
   def empty_stock?
     errors.add(:base, 'No hay stock de CDs disponible') if none_cds?
@@ -30,23 +34,5 @@ class Venta < ApplicationRecord
 
   def none_vinilos?
     not Vinilo.exists?(["catalogo_id = #{catalogo_id} and cantidad>0"]) if vinilo?
-  end
-
-  def update_stock
-    if cd?
-      @cd = Cd.where(catalogo_id: catalogo_id)
-      @cd.update cantidad: (@cd.first[:cantidad] - 1)
-    elsif vinilo?
-      @vinilo = Vinilo.where(catalogo_id: catalogo_id)
-      @vinilo.update cantidad: (@vinilo.first[:cantidad] - 1)
-    end
-  end
-
-  def cd?
-    formato === "cd"
-  end
-
-  def vinilo?
-    formato === "vinilo"
   end
 end

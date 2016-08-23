@@ -13,7 +13,7 @@
 
         <li> <%= link_to 'Consultar', venta_path(v) %></li>
         <li> <%= link_to 'Album asociado', catalogo_path(v.catalogo) %></li>
-        <li><%= link_to 'Eliminar',  venta_path(v),
+        <li><%= link_to 'Cancelar venta',  venta_path(v),
                       method: :delete,
                       data: { confirm: '¿Seguro que quieres eliminar la información de esta venta?' } %></li>
       </ul></td>
