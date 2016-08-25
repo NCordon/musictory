@@ -2,23 +2,27 @@
   <%= link_to 'Nuevo álbum', new_catalogo_path %>
 </p>
 
-<table class="index-table">
+<%= render 'search' %>
 
-  <% @catalogos.each do |a| %>
-    <tr>
-      <td class=index-photo><%=image_tag a.portada(:thumb) %> </td>
-      <td><%= a.titulo %></td>
-      <td><%= a.grupo %></td>
-      <td><%= a.genero %></td>
+<% if @catalogos.present? %>
+  <table class="index-table">
 
-      <td><ul class="index-buttons">
+    <% @catalogos.each do |a| %>
+      <tr>
+        <td class=index-photo><%=image_tag a.portada(:thumb) %> </td>
+        <td><%= a.titulo %></td>
+        <td><%= a.grupo %></td>
+        <td><%= a.genero %></td>
 
-        <li> <%= link_to 'Stock', catalogo_path(a) %></li>
-        <li> <%= link_to 'Modificar', edit_catalogo_path(a) %></li>
-        <li> <%= link_to 'Eliminar',  catalogo_path(a),
-                  method: :delete,
-                  data: { confirm: '¿Seguro que quieres eliminar la información de este álbum?' } %></li>
-      </ul></td>
-    </tr>
-  <% end %>
-</table>
+        <td><ul class="index-buttons">
+
+          <li> <%= link_to 'Stock', catalogo_path(a) %></li>
+          <li> <%= link_to 'Modificar', edit_catalogo_path(a) %></li>
+          <li> <%= link_to 'Eliminar',  catalogo_path(a),
+                    method: :delete,
+                    data: { confirm: '¿Seguro que quieres eliminar la información de este álbum?' } %></li>
+        </ul></td>
+      </tr>
+    <% end %>
+  </table>
+<% end %>

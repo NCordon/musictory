@@ -1,6 +1,12 @@
 class CatalogosController < ApplicationController
   def index
     @catalogos = Catalogo.all
+
+    if params[:search]
+      @catalogos = Catalogo.search(params[:search])
+    else
+      @catalogos = Catalogo.all
+    end
   end
 
 

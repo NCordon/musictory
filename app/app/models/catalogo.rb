@@ -22,4 +22,8 @@ class Catalogo < ApplicationRecord
     create_cd cantidad:0
     create_vinilo cantidad:0
   end
+
+  def self.search(search)
+    where("titulo LIKE ? OR grupo LIKE ?", "%#{search}%", "%#{search}%")
+  end
 end

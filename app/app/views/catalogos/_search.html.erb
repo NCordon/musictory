@@ -1,0 +1,6 @@
+<div class="catalogo-search">
+  <%= form_tag(catalogos_path, method: :get) do %>
+    <%= text_field_tag :search, params[:search], placeholder: "Buscar álbum" %>
+    <%= submit_tag "Buscar" %>
+  <% end %>
+</div>
