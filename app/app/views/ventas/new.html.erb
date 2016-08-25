@@ -1,19 +1,16 @@
-<%= form_for @venta, url: ventas_path  do |form| %>
+<%= form_for @venta, url: ventas_path  do |venta| %>
   <%= render partial: '/shared/errors', object: @venta %>
 
-  <p>
-    <%= form.label :fechaVenta %><br>
-    <%= form.date_select :fechaVenta %>
-  </p>
+  <%= render partial: 'fechaVenta', object: venta %>
 
   <p>
-    <%= form.label :observaciones %><br>
-    <%= form.text_area :observaciones%>
+    <%= venta.label :observaciones %><br>
+    <%= venta.text_area :observaciones%>
   </p>
 
   <%= hidden_field_tag :catalogo_id, params[:catalogo_id] %>
-  <%= form.hidden_field :formato, value: params[:formato] %>
+  <%= venta.hidden_field :formato, value: params[:formato] %>
   <p>
-    <%= form.submit "Guardar" %>
+    <%= venta.submit "Guardar" %>
   </p>
 <% end %>

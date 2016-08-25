@@ -41,7 +41,7 @@
   <% if local_assigns[:full] %>
     <%= form.fields_for :cd do |f| %>
       <p>
-        <%= f.label :cantidad %><br>
+        <%= f.label :cantidad, "Stock de CDs" %><br>
         <%= f.number_field :cantidad, min: 0 %>
       </p>
       <p>
@@ -52,7 +52,7 @@
 
     <%= form.fields_for :vinilo do |f| %>
       <p>
-        <%= f.label :cantidad %><br>
+        <%= f.label :cantidad, "Stock de Vinilos" %><br>
         <%= f.number_field :cantidad, min: 0  %>
       </p>
       <p>

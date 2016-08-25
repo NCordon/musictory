@@ -16,7 +16,7 @@ class Venta < ApplicationRecord
 
   validates_date_of :fechaVenta,
     before:  Proc.new { Time.now },
-    message: "Fecha de venta debe ser anterior a hoy"
+    message: "debe ser anterior a hoy"
 
   validates :formato,
     presence: {message: "%{value} no puede ser vacío"},
@@ -36,5 +36,10 @@ class Venta < ApplicationRecord
 
   def none_vinilos?
     not Vinilo.exists?(["catalogo_id = #{catalogo_id} and cantidad>0"]) if vinilo?
+  end
+
+  def self.search(search)
+    joins(:catalogo).where("titulo LIKE ? OR grupo LIKE ? OR fechaVenta LIKE ?",
+      "%#{search}%", "%#{search}%", "%#{search}%")
   end
 end

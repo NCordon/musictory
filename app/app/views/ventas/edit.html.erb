@@ -1,10 +1,7 @@
 <%= form_for @venta, url: venta_path do |venta| %>
   <%= render partial: '/shared/errors', object: @venta %>
 
-  <p>
-    <%= venta.label :fechaVenta %><br>
-    <%= venta.date_select :fechaVenta %>
-  </p>
+  <%= render partial: 'fechaVenta', object: venta %>
 
   <p>
     <%= venta.label :observaciones %><br>
