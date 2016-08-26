@@ -19,7 +19,7 @@ class VentasController < ApplicationController
     @catalogo = Catalogo.find params[:catalogo_id]
     @venta = @catalogo.ventas.build venta_params
 
-    if @catalogo.save
+    if @venta.save
       update_stock @venta, -1
       redirect_to venta_path(@venta)
     else

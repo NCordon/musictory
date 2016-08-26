@@ -30,6 +30,8 @@
 
       <li><%= link_to 'Modificar', edit_catalogo_path(@catalogo) %></li>
 
+      <li><%= link_to 'Hacer pedido', new_pedido_path(:catalogo_id => @catalogo.id) %></li>
+
     </ul>
   </div>
 

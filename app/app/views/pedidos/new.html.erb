@@ -1,0 +1,25 @@
+<%= form_for @pedido, url: pedidos_path  do |pedido| %>
+  <%= render partial: '/shared/errors', object: @pedido %>
+
+  <p>
+    <%= pedido.label :adeudo %><br>
+    <%= pedido.number_field :adeudo, min: 0, step: 0.05%>
+  </p>
+
+  <p>
+    <%= pedido.label :cantidad %><br>
+    <%= pedido.number_field :cantidad, min: 0 %>
+  </p>
+
+
+  <p>
+    <%= pedido.label :formato %><br>
+    <%= pedido.select :formato, Pedido.formatos.keys.map {|f| [f.upcase, f]} %>
+  </p>
+
+  <%= hidden_field_tag :catalogo_id, params[:catalogo_id] %>
+
+  <p>
+    <%= pedido.submit "Guardar" %>
+  </p>
+<% end %>
