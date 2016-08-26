@@ -5,27 +5,16 @@
   </div>
 
   <div class="bottom-album">
-    <div class="album-sides album-titles">
-      <ul>
-        <li> Título </li>
-        <li> Grupo </li>
-        <li> Fecha de venta </li>
-        <li> Precio </li>
-        <li> Formato </li>
-        <li> Observaciones </li>
-      </ul>
-    </div>
-    <div class="album-sides album-content">
-      <ul>
-        <li> <%= @catalogo.titulo %> </li>
-        <li> <%= @catalogo.grupo %> </li>
-        <li> <%= @venta.fechaVenta.to_date %> </li>
-        <li> <%= @venta.precio %> </li>
-        <li> <%= @venta.formato.upcase %> </li>
-        <li> <%= @venta.observaciones %> </li>
-      </ul>
-    </div>
+    <table class="album-info">
+      <tr><th> Título </th> <td> <%= @catalogo.titulo %> </td></tr>
+      <tr><th> Grupo </th> <td> <%= @catalogo.grupo %> </td></tr>
+      <tr><th> Fecha venta </th> <td> <%= @venta.fechaVenta.to_date %> </td></tr>
+      <tr><th> Precio </th> <td> <%= @venta.precio %> </td></tr>
+      <tr><th> Formato </th><td> <%=  @venta.formato.upcase  %> </td></tr>
+      <tr><th> Observaciones</th><td> <%= @venta.observaciones%> </td></tr>
+    </table>
   </div>
+
   <div class="album-bar">
     <ul class="buttons">
 

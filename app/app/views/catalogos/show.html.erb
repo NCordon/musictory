@@ -5,28 +5,15 @@
   </div>
 
   <div class="bottom-album">
-    <div class="album-sides album-titles">
-      <ul>
-        <li> Título </li>
-        <li> Grupo </li>
-        <li> Género </li>
-        <li> Stock CDs </li>
-        <li> Stock Vinilos </li>
-        <li> Precio CD (€)</li>
-        <li> Precio Vinilo (€) </li>
-      </ul>
-    </div>
-    <div class="album-sides album-content">
-      <ul>
-        <li> <%= @catalogo.titulo %> </li>
-        <li> <%= @catalogo.grupo %> </li>
-        <li> <%= @catalogo.genero %> </li>
-        <li> <%= @catalogo.cd.cantidad %> </li>
-        <li> <%= @catalogo.vinilo.cantidad %> </li>
-        <li> <%= @catalogo.cd.precio %> </li>
-        <li> <%= @catalogo.vinilo.precio %> </li>
-      </ul>
-    </div>
+    <table class="album-info">
+      <tr><th> Título </th> <td> <%= @catalogo.titulo %> </td></tr>
+      <tr><th> Grupo </th> <td> <%= @catalogo.grupo %> </td></tr>
+      <tr><th> Género </th> <td> <%= @catalogo.genero %> </td></tr>
+      <tr><th> Stock CDs </th> <td> <%= @catalogo.cd.cantidad %> </td></tr>
+      <tr><th> Stock Vinilos </th><td> <%= @catalogo.vinilo.cantidad %> </td></tr>
+      <tr><th> Precio CD (€)</th><td> <%= @catalogo.cd.precio %> </td></tr>
+      <tr><th> Precio Vinilo (€) </th><td> <%= @catalogo.vinilo.precio %> </td></tr>
+    </table>
   </div>
 
   <div class="album-bar">

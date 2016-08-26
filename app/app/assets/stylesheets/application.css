@@ -41,33 +41,21 @@ body{ font-family: sans-serif; }
   display: flex;
 }
 
-.album-sides{
+.album-info{
+  width: 100%;
   background: #b3cccc;
-  float: left;
 }
+.album-info th{
+  text-align: right;
+}
+
+.album-info td{
+  text-align:left;
+}
+
 
 .album-bar{
   width: 100%;
-}
-
-.album-titles{
-  flex: 1;
-  height: 100%;
-  text-align: right;
-  font-weight: bold;
-}
-
-.album-content{
-  flex: 1;
-  text-align: left;
-}
-
-.bottom-album ul{
-  list-style-type: none;
-}
-
-.bottom-album li{
-  padding: 5px 0px;
 }
 
 
