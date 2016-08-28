@@ -70,3 +70,11 @@
 .index-table td{
   padding: 0px 10px;
 }
+
+.index-table th{
+  border-left: 1px solid black;
+}
+
+.index-table th:first-child{
+  border-left: none;
+}

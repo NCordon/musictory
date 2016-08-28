@@ -6,13 +6,12 @@
     <th> Título </th>
     <th> Grupo </th>
     <th> Formato </th>
-    <th> Fecha Realizacion </th>
+    <th> Realizacion </th>
     <th> Cantidad </th>
-    <th> Adeudo </th>
-    <th> Fecha Entrada </th>
-    <th> Fecha Cancelación </th>
-    <th> Fecha Finalización </th>
-    <th> Fecha Defecto </th>
+    <th> Entrada </th>
+    <th> Cancelación </th>
+    <th> Finalización </th>
+    <th> Defecto </th>
 
     <% @pedidos.each do |p| %>
       <tr>
@@ -22,12 +21,10 @@
         <td><%= p.formato.upcase %></td>
         <td><%= p.fechaRealizacion.to_date %></td>
         <td><%= p.cantidad %></td>
-        <td><%= p.adeudo %></td>
-        <td><%= p.formato.upcase %></td>
-        <td><%= p.fechaEntrada.to_date %></td>
-        <td><%= p.fechaCancelacion.to_date %></td>
-        <td><%= p.fechaFinalizacion.to_date %></td>
-        <td><%= p.fechaDefecto.to_date %></td>
+        <td><%= p.fechaEntrada ? p.fechaEntrada.to_date : "" %></td>
+        <td><%= p.fechaCancelacion ? p.fechaCancelacion.to_date : "" %></td>
+        <td><%= p.fechaFinalizacion ? p.fechaFinalizacion.to_date : "" %></td>
+        <td><%= p.fechaDefecto ? p.fechaDefecto.to_date : "" %></td>
 
       </tr>
     <% end %>

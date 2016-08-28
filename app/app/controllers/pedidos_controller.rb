@@ -16,7 +16,7 @@ class PedidosController < ApplicationController
     @pedido = @catalogo.pedidos.build pedido_params
 
     if @pedido.save
-      redirect_to pedido_path(@pedido)
+      redirect_to pedidos_path
     else
       render 'new'
     end
