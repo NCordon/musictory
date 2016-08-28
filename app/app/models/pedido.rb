@@ -3,7 +3,7 @@ class Pedido < ApplicationRecord
   enum formato: [:cd, :vinilo]
   #belongs_to :proveedor
 
-  validates :adeudo, presence: true, numericality: {greater_than: 0}
+  #validates :adeudo, presence: true, numericality: {greater_than: 0}
 
   validates :cantidad, presence: {message: "%{value} no puede ser vacío"},
     numericality: {
@@ -14,12 +14,12 @@ class Pedido < ApplicationRecord
 
   validates :formato,
     inclusion: {
-      in: %w(CD Vinilo),
-      message: "%{value} no es un formato válido. Se esperaba CD o Vinilo"
+      in: formatos.keys,
+      message: "no es un formato válido. Se esperaba CD o Vinilo"
     }
 
   validates :fechaRealizacion, presence: true
-  validates_date_of :fechaRealizacion, before:  Proc.new { Time.now }
+  validates_date_of :fechaRealizacion, before_or_equal_to:  Proc.new { Time.now }
 
   validates_date_of :fechaEntrada,
     after: :fechaRealizacion,

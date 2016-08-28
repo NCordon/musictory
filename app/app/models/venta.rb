@@ -15,10 +15,14 @@ class Venta < ApplicationRecord
     presence: {message: "%{value} no puede ser vacío"}
 
   validates_date_of :fechaVenta,
-    before:  Proc.new { Time.now },
+    before_or_equal_to:  Proc.new { Time.now },
     message: "debe ser anterior a hoy"
 
   validates :formato,
+    inclusion: {
+      in: formatos.keys,
+      message: "%{value} no es un formato válido. Se esperaba CD o Vinilo"
+    },
     presence: {message: "%{value} no puede ser vacío"},
     on: :create
 

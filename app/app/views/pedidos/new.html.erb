@@ -2,11 +2,6 @@
   <%= render partial: '/shared/errors', object: @pedido %>
 
   <p>
-    <%= pedido.label :adeudo %><br>
-    <%= pedido.number_field :adeudo, min: 0, step: 0.05%>
-  </p>
-
-  <p>
     <%= pedido.label :cantidad %><br>
     <%= pedido.number_field :cantidad, min: 0 %>
   </p>
