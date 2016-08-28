@@ -3,7 +3,7 @@ class PedidosController < ApplicationController
     @pedidos = Pedido.all
 
     if params[:search]
-      @Pedido = Pedido.search(params[:search]).order("fechaRealizacion DESC")
+      @pedidos = Pedido.search(params[:search]).order("fechaRealizacion DESC")
     end
   end
 
@@ -23,6 +23,11 @@ class PedidosController < ApplicationController
   end
 
   def destroy
+    @pedido = Pedido.find(params[:id])
+
+    if @pedido.destroy
+      redirect_to pedidos_path
+    end
   end
 
   def show

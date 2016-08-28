@@ -31,15 +31,15 @@ class Pedido < ApplicationRecord
     unless: Proc.new { |a| a.fechaCancelacion.nil? },
     message: "debe ser posterior a la de realización del pedido, y anterior a la fecha de entrada"
 
-  validates_date_of :fechaFinalizacion,
-    after: :fechaEntrada,
-    unless: Proc.new { |a| a.fechaFinalizacion.nil? },
-    message: "debe ser posterior a la de entrada"
+  #validates_date_of :fechaFinalizacion,
+  #  after: :fechaEntrada,
+  #  unless: Proc.new { |a| a.fechaFinalizacion.nil? },
+  #  message: "debe ser posterior a la de entrada"
 
-  validates_date_of :fechaDefecto,
-    after: :fechaEntrada,
-    unless: Proc.new { |a| a.fechaDefecto.nil? },
-    message: "debe ser posterior a la de entrada"
+  #validates_date_of :fechaDefecto,
+  #  after: :fechaEntrada,
+  #  unless: Proc.new { |a| a.fechaDefecto.nil? },
+  #  message: "debe ser posterior a la de entrada"
 
 
   def self.search(search)

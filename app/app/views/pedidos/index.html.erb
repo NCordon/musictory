@@ -10,8 +10,6 @@
     <th> Cantidad </th>
     <th> Entrada </th>
     <th> Cancelación </th>
-    <th> Finalización </th>
-    <th> Defecto </th>
 
     <% @pedidos.each do |p| %>
       <tr>
@@ -23,9 +21,6 @@
         <td><%= p.cantidad %></td>
         <td><%= p.fechaEntrada ? p.fechaEntrada.to_date : "" %></td>
         <td><%= p.fechaCancelacion ? p.fechaCancelacion.to_date : "" %></td>
-        <td><%= p.fechaFinalizacion ? p.fechaFinalizacion.to_date : "" %></td>
-        <td><%= p.fechaDefecto ? p.fechaDefecto.to_date : "" %></td>
-
       </tr>
     <% end %>
   </table>
