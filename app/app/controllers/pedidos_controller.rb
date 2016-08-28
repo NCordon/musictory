@@ -33,6 +33,17 @@ class PedidosController < ApplicationController
   def show
   end
 
+  def cancel_order
+    @pedido = Pedido.find(params[:id])
+    @pedido.fechaCancelacion = Time.now
+
+    if @pedido.save
+      redirect_to pedidos_path
+    else
+      render 'index'
+    end
+  end
+
   private
     def pedido_params
       params[:pedido][:fechaRealizacion] = Time.now

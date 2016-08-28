@@ -6,7 +6,11 @@ Rails.application.routes.draw do
   end
 
   resources :ventas
-  resources :pedidos
+  resources :pedidos do
+    member do
+      get 'cancel_order'
+    end
+  end
 
   root 'catalogos#index'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

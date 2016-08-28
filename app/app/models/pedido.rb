@@ -27,9 +27,11 @@ class Pedido < ApplicationRecord
     message: "debe ser posterior a la de realización del pedido"
 
   validates_date_of :fechaCancelacion,
-    after: :fechaRealizacion, before: :fechaEntrada,
+    after: :fechaRealizacion,
     unless: Proc.new { |a| a.fechaCancelacion.nil? },
-    message: "debe ser posterior a la de realización del pedido, y anterior a la fecha de entrada"
+    if: Proc.new { |a| a.fechaEntrada.nil? },
+    message: "debe ser posterior a la de realización del pedido,
+      y no tratarse de un pedido recibido"
 
   #validates_date_of :fechaFinalizacion,
   #  after: :fechaEntrada,
