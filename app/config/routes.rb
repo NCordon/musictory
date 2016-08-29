@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   resources :pedidos do
     member do
       get 'cancel_order'
+      get 'receive_order'
     end
   end
 

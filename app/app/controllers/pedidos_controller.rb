@@ -44,6 +44,27 @@ class PedidosController < ApplicationController
     end
   end
 
+  def receive_order
+    @pedido = Pedido.find(params[:id])
+    @pedido.fechaEntrada = Time.now
+
+    if @pedido.save
+      if @pedido.cd?
+        @cd = Cd.where(catalogo_id: @pedido.catalogo_id).first
+        @cd.cantidad = @cd.cantidad + @pedido.cantidad
+        @cd.save
+      elsif @pedido.vinilo?
+        @vinilo = Vinilo.where(catalogo_id: @pedido.catalogo_id).first
+        @vinilo.cantidad = @vinilo.cantidad + @pedido.cantidad
+        @vinilo.save
+      end
+
+      redirect_to pedidos_path
+    else
+      render 'index'
+    end
+  end
+
   private
     def pedido_params
       params[:pedido][:fechaRealizacion] = Time.now

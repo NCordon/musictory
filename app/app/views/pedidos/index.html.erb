@@ -26,9 +26,11 @@
             <td><%= p.fechaEntrada ? p.fechaEntrada.to_date : "" %></td>
             <td><%= p.fechaCancelacion ? p.fechaCancelacion.to_date : "" %></td>
             <td><ul class="index-buttons">
-              <% if not p.fechaCancelacion %>
+              <% if not p.fechaCancelacion and not p.fechaEntrada %>
+                <li> <%= link_to 'Pedido recibido', receive_order_pedido_path(p) %></li>
                 <li> <%= link_to 'Cancelar pedido', cancel_order_pedido_path(p) %></li>
               <% else %>
+                <li><a id="disabled-button">Pedido recibido</a></li>
                 <li><a id="disabled-button">Cancelar pedido</a></li>
               <% end %>
             </ul></td>
