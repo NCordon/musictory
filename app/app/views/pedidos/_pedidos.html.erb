@@ -1,0 +1,36 @@
+<table class="index-table">
+  <th> </th>
+  <th> Título </th>
+  <th> Grupo </th>
+  <th> Formato </th>
+  <th> Realizacion </th>
+  <th> Cantidad </th>
+  <th> Entrada </th>
+  <th> Cancelación </th>
+
+  <% @pedidos.each do |p| %>
+      <% if p.fechaCancelacion %>
+        <tr class="pedido-cancelado">
+      <% else %>
+        <tr>
+      <% end %>
+          <td class=index-photo><%=image_tag p.catalogo.portada(:thumb) %> </td>
+          <td><%= p.catalogo.titulo %></td>
+          <td><%= p.catalogo.grupo %></td>
+          <td><%= p.formato.upcase %></td>
+          <td><%= p.fechaRealizacion.to_date %></td>
+          <td><%= p.cantidad %></td>
+          <td><%= p.fechaEntrada ? p.fechaEntrada.to_date : "" %></td>
+          <td><%= p.fechaCancelacion ? p.fechaCancelacion.to_date : "" %></td>
+          <td><ul class="index-buttons">
+            <% if not p.fechaCancelacion and not p.fechaEntrada %>
+              <li> <%= link_to 'Pedido recibido', receive_order_pedido_path(p) %></li>
+              <li> <%= link_to 'Cancelar pedido', cancel_order_pedido_path(p) %></li>
+            <% else %>
+              <li><a id="disabled-button">Pedido recibido</a></li>
+              <li><a id="disabled-button">Cancelar pedido</a></li>
+            <% end %>
+          </ul></td>
+        </tr>
+  <% end %>
+</table>

@@ -1,10 +1,19 @@
 <%= content_for :navbar do %>
   <nav>
+
     <ul class="navbar">
       <li> <%= link_to 'Stock', catalogos_path %> </li>
       <li> <%= link_to 'Ventas', ventas_path %> </li>
       <li class="active"> <%= link_to 'Pedidos', pedidos_path %> </li>
     </ul>
+
+    <ul class="new-button">
+      <li><%= link_to 'Pedidos recibidos', received_pedidos_path %></li>
+      <li><%= link_to 'Pedidos no recibidos', non_received_pedidos_path %></li>
+      <li><%= link_to 'Pedidos cancelados', cancelled_pedidos_path %></li>
+    </ul>
+
+
   </nav>
 <% end %>
 

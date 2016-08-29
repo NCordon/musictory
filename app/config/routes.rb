@@ -11,6 +11,11 @@ Rails.application.routes.draw do
       get 'cancel_order'
       get 'receive_order'
     end
+    collection do
+      get 'received'
+      get 'non_received'
+      get 'cancelled'
+    end
   end
 
   root 'catalogos#index'

@@ -44,6 +44,33 @@ class PedidosController < ApplicationController
     end
   end
 
+
+  def received
+    @pedidos = Pedido.where.not(fechaEntrada: nil)
+
+    if params[:search]
+      @pedidos = Pedido.where.not(fechaEntrada: nil).search(params[:search]).order("fechaRealizacion DESC")
+    end
+  end
+
+  def non_received
+    @pedidos = Pedido.where(fechaEntrada: nil).where(fechaCancelacion: nil)
+
+    if params[:search]
+      @pedidos = Pedido.where(fechaEntrada: nil).where.not(fechaCancelacion: nil).search(params[:search]).order("fechaRealizacion DESC")
+    end
+  end
+
+
+  def cancelled
+    @pedidos = Pedido.where.not(fechaCancelacion: nil)
+
+    if params[:search]
+      @pedidos = Pedido.where.not(fechaCancelacion: nil).search(params[:search]).order("fechaRealizacion DESC")
+    end
+  end
+
+
   def receive_order
     @pedido = Pedido.find(params[:id])
     @pedido.fechaEntrada = Time.now
