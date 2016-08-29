@@ -121,3 +121,65 @@ body{ font-family: sans-serif; }
 .pedido-cancelado{
   color: gray;
 }
+
+
+.index-photo img{
+}
+
+.new-button a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 20px 30px;
+  text-decoration: none;
+}
+
+.new-button {
+  border: 1px solid #fff;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #ff944d;
+  border-bottom-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+}
+
+.new-button a:hover {
+  background-color: #ff6600;
+}
+
+
+.index-buttons {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #5c8a8a;
+  border-radius: 10px;
+}
+
+.index-buttons li {
+  float:left;
+  border-left: 1px solid #fff;
+}
+
+.index-buttons li:first-child {
+  border-left: none;
+}
+
+.index-buttons li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 20px 30px;
+  text-decoration: none;
+}
+
+.index-buttons li a:hover {
+  background-color: #3d5c5c;
+}
+
+#disabled-button{
+  background-color: gray;
+}

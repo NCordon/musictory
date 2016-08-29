@@ -24,7 +24,9 @@ class Pedido < ApplicationRecord
   validates_date_of :fechaEntrada,
     after: :fechaRealizacion,
     unless: Proc.new { |a| a.fechaEntrada.nil?},
-    message: "debe ser posterior a la de realización del pedido"
+    message: "debe ser posterior a la de realización del pedido",
+    on: :update
+
 
   validates_date_of :fechaCancelacion,
     after: :fechaRealizacion,
@@ -42,7 +44,6 @@ class Pedido < ApplicationRecord
   #  after: :fechaEntrada,
   #  unless: Proc.new { |a| a.fechaDefecto.nil? },
   #  message: "debe ser posterior a la de entrada"
-
 
   def self.search(search)
     joins(:catalogo).where("titulo LIKE ? OR grupo LIKE ? OR fechaRealizacion LIKE ?",
