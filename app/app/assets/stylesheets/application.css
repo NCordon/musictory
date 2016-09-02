@@ -33,7 +33,7 @@ body{ font-family: sans-serif; }
 .album-photo{
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
-  background: #b3cccc;
+  background: #e6eaed;
 }
 
 .bottom-album{
@@ -43,16 +43,16 @@ body{ font-family: sans-serif; }
 
 .album-info{
   width: 100%;
-  background: #b3cccc;
+  background: #e6eaed;
 }
 .album-info th{
   text-align: right;
+  width: 50%;
 }
 
 .album-info td{
   text-align:left;
 }
-
 
 .album-bar{
   width: 100%;
@@ -102,7 +102,7 @@ body{ font-family: sans-serif; }
 .index-table{
   margin-top:5em;
   margin-left:5em;
-  background: #e0ebeb;
+  background: #e6eaed;
   border-radius: 1em;
 }
 
