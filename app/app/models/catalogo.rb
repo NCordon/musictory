@@ -1,10 +1,10 @@
 class Catalogo < ApplicationRecord
   validates :titulo,
-    presence: {message: "%{value} no puede ser vacío"}
+    presence: {message: "no puede ser vacío"}
   validates :grupo,
-    presence: {message: "%{value} no puede ser vacío"}
-  validates :genero,
-    presence: {message: "%{value} no puede ser vacío"}
+    presence: {message: "no puede ser vacío"}
+  #validates :genero,
+  #  presence: {message: "%{value} no puede ser vacío"}
 
   has_attached_file :portada, styles: { medium: "350x350>", thumb: "100x100>" },
     default_url: "/images/:style/missing.png"
@@ -17,7 +17,7 @@ class Catalogo < ApplicationRecord
   accepts_nested_attributes_for :vinilo
 
   has_many :ventas, dependent: :destroy
-  has_many :pedidos, dependent: :destroy
+  #has_many :pedidos, dependent: :destroy
 
   def setStock
     create_cd cantidad:0

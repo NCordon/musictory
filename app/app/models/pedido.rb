@@ -56,12 +56,8 @@ class Pedido < ApplicationRecord
   end
 
   def portada
-    @catalogo = Catalogo.where(titulo: 'Algo', grupo: 'Algo').first
+    @catalogo = Catalogo.where(titulo: titulo, grupo: grupo).first
 
-    if @catalogo.nil?
-      "/images/thumb/missing.png"
-    else
-      @catalogo.portada(:thumb)
-    end
+    @catalogo.nil? ? "/images/thumb/missing.png" : @catalogo.portada(:thumb)
   end
 end

@@ -4,15 +4,15 @@ class Venta < ApplicationRecord
   belongs_to :catalogo
 
   validates :precio,
-    presence: {message: "%{value} no puede ser vacío"},
+    presence: {message: "no puede ser vacío"},
     numericality: {
       greater_than: 0,
-      message: "%{value} debe ser mayor que 0"
+      message: "debe ser mayor que 0"
     },
     on: :create
 
   validates :fechaVenta,
-    presence: {message: "%{value} no puede ser vacío"}
+    presence: {message: "no puede ser vacío"}
 
   validates_date_of :fechaVenta,
     before_or_equal_to:  Proc.new { Time.now },
@@ -21,9 +21,9 @@ class Venta < ApplicationRecord
   validates :formato,
     inclusion: {
       in: formatos.keys,
-      message: "%{value} no es un formato válido. Se esperaba CD o Vinilo"
+      message: "no es un formato válido. Se esperaba CD o Vinilo"
     },
-    presence: {message: "%{value} no puede ser vacío"},
+    presence: {message: "no puede ser vacío"},
     on: :create
 
   validate :empty_stock?, on: :create
