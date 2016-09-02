@@ -4,6 +4,11 @@ class Pedido < ApplicationRecord
   #belongs_to :proveedor
 
   #validates :adeudo, presence: true, numericality: {greater_than: 0}
+  validates :titulo,
+    presence: {message: "%{value} no puede ser vacío"}
+
+  validates :grupo,
+    presence: {message: "%{value} no puede ser vacío"}
 
   validates :cantidad, presence: {message: "%{value} no puede ser vacío"},
     numericality: {
@@ -48,5 +53,9 @@ class Pedido < ApplicationRecord
   def self.search(search)
     joins(:catalogo).where("titulo LIKE ? OR grupo LIKE ? OR fechaRealizacion LIKE ?",
       "%#{search}%", "%#{search}%", "%#{search}%")
+  end
+
+  def portada
+    Catalogo.where(titulo: titulo, grupo: grupo).first.portada(:thumb)
   end
 end

@@ -2,6 +2,16 @@
   <%= render partial: '/shared/errors', object: @pedido %>
 
   <p>
+    <%= pedido.label :titulo, "Título"%><br>
+    <%= pedido.text_field :titulo, value: params[:titulo] %>
+  </p>
+
+  <p>
+    <%= pedido.label :grupo, "Grupo" %><br>
+    <%= pedido.text_field :grupo, value: params[:grupo] %>
+  </p>
+
+  <p>
     <%= pedido.label :cantidad %><br>
     <%= pedido.number_field :cantidad, min: 0 %>
   </p>
@@ -11,8 +21,6 @@
     <%= pedido.label :formato %><br>
     <%= pedido.select :formato, Pedido.formatos.keys.map {|f| [f.upcase, f]} %>
   </p>
-
-  <%= hidden_field_tag :catalogo_id, params[:catalogo_id] %>
 
   <p>
     <%= pedido.submit "Guardar" %>

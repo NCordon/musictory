@@ -12,8 +12,7 @@ class PedidosController < ApplicationController
   end
 
   def create
-    @catalogo = Catalogo.find params[:catalogo_id]
-    @pedido = @catalogo.pedidos.build pedido_params
+    @pedido = Pedido.new(pedido_params)
 
     if @pedido.save
       redirect_to pedidos_path
@@ -95,6 +94,6 @@ class PedidosController < ApplicationController
   private
     def pedido_params
       params[:pedido][:fechaRealizacion] = Time.now
-      params.require(:pedido).permit(:fechaRealizacion,:formato,:cantidad)
+      params.require(:pedido).permit(:titulo,:grupo,:fechaRealizacion,:formato,:cantidad)
     end
 end

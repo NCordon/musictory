@@ -14,9 +14,9 @@
       <% else %>
         <tr>
       <% end %>
-          <td class=index-photo><%=image_tag p.catalogo.portada(:thumb) %> </td>
-          <td><%= p.catalogo.titulo %></td>
-          <td><%= p.catalogo.grupo %></td>
+          <td class=index-photo><%= image_tag p.portada%> </td>
+          <td><%= p.titulo %></td>
+          <td><%= p.grupo %></td>
           <td><%= p.formato.upcase %></td>
           <td><%= p.fechaRealizacion.to_date %></td>
           <td><%= p.cantidad %></td>
