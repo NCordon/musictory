@@ -1,6 +1,6 @@
 class VentasController < ApplicationController
   def index
-    @ventas = Venta.all.order.order("fechaVenta DESC")
+    @ventas = Venta.all.order("fechaVenta DESC")
 
     if params[:search]
       @ventas = Venta.search(params[:search]).order("fechaVenta DESC")

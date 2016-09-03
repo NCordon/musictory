@@ -233,9 +233,11 @@ recibidos
 
 * *Actor:* Gestor de pedidos
 * *Entrada:* ID pedido
-* *Procesamiento:* Marcar un pedido como recibido en el comercio.
-* *Salida*: Ninguna
-
+* *Procesamiento:* Marcar un pedido como recibido en el comercio, y generar(o
+actualizar) la información de *stock* del álbum asociado.
+* *Salida*:
+  - RD1
+  - RD2 o RD3
 
 **RF23: Buscar en el histórico de pedidos**
 
@@ -313,58 +315,38 @@ introducido.
 
 **RS1: Nuevo álbum en catálogo**
 
-Al dar de alta un álbum en el catálogo, el grupo y título
-no pueden ser vacíos, aparte por supuesto del identificador.
-
-<!--
-**RS2: Operaciones**
-
-La fecha de ejecución (fecha real de cobro o de pago), debe ser posterior (o
-nula, en caso apropiado) a la fecha de facturación.
--->
+Al dar de alta un álbum en el catálogo, el grupo, título e identificador
+no pueden ser vacíos,
 
 **RS2: Nueva venta**
 
-ID Artículo, cantidad, precio (precio del artículo vendido), fecha
-y venta no pueden ser vacíos.
+El precio del stock (ya sea CD o Vinilo asociado) no puede ser vacío.
 
 
 **RS3: Formato de venta**
 
 El formato de venta debe ser o bien CD o Vinilo.
 
-**RS4: Pedido**
+**RS4: Borrado de elemento de catálogo**
 
-ID Artículo, cantidad, precio (precio del artículo pedido) y fecha realización
-no pueden ser vacíos.
+Al borrar un elemento del catálogo de la tienda, no puede desaparecer la
+facturación asociada.
 
 **RS5: Pedido no recibido**
 
 Un pedido no recibido tendrá únicamente fecha realización.
 
+
 **RS6: Pedido recibido**
 
-Un pedido recibido tendrá fecha realización y fecha de entrada, con fecha
-entrada posterior a la fecha de realización.
-
-**RS7: Pedido recibido correctamente**
-
-Un pedido recibido correctamente será un pedido recibido con fecha de
-finalización no nula y posterior a la fecha de entrada.
-
-**RS8: Pedido no correcto**
-
-Un pedido recibido pero no correcto cumplirá las restricciones semánticas de
-los pedidos recibidos, pero tendrá fecha defecto no nula y posterior a la de
-entrada. Fecha defecto podría considerarse como una fecha de reclamación o de
-devolución.
-
-**RS9: Pedido cancelado**
-
-Un pedido cancelado tendrá fecha de cancelación no nula, y posterior a la fecha
-de realización, pero no tendrá ninguna otra fecha.
+Un pedido tendrá además de fecha de realización, fecha de entrada.
 
 
+**RS7: Pedido cancelado**
+
+Un pedido cancelado tendrá fecha de realización y fecha de cancelación, pero
+no puede tener fecha de entrada. Un pedido cancelado no puede recibirse una
+vez cancelado.
 
 # Diseño
 
