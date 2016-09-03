@@ -102,8 +102,8 @@ Los usuarios del sistema serán el gestor de ventas, gestor de *stock* y gestor 
 
 * *Actor:* Gestor de *stock*
 * *Entrada:* Identificador de catálogo
-* *Procesamiento:* Generar la información asociada a una venta, y disminuir el
-  stock asociado al artículo.
+* *Procesamiento:* Generar la información asociada a una venta, con fecha de
+venta el día actual y disminuir el stock asociado al artículo.
 * *Salida*: Ninguna
 
 
@@ -111,8 +111,8 @@ Los usuarios del sistema serán el gestor de ventas, gestor de *stock* y gestor 
 
 * *Actor:* Gestor de *stock*
 * *Entrada:* Identificador de catálogo
-* *Procesamiento:* Generar la información asociada a una venta, y disminuir el
-  stock asociado al artículo.
+* *Procesamiento:* Generar la información asociada a una venta, con fecha de
+venta el día actual y disminuir el stock asociado al artículo.
 * *Salida*: Ninguna
 
 **RF8: Listar catálogo**
@@ -164,7 +164,15 @@ grupo coinciden con la cadena de caracteres (o con una parte) introducida.
   - RD2
   - RD3
 
-**RF14: Listar histórico de ventas**
+**RF14: Modificar venta**
+
+* *Actor:* Gestor de ventas
+* *Entrada:* RD8
+* *Procesamiento:* Muestra los datos de stock del álbum vendido
+* *Salida*: Ninguna
+
+
+**RF15: Listar histórico de ventas**
 
 * *Actor:* Gestor de *stock*
 * *Entrada:* Ninguna
@@ -172,7 +180,7 @@ grupo coinciden con la cadena de caracteres (o con una parte) introducida.
 * *Salida*: RD7 para cada elemento
 
 
-**RF15: Buscar en el histórico de ventas**
+**RF16: Buscar en el histórico de ventas**
 
 * *Actor:* Gestor de ventas
 * *Entrada:* Cadena de caracteres a contrastar con título, grupo o fecha de
@@ -184,28 +192,28 @@ introducido.
 
 ### Funcionalidad "Gestión de pedidos"
 
-**RF16: Realizar pedido**
+**RF17: Realizar pedido**
 
 * *Actor:* Gestor de pedidos
-* *Entrada:* RD8
+* *Entrada:* RD9
 * *Procesamiento:* Generar la información de un pedido
 * *Salida*: Ninguna
 
-**RF17: Listar todos los pedidos**
+**RF18: Listar todos los pedidos**
 
 * *Actor:* Gestor de pedidos
 * *Entrada:* ID de pedido
 * *Procesamiento:* Mostrar información referente a todos los pedidos realizados
 * *Salida*: RD9 para cada elemento
 
-**RF18: Listar todos los pedidos recibidos**
+**RF19: Listar todos los pedidos recibidos**
 
 * *Actor:* Gestor de pedidos
 * *Entrada:* Ninguna
 * *Procesamiento:* Mostrar información referente a todos los pedidos recibidos
 * *Salida*: RD9 para cada elemento
 
-**RF19: Listar todos los pedidos no recibidos**
+**RF20: Listar todos los pedidos no recibidos**
 
 * *Actor:* Gestor de pedidos
 * *Entrada:* Ninguna
@@ -214,7 +222,7 @@ recibidos
 * *Salida*: RD9 para cada elemento
 
 
-**RF20: Listar todos los pedidos cancelados**
+**RF21: Listar todos los pedidos cancelados**
 
 * *Actor:* Gestor de pedidos
 * *Entrada:* Ninguna
@@ -222,14 +230,14 @@ recibidos
 * *Salida*: RD9 para cada elemento
 
 
-**RF21: Cancelar pedido**
+**RF22: Cancelar pedido**
 
 * *Actor:* Gestor de pedidos
 * *Entrada:* ID de pedido
 * *Procesamiento:* Cancelar un pedido, estableciendo una fecha de cancelación
 * *Salida*: Ninguna
 
-**RF22: Marcar pedido como recibido**
+**RF23: Marcar pedido como recibido**
 
 * *Actor:* Gestor de pedidos
 * *Entrada:* ID pedido
@@ -239,7 +247,7 @@ actualizar) la información de *stock* del álbum asociado.
   - RD1
   - RD2 o RD3
 
-**RF23: Buscar en el histórico de pedidos**
+**RF24: Buscar en el histórico de pedidos**
 
 * *Actor:* Gestor de pedidos
 * *Entrada:* Cadena de caracteres a contrastar con título, grupo o fecha de
@@ -299,8 +307,12 @@ introducido.
 * Precio (número real)
 * Fecha venta
 
+**RD8: Datos modificables en \underline{VENTA}**
 
-**RD8: Datos almacenados en \underline{PEDIDO}**
+* Fecha venta
+* Observaciones
+
+**RD9: Datos almacenados en \underline{PEDIDO}**
 
 * ID Pedido
 * Título (cadena de caracteres)
@@ -327,22 +339,26 @@ El precio del stock (ya sea CD o Vinilo asociado) no puede ser vacío.
 
 El formato de venta debe ser o bien CD o Vinilo.
 
-**RS4: Borrado de elemento de catálogo**
+**RS4: Fecha de venta**
+
+La fecha de venta debe ser anterior al día actual
+
+**RS5: Borrado de elemento de catálogo**
 
 Al borrar un elemento del catálogo de la tienda, no puede desaparecer la
 facturación asociada.
 
-**RS5: Pedido no recibido**
+**RS6: Pedido no recibido**
 
 Un pedido no recibido tendrá únicamente fecha realización.
 
 
-**RS6: Pedido recibido**
+**RS7: Pedido recibido**
 
 Un pedido tendrá además de fecha de realización, fecha de entrada.
 
 
-**RS7: Pedido cancelado**
+**RS8: Pedido cancelado**
 
 Un pedido cancelado tendrá fecha de realización y fecha de cancelación, pero
 no puede tener fecha de entrada. Un pedido cancelado no puede recibirse una
