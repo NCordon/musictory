@@ -5,6 +5,10 @@ Music Directory, information system implemented for the UGR subject 'Diseño y D
 Licensed in Apache
 
 ## Documentation
-Can be compiled going to `./doc` and making:
+Can be compiled going to `./doc` and making either:
 
 ``pandoc -V lang=spanish memoria.md -o memoria.pdf --template default.latex -N``
+
+or:
+
+``make``
