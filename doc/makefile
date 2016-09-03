@@ -8,5 +8,5 @@ all: $(DIAGRAMS) $(PDF)
 %.png: %.dia
 	dia $< -e $@ -t png
 
-%.pdf: %.md
-	pandoc -V lang=spanish $< -o $@ --template default.latex -N
+%.pdf: %.md	$(DIAGRAMS)
+	pandoc -V lang=spanish $< -o $@  --template default.latex -N

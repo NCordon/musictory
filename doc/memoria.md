@@ -414,6 +414,9 @@ actualiza su stock al recibir un pedido. Caso opuesto, se crea en catálogo.
 
 #### Esquemas externos del plano de refinamiento F
 
+
+\imgn{1.1}{./diagramas/externos_ref_F.png}
+
 ## Diagrama conceptual completo
 
 ## Esquemas de operación y navegación
