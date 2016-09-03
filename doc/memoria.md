@@ -267,6 +267,7 @@ coincidente con lointroducido.
 
 **RD2: Datos almacenados en \underline{CD}**
 
+* ID del CD
 * ID del catálogo
 * Cantidad de CDs en *stock*(entero)
 * Precio
@@ -274,6 +275,7 @@ coincidente con lointroducido.
 
 **RD3: Datos almacenados en \underline{VINILO}**
 
+* ID del vinilo
 * ID del catálogo
 * Cantidad de Vinilos en *stock*(entero)
 * Precio
@@ -432,13 +434,13 @@ actualiza su stock al recibir un pedido. Caso opuesto, se crea en catálogo.
 
 ### Diagrama resultante
 
-
+\imgn{1.1}{./diagramas/diagrama_final.png}
 
 ## Esquemas de operación y navegación
 
 ## Diseño lógico
 
-**Catálogo**(\pk{id}, \ck{Título}, \ck{Grupo}, Género, Portada_file_name)
+**Catálogo**(\pk{id}, \ck{Título}, \ck{Grupo}, Género, Portada url)
 
 **CD**(\pk{id}, id Catálogo, Cantidad, Precio)
 
@@ -452,9 +454,8 @@ actualiza su stock al recibir un pedido. Caso opuesto, se crea en catálogo.
 
 \fk{Vinilo.id Catálogo}{Catálogo.id}
 
-**Pedido**(\pk{id Pedido}, Cantidad, Formato, Adeudo, Fecha
-Realización, Fecha Entrada, Fecha Cancelación, Fecha Finalización, Título,
-Grupo)
+**Pedido**(\pk{id Pedido}, Cantidad, Formato, Fecha
+Realización, Fecha Entrada, Fecha Cancelación, Título, Grupo)
 
 ### Disparadores PL/SQL
 
