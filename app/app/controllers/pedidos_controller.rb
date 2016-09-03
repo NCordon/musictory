@@ -1,6 +1,6 @@
 class PedidosController < ApplicationController
   def index
-    @pedidos = Pedido.all
+    @pedidos = Pedido.all.order("fechaRealizacion DESC")
 
     if params[:search]
       @pedidos = Pedido.search(params[:search]).order("fechaRealizacion DESC")

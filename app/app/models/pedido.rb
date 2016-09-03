@@ -51,7 +51,7 @@ class Pedido < ApplicationRecord
   #  message: "debe ser posterior a la de entrada"
 
   def self.search(search)
-    joins(:catalogo).where("titulo LIKE ? OR grupo LIKE ? OR fechaRealizacion LIKE ?",
+    where("titulo LIKE ? OR grupo LIKE ? OR fechaRealizacion LIKE ?",
       "%#{search}%", "%#{search}%", "%#{search}%")
   end
 

@@ -31,9 +31,9 @@ header-includes:
 # Descripción
 
 *Musictory (Music directory)* es un sistema de información orientado a
-almacenar la información (stock, facturación, pedidos) de una
-tienda de discos. Almacena información referente a álbumes, tanto en formato
-como vinilo.
+almacenar la información (stock, ventas, pedidos) de una
+tienda de discos. Almacena información referente a álbumes, tanto en formato CD como vinilo, el histórico y gestión de ventas, así como una gestion de los
+pedidos, que pueden hacerse tanto sobre elementos preexistentes en *stock*, como sobre elementos que aún no forman parte del catálogo.
 
 
 ## Áreas funcionales
@@ -42,18 +42,18 @@ Entre las áreas funcionales a las que pretendemos dar soporte mediante este
 sistema de información, podemos citar:
 
 * Gestión de stock: Permite registrar, consultar y borrar información sobre el
-*stock* almacenado en una tienda.
+*stock* almacenado en una tienda, así como efectuar una venta o pedido sobre un
+elemento del catálogo.
 
 * Gestión de ventas: Permite gestionar las ventas realizadas a diario en el
-comercio, actualizando el *stock*.
+comercio.
 
 * Gestión de pedidos: Permite realizar, cancelar y marcar la corrección de
 pedidos efectuados.
 
 ## Usuarios del sistema
 
-Los usuarios del sistema son el gestor de ventas, gestor de *stock* y gestor de
-pedidos.
+Los usuarios del sistema serán el gestor de ventas, gestor de *stock* y gestor de pedidos.
 
 # Análisis de requisitos
 
@@ -62,7 +62,7 @@ pedidos.
 
 **RF1: Dar de alta información en el catálogo**
 
-* *Actor:* Gestor de comercio
+* *Actor:* Gestor de *stock*
 * *Entrada:* RD1
 * *Procesamiento:* Crear el perfil de un nuevo álbum.
 * *Salida:* Ninguna
@@ -74,21 +74,21 @@ pedidos.
 * *Procesamiento:* Introducir el stock disponible de un álbum en formato CD
 * *Salida:* Ninguna
 
-**RF3: Introducir el stock disponible en Vinilo**
+**RF3: Introducir el stock disponible en vinilo**
 
 * *Actor:* Gestor de *stock*
 * *Entrada:* RD3
-* *Procesamiento:* Introducir el stock disponible de un álbum en formato Vinilo
+* *Procesamiento:* Introducir el stock disponible de un álbum en formato vinilo
 * *Salida:* Ninguna
 
 **RF4: Modificar información asociada a un álbum en el catálogo**
 
 * *Actor:* Gestor de *stock*
-* *Entrada:* RD1
+* *Entrada:* RD1 RD2 RD3
 * *Procesamiento:* Modificar la información asociada a un álbum
 * *Salida*: Ninguna.
 
-**RF5: Consultar stock de un disco**
+**RF5: Consultar stock de un elemento del catálogo**
 
 * *Actor:* Gestor de *stock*
 * *Entrada:* Identificador
@@ -97,65 +97,139 @@ pedidos.
   - RD1
   - RD2
   - RD3
-  - Histórico de ventas
 
+**RF6: Vender CD**
 
-### Funcionalidad "Gestión de ventas"
-
-**RF6: Realizar venta**
-
-* *Actor:* Gestor de ventas
-* *Entrada:* RD4
+* *Actor:* Gestor de *stock*
+* *Entrada:* Identificador de catálogo
 * *Procesamiento:* Generar la información asociada a una venta, y disminuir el
   stock asociado al artículo.
 * *Salida*: Ninguna
 
-**RF7: Mostrar datos de una venta**
+
+**RF7: Vender Vinilo**
+
+* *Actor:* Gestor de *stock*
+* *Entrada:* Identificador de catálogo
+* *Procesamiento:* Generar la información asociada a una venta, y disminuir el
+  stock asociado al artículo.
+* *Salida*: Ninguna
+
+**RF8: Listar catálogo**
+
+* *Actor:* Gestor de *stock*
+* *Entrada:* Ninguna
+* *Procesamiento:* Genera un listado de elementos del catálogo
+* *Salida*: RD4 para cada elemento
+
+**RF9: Eliminar elemento del catálogo**
+* *Actor:* Gestor de *stock*
+* *Entrada:* Identificador del catálogo
+* *Procesamiento:* Elimina un elemento del catálogo del comercio
+* *Salida*: Ninguna
+
+
+**RF10: Buscar en el catálogo**
+* *Actor:* Gestor de *stock*
+* *Entrada:* Cadena de caracteres a contrastar con título o grupo
+* *Procesamiento:* Genera un listado de elementos del catálogo cuyo título o
+grupo coinciden con la cadena de caracteres (o con una parte) introducida.
+* *Salida*: RD4 para cada elemento coincidente
+
+### Funcionalidad "Gestión de ventas"
+
+**RF11: Consultar venta**
 
 * *Actor:* Gestor de ventas
 * *Entrada:* ID de venta
 * *Procesamiento:* Mostrar información referente a una venta realizada
-* *Salida*: RD4
+* *Salida*:
+  - RD5
+  - RD6
 
-**RF8: Cancelar venta**
+**RF12: Cancelar venta**
 
 * *Actor:* Gestor de ventas
 * *Entrada:* ID de venta
-* *Procesamiento:* Eliminar una venta
+* *Procesamiento:* Elimina información asociada a una venta
 * *Salida*: Ninguna
 
-**RF9: Modificar venta**
+**RF13: Consultar álbum asociado**
 
 * *Actor:* Gestor de ventas
-* *Entrada:* RD4
-* *Procesamiento:* Modificar los datos asociados a una venta
-* *Salida*: Ninguna
+* *Entrada:* Identificador de venta
+* *Procesamiento:* Muestra los datos de stock del álbum vendido
+* *Salida*:
+  - RD1
+  - RD2
+  - RD3
+
+**RF14: Listar histórico de ventas**
+
+* *Actor:* Gestor de *stock*
+* *Entrada:* Ninguna
+* *Procesamiento:* Genera un listado de ventas
+* *Salida*: RD7 para cada elemento
 
 
-### Funcionalidad "Gestión de pedido"
+**RF15: Buscar en el histórico de ventas**
 
-**RF10: Realizar pedido**
+* *Actor:* Gestor de ventas
+* *Entrada:* Cadena de caracteres a contrastar con título, grupo o fecha de
+venta
+* *Procesamiento:* Genera un listado de ventas con título o
+grupo del álbum asociado coincidentes con la cadena de caracteres (o con una parte) introducida; o bien la fecha(o una parte de ella) coincide con lo
+introducido.
+* *Salida*: RD7 para cada elemento coincidente
+
+### Funcionalidad "Gestión de pedidos"
+
+**RF16: Realizar pedido**
 
 * *Actor:* Gestor de pedidos
-* *Entrada:* RD5
+* *Entrada:* RD8
 * *Procesamiento:* Generar la información de un pedido
 * *Salida*: Ninguna
 
-**RF11: Mostrar datos de un pedido**
+**RF17: Listar todos los pedidos**
 
 * *Actor:* Gestor de pedidos
 * *Entrada:* ID de pedido
-* *Procesamiento:* Mostrar información referente a un pedido realizado
-* *Salida*: RD5
+* *Procesamiento:* Mostrar información referente a todos los pedidos realizados
+* *Salida*: RD9 para cada elemento
 
-**RF12: Cancelar pedido**
+**RF18: Listar todos los pedidos recibidos**
+
+* *Actor:* Gestor de pedidos
+* *Entrada:* Ninguna
+* *Procesamiento:* Mostrar información referente a todos los pedidos recibidos
+* *Salida*: RD9 para cada elemento
+
+**RF19: Listar todos los pedidos no recibidos**
+
+* *Actor:* Gestor de pedidos
+* *Entrada:* Ninguna
+* *Procesamiento:* Mostrar información referente a todos los pedidos no
+recibidos
+* *Salida*: RD9 para cada elemento
+
+
+**RF20: Listar todos los pedidos cancelados**
+
+* *Actor:* Gestor de pedidos
+* *Entrada:* Ninguna
+* *Procesamiento:* Mostrar información referente a todos los pedidos cancelados
+* *Salida*: RD9 para cada elemento
+
+
+**RF21: Cancelar pedido**
 
 * *Actor:* Gestor de pedidos
 * *Entrada:* ID de pedido
 * *Procesamiento:* Cancelar un pedido, estableciendo una fecha de cancelación
 * *Salida*: Ninguna
 
-**RF13: Marcar pedido como recibido**
+**RF22: Marcar pedido como recibido**
 
 * *Actor:* Gestor de pedidos
 * *Entrada:* ID pedido
@@ -163,21 +237,15 @@ pedidos.
 * *Salida*: Ninguna
 
 
-**RF14: Marcar pedido como correcto**
+**RF23: Buscar en el histórico de pedidos**
 
 * *Actor:* Gestor de pedidos
-* *Entrada:* ID pedido
-* *Procesamiento:* Marcar un pedido como efectuado correctamente, y almacenar
-la información relativa al stock en la tienda
-* *Salida*: Ninguna
-
-
-**RF15: Marcar pedido como defectuoso**
-
-* *Actor:* Gestor de pedidos
-* *Entrada:* ID pedido
-* *Procesamiento:* Marcar un pedido como recibido pero no correcto.
-* *Salida*: Ninguna
+* *Entrada:* Cadena de caracteres a contrastar con título, grupo o fecha de
+realización del pedido
+* *Procesamiento:* Genera un listado de pedidos con título o
+grupo del álbum asociado coincidentes con la cadena de caracteres (o con una parte) introducida; o bien la fecha(o una parte de ella) coincide con lo
+introducido.
+* *Salida*: RD9 para cada elemento coincidente
 
 
 ## Requisitos de datos
@@ -187,42 +255,59 @@ la información relativa al stock en la tienda
 * Título (cadena de caracteres)
 * Grupo (cadena de caracteres)
 * Genero (cadena de caracteres)
+* Foto (url)
 
 
 **RD2: Datos almacenados en \underline{CD}**
 
 * ID del catálogo
 * Cantidad de CDs en *stock*(entero)
+* Precio
 
 
 **RD3: Datos almacenados en \underline{VINILO}**
 
 * ID del catálogo
 * Cantidad de Vinilos en *stock*(entero)
+* Precio
 
+**RD4: Datos de listado de \underline{CATALOGO}**
 
-**RD4: Datos almacenados en \underline{VENTA}**
+* Título
+* Grupo
+* Género
+
+**RD5: Datos de álbum mostrados en \underline{VENTA}**
+
+* Título
+* Grupo
+
+**RD6: Datos almacenados en \underline{VENTA}**
 
 * ID Venta
 * ID Artículo
 * Formato (cadena de caracteres)
 * Precio (número real)
-* Fecha
-<!--* Descripción (cadena de caracteres)-->
+* Fecha venta
+* Observaciones (cadena de caracteres)
+
+**RD7: Datos de listado en \underline{VENTA}**
+
+* Formato (cadena de caracteres)
+* Precio (número real)
+* Fecha venta
 
 
-**RD5: Datos almacenados en \underline{PEDIDO}**
+**RD8: Datos almacenados en \underline{PEDIDO}**
 
 * ID Pedido
-* ID Artículo
+* Título (cadena de caracteres)
+* Grupo (cadena de caracteres)
 * Cantidad (entero)
-* Adeudo (número real)
-* Fecha realización
-* Fecha entrada
-* Fecha defecto
-* Fecha cancelación
-* Fecha finalización
-* ID Proveedor
+* Formato (cadena de caracteres)
+* Fecha Realización
+* Fecha Entrada
+* Fecha Cancelación
 
 ## Restricciones semánticas
 
