@@ -401,7 +401,9 @@ vez cancelado.
 
 #### Plano de refinamiento F de primer nivel
 
-\imgn{0.9}{./diagramas/plano_ref_F.png}
+\imgn{1.1}{./diagramas/plano_ref_F.png}
+
+#### Esquemas externos del plano de refinamiento F
 
 ## Diagrama conceptual completo
 
