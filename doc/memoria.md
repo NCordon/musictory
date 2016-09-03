@@ -15,10 +15,12 @@ toc-depth: 2
 # Paquetes a usar en la compilación de latex
 header-includes:
   - \usepackage{graphicx}
+  - \usepackage{ulem}
 ---
 
 \newcommand{\pk}[1]{\underline{#1}}
 \newcommand{\fk}[2]{\qquad FK: {#1} $\longrightarrow$ {#2}}
+\newcommand{\ck}[1]{\dashuline{#1}}
 
 \newcommand{\imgn}[2]{
   \begin{center}
@@ -260,7 +262,7 @@ coincidente con lointroducido.
 * Título (cadena de caracteres)
 * Grupo (cadena de caracteres)
 * Género (cadena de caracteres)
-* Foto (url)
+* Portada
 
 
 **RD2: Datos almacenados en \underline{CD}**
@@ -326,48 +328,53 @@ Al dar de alta un álbum en el catálogo, el grupo, título e identificador no
 pueden ser vacíos. Asimismo, el stock tanto en CD como en Vinilo por defecto
 debe ser 0.
 
-**RS2: Nueva venta**
+**RS2: Unicidad de título y grupo**
+
+Al dar de alta un álbum en el catálogo, el par (grupo, título) debe ser único en
+el sistema
+
+**RS3: Nueva venta**
 
 El precio del stock (ya sea CD o Vinilo asociado) no puede ser vacío al efectuar
 una venta.
 
-**RS3: Formato de venta**
+**RS4: Formato de venta**
 
 El formato de venta debe ser o bien CD(0) o Vinilo(1)
 
-**RS4: Fecha de venta**
+**RS5: Fecha de venta**
 
 La fecha de venta debe ser anterior al día actual
 
-**RS5: Borrado de elemento de catálogo**
+**RS6: Borrado de elemento de catálogo**
 
 Un elemento del catálogo con facturación asociada no puede eliminarse
 
-**RS6: Pedido no recibido**
+**RS7: Pedido no recibido**
 
 Un pedido no recibido tendrá únicamente fecha realización.
 
 
-**RS7: Pedido recibido**
+**RS8: Pedido recibido**
 
 Un pedido tendrá además de fecha de realización, fecha de entrada.
 
 
-**RS8: Pedido cancelado**
+**RS9: Pedido cancelado**
 
 Un pedido cancelado tendrá fecha de realización y fecha de cancelación, pero
 no puede tener fecha de entrada.
 
-**RS9: Pedido cancelado o recibido**
+**RS10: Pedido cancelado o recibido**
 Un pedido cancelado no puede recibirse una vez cancelado. Asimismo un pedido
 recibido no puede cancelarse una vez recibido.
 
-**RS10: Nuevo pedido**
+**RS11: Nuevo pedido**
 
 Un pedido nuevo no puede tener título, grupo, cantidad o formato vacíos. La
 fecha de realización debe establecerse en la actual.
 
-**RS11: Actualizar Stock en pedido recibido**
+**RS12: Actualizar Stock en pedido recibido**
 
 Si un disco ya existe en catálogo por título y grupo en base de datos, se
 actualiza su stock al recibir un pedido. Caso opuesto, se crea en catálogo.
@@ -414,37 +421,40 @@ actualiza su stock al recibir un pedido. Caso opuesto, se crea en catálogo.
 
 #### Esquemas externos del plano de refinamiento F
 
-
 \imgn{1.1}{./diagramas/externos_ref_F.png}
 
 ## Diagrama conceptual completo
+
+### Unión de los esquemas externos
+
+
+\imgn{1.1}{./diagramas/externos_union.png}
+
+### Diagrama resultante
+
+
 
 ## Esquemas de operación y navegación
 
 ## Diseño lógico
 
-**Catálogo**(\pk{id}, Título, Grupo, Género, Precio)
+**Catálogo**(\pk{id}, \ck{Título}, \ck{Grupo}, Género, Portada_file_name)
 
-**CD**(\pk{id}, Cantidad)
+**CD**(\pk{id}, id Catálogo, Cantidad, Precio)
 
-\fk{CD.id}{Catálogo.id}
+\fk{CD.id Catálogo}{Catálogo.id}
 
-**Vinilo**(\pk{id}, Cantidad)
-
-\fk{Vinilo.id Disco}{Catálogo.id}
-
-**Pedido**(\pk{id Pedido}, id Catálogo, Cantidad, Formato, Adeudo, Fecha Realización, Fecha
-Entrada, Fecha Defecto, Fecha Cancelación, Fecha Finalización, id Proveedor)
+**Vinilo**(\pk{id}, id Catálogo, Cantidad, Precio)
 
 \fk{Vinilo.id Catálogo}{Catálogo.id}
-<!--
-\fk{Vinilo.id Proveedor}{Proveedor.id}
 
-**Proveedor**(\pk{id}, Nombre)
--->
+**Venta**(\pk{id Venta}, id Catálogo, Precio, FechaVenta, Formato)
 
-**Venta**(\pk{id Venta}, id Catálogo, Precio, Fecha Venta)
+\fk{Vinilo.id Catálogo}{Catálogo.id}
 
+**Pedido**(\pk{id Pedido}, Cantidad, Formato, Adeudo, Fecha
+Realización, Fecha Entrada, Fecha Cancelación, Fecha Finalización, Título,
+Grupo)
 
 ### Disparadores PL/SQL
 

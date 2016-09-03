@@ -10,6 +10,8 @@ class Catalogo < ApplicationRecord
     default_url: "/images/:style/missing.png"
   validates_attachment_content_type :portada, content_type: /\Aimage\/.*\z/
 
+  validates_uniqueness_of :titulo, :scope => [:grupo], message: "Ya existe en base de datos"
+
   has_one :cd, dependent: :destroy
   has_one :vinilo, dependent: :destroy
   after_create :setStock

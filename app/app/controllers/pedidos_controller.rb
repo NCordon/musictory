@@ -48,7 +48,7 @@ class PedidosController < ApplicationController
     @pedidos = Pedido.where.not(fechaEntrada: nil)
 
     if params[:search]
-      @pedidos = Pedido.where.not(fechaEntrada: nil).search(params[:search]).order("fechaRealizacion DESC")
+      @pedidos = Pedido.where.not(fechaEntrada: nil).search(params[:search]).order("fechaEntrada DESC")
     end
   end
 
@@ -65,7 +65,7 @@ class PedidosController < ApplicationController
     @pedidos = Pedido.where.not(fechaCancelacion: nil)
 
     if params[:search]
-      @pedidos = Pedido.where.not(fechaCancelacion: nil).search(params[:search]).order("fechaRealizacion DESC")
+      @pedidos = Pedido.where.not(fechaCancelacion: nil).search(params[:search]).order("fechaCancelacion DESC")
     end
   end
 
