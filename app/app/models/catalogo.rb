@@ -16,8 +16,12 @@ class Catalogo < ApplicationRecord
   accepts_nested_attributes_for :cd
   accepts_nested_attributes_for :vinilo
 
-  has_many :ventas, dependent: :destroy
+  has_many :ventas,
+    dependent:  :restrict_with_error
+    #message: "no se puede eliminar, tiene facturación asociada"
   #has_many :pedidos, dependent: :destroy
+
+  before_destroy :check_for_ventas
 
   def setStock
     create_cd cantidad:0
@@ -26,5 +30,15 @@ class Catalogo < ApplicationRecord
 
   def self.search(search)
     where("titulo LIKE ? OR grupo LIKE ?", "%#{search}%", "%#{search}%")
+  end
+
+private
+
+  def check_for_ventas
+    if ventas
+      errors.add :base, "No se puede eliminar. Hay facturación asociada"
+      return false
+      raise 'Estoy aquí'
+    end
   end
 end

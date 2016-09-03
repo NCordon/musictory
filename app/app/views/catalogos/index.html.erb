@@ -1,5 +1,7 @@
 <%= render 'search' %>
 
+<%= render partial: '/shared/errors', object: @catalogo %>
+
 <% if @catalogos.present? %>
   <table class="index-table">
 

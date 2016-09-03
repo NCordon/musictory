@@ -1,6 +1,7 @@
 class CatalogosController < ApplicationController
   def index
     @catalogos = Catalogo.all
+    @catalogo = Catalogo.new
 
     if params[:search]
       @catalogos = Catalogo.search(params[:search])
@@ -44,9 +45,13 @@ class CatalogosController < ApplicationController
 
   def destroy
     @catalogo = Catalogo.find(params[:id])
-    @catalogo.destroy
 
-    redirect_to catalogos_path
+    if @catalogo.destroy
+      redirect_to catalogos_path
+    else
+      #render partial: '/shared/errors', object: @catalogo
+      render 'index'
+    end
   end
 
 

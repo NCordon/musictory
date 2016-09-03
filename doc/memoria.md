@@ -345,8 +345,7 @@ La fecha de venta debe ser anterior al día actual
 
 **RS5: Borrado de elemento de catálogo**
 
-Al borrar un elemento del catálogo de la tienda, no puede desaparecer la
-facturación asociada.
+Un elemento del catálogo con facturación asociada no puede eliminarse
 
 **RS6: Pedido no recibido**
 
@@ -400,6 +399,9 @@ vez cancelado.
 
 \imgn{0.9}{./diagramas/gestion_pedidos.png}
 
+#### Plano de refinamiento F de primer nivel
+
+\imgn{0.9}{./diagramas/plano_ref_F.png}
 
 ## Diagrama conceptual completo
 
