@@ -67,28 +67,14 @@ Los usuarios del sistema serán el gestor de ventas, gestor de *stock* y gestor 
 * *Procesamiento:* Crear el perfil de un nuevo álbum.
 * *Salida:* Ninguna
 
-**RF2: Introducir el stock disponible en CD**
-
-* *Actor:* Gestor de *stock*
-* *Entrada:* RD2
-* *Procesamiento:* Introducir el stock disponible de un álbum en formato CD
-* *Salida:* Ninguna
-
-**RF3: Introducir el stock disponible en vinilo**
-
-* *Actor:* Gestor de *stock*
-* *Entrada:* RD3
-* *Procesamiento:* Introducir el stock disponible de un álbum en formato vinilo
-* *Salida:* Ninguna
-
-**RF4: Modificar información asociada a un álbum en el catálogo**
+**RF2: Modificar información asociada a un álbum en el catálogo**
 
 * *Actor:* Gestor de *stock*
 * *Entrada:* RD1 RD2 RD3
 * *Procesamiento:* Modificar la información asociada a un álbum
 * *Salida*: Ninguna.
 
-**RF5: Consultar stock de un elemento del catálogo**
+**RF3: Consultar stock de un elemento del catálogo**
 
 * *Actor:* Gestor de *stock*
 * *Entrada:* Identificador
@@ -98,47 +84,54 @@ Los usuarios del sistema serán el gestor de ventas, gestor de *stock* y gestor 
   - RD2
   - RD3
 
-**RF6: Vender CD**
+**RF4: Vender CD**
 
 * *Actor:* Gestor de *stock*
 * *Entrada:* Identificador de catálogo
-* *Procesamiento:* Generar la información asociada a una venta, con fecha de
-venta el día actual y disminuir el stock asociado al artículo.
+* *Procesamiento:* Generar la información asociada a una venta de CD, con fecha
+de venta el día actual y disminuir el stock asociado al artículo.
 * *Salida*: Ninguna
 
 
-**RF7: Vender Vinilo**
+**RF5: Vender Vinilo**
 
 * *Actor:* Gestor de *stock*
 * *Entrada:* Identificador de catálogo
-* *Procesamiento:* Generar la información asociada a una venta, con fecha de
-venta el día actual y disminuir el stock asociado al artículo.
+* *Procesamiento:* Generar la información asociada a una venta de vinilo, con
+fecha de venta el día actual y disminuir el stock asociado al artículo.
 * *Salida*: Ninguna
 
-**RF8: Listar catálogo**
+**RF6: Listar catálogo**
 
 * *Actor:* Gestor de *stock*
 * *Entrada:* Ninguna
 * *Procesamiento:* Genera un listado de elementos del catálogo
 * *Salida*: RD4 para cada elemento
 
-**RF9: Eliminar elemento del catálogo**
+**RF7: Eliminar elemento del catálogo**
 * *Actor:* Gestor de *stock*
 * *Entrada:* Identificador del catálogo
 * *Procesamiento:* Elimina un elemento del catálogo del comercio
 * *Salida*: Ninguna
 
 
-**RF10: Buscar en el catálogo**
+**RF8: Buscar en el catálogo**
 * *Actor:* Gestor de *stock*
 * *Entrada:* Cadena de caracteres a contrastar con título o grupo
 * *Procesamiento:* Genera un listado de elementos del catálogo cuyo título o
 grupo coinciden con la cadena de caracteres (o con una parte) introducida.
 * *Salida*: RD4 para cada elemento coincidente
 
+**RF9: Realizar pedido sobre elemento del catálogo**
+
+* *Actor:* Gestor de *stock*
+* *Entrada:* RD9
+* *Procesamiento:* Genera un pedido para un elemento del catálogo con sus datos.
+* *Salida*: Ninguna
+
 ### Funcionalidad "Gestión de ventas"
 
-**RF11: Consultar venta**
+**RF10: Consultar venta**
 
 * *Actor:* Gestor de ventas
 * *Entrada:* ID de venta
@@ -147,14 +140,14 @@ grupo coinciden con la cadena de caracteres (o con una parte) introducida.
   - RD5
   - RD6
 
-**RF12: Cancelar venta**
+**RF11: Cancelar venta**
 
 * *Actor:* Gestor de ventas
 * *Entrada:* ID de venta
 * *Procesamiento:* Elimina información asociada a una venta
 * *Salida*: Ninguna
 
-**RF13: Consultar álbum asociado**
+**RF12: Consultar álbum asociado**
 
 * *Actor:* Gestor de ventas
 * *Entrada:* Identificador de venta
@@ -164,97 +157,99 @@ grupo coinciden con la cadena de caracteres (o con una parte) introducida.
   - RD2
   - RD3
 
-**RF14: Modificar venta**
+**RF13: Modificar venta**
 
 * *Actor:* Gestor de ventas
 * *Entrada:* RD8
-* *Procesamiento:* Muestra los datos de stock del álbum vendido
+* *Procesamiento:* Modifica los datos de una venta
 * *Salida*: Ninguna
 
 
-**RF15: Listar histórico de ventas**
+**RF14: Listar histórico de ventas**
 
 * *Actor:* Gestor de *stock*
 * *Entrada:* Ninguna
-* *Procesamiento:* Genera un listado de ventas
+* *Procesamiento:* Genera el listado de ventas de todo el sistema
 * *Salida*: RD7 para cada elemento
 
 
-**RF16: Buscar en el histórico de ventas**
+**RF15: Buscar en el histórico de ventas**
 
 * *Actor:* Gestor de ventas
 * *Entrada:* Cadena de caracteres a contrastar con título, grupo o fecha de
 venta
 * *Procesamiento:* Genera un listado de ventas con título o
-grupo del álbum asociado coincidentes con la cadena de caracteres (o con una parte) introducida; o bien la fecha(o una parte de ella) coincide con lo
+grupo del álbum asociado coincidentes con la cadena de caracteres (o con una parte) introducida; o bien la fecha(o una parte de ella) coincidente con lo
 introducido.
 * *Salida*: RD7 para cada elemento coincidente
 
 ### Funcionalidad "Gestión de pedidos"
 
-**RF17: Realizar pedido**
+**RF16: Realizar pedido**
 
 * *Actor:* Gestor de pedidos
 * *Entrada:* RD9
 * *Procesamiento:* Generar la información de un pedido
 * *Salida*: Ninguna
 
-**RF18: Listar todos los pedidos**
+**RF17: Listar todos los pedidos**
 
 * *Actor:* Gestor de pedidos
 * *Entrada:* ID de pedido
 * *Procesamiento:* Mostrar información referente a todos los pedidos realizados
+ordenados por fecha de realización
 * *Salida*: RD9 para cada elemento
 
-**RF19: Listar todos los pedidos recibidos**
+**RF18: Listar todos los pedidos recibidos**
 
 * *Actor:* Gestor de pedidos
 * *Entrada:* Ninguna
 * *Procesamiento:* Mostrar información referente a todos los pedidos recibidos
+ordenados por fecha de entrada
 * *Salida*: RD9 para cada elemento
 
-**RF20: Listar todos los pedidos no recibidos**
+**RF19: Listar todos los pedidos no recibidos**
 
 * *Actor:* Gestor de pedidos
 * *Entrada:* Ninguna
 * *Procesamiento:* Mostrar información referente a todos los pedidos no
-recibidos
+recibidos ordenados por fecha de realización
 * *Salida*: RD9 para cada elemento
 
 
-**RF21: Listar todos los pedidos cancelados**
+**RF20: Listar todos los pedidos cancelados**
 
 * *Actor:* Gestor de pedidos
 * *Entrada:* Ninguna
 * *Procesamiento:* Mostrar información referente a todos los pedidos cancelados
+ordenados por fecha de cancelación
 * *Salida*: RD9 para cada elemento
 
 
-**RF22: Cancelar pedido**
+**RF21: Cancelar pedido**
 
 * *Actor:* Gestor de pedidos
 * *Entrada:* ID de pedido
 * *Procesamiento:* Cancelar un pedido, estableciendo una fecha de cancelación
 * *Salida*: Ninguna
 
-**RF23: Marcar pedido como recibido**
+**RF22: Marcar pedido como recibido**
 
 * *Actor:* Gestor de pedidos
 * *Entrada:* ID pedido
 * *Procesamiento:* Marcar un pedido como recibido en el comercio, y generar(o
 actualizar) la información de *stock* del álbum asociado.
-* *Salida*:
-  - RD1
-  - RD2 o RD3
+* *Salida*: Ninguna
 
-**RF24: Buscar en el histórico de pedidos**
+**RF23: Buscar en el histórico de pedidos**
 
 * *Actor:* Gestor de pedidos
 * *Entrada:* Cadena de caracteres a contrastar con título, grupo o fecha de
 realización del pedido
 * *Procesamiento:* Genera un listado de pedidos con título o
-grupo del álbum asociado coincidentes con la cadena de caracteres (o con una parte) introducida; o bien la fecha(o una parte de ella) coincide con lo
-introducido.
+grupo del álbum asociado coincidentes con la cadena de caracteres (o con una
+parte) introducida; o bien la fecha de realización(o una parte de ella)
+coincidente con lointroducido.
 * *Salida*: RD9 para cada elemento coincidente
 
 
@@ -264,7 +259,7 @@ introducido.
 * ID
 * Título (cadena de caracteres)
 * Grupo (cadena de caracteres)
-* Genero (cadena de caracteres)
+* Género (cadena de caracteres)
 * Foto (url)
 
 
@@ -287,7 +282,7 @@ introducido.
 * Grupo
 * Género
 
-**RD5: Datos de álbum mostrados en \underline{VENTA}**
+**RD5: Datos de catálogo mostrados en \underline{VENTA}**
 
 * Título
 * Grupo
@@ -310,7 +305,7 @@ introducido.
 **RD8: Datos modificables en \underline{VENTA}**
 
 * Fecha venta
-* Observaciones
+* Observaciones (cadena de caracteres)
 
 **RD9: Datos almacenados en \underline{PEDIDO}**
 
@@ -327,17 +322,18 @@ introducido.
 
 **RS1: Nuevo álbum en catálogo**
 
-Al dar de alta un álbum en el catálogo, el grupo, título e identificador
-no pueden ser vacíos,
+Al dar de alta un álbum en el catálogo, el grupo, título e identificador no
+pueden ser vacíos. Asimismo, el stock tanto en CD como en Vinilo por defecto
+debe ser 0.
 
 **RS2: Nueva venta**
 
-El precio del stock (ya sea CD o Vinilo asociado) no puede ser vacío.
-
+El precio del stock (ya sea CD o Vinilo asociado) no puede ser vacío al efectuar
+una venta.
 
 **RS3: Formato de venta**
 
-El formato de venta debe ser o bien CD o Vinilo.
+El formato de venta debe ser o bien CD(0) o Vinilo(1)
 
 **RS4: Fecha de venta**
 
@@ -360,8 +356,21 @@ Un pedido tendrá además de fecha de realización, fecha de entrada.
 **RS8: Pedido cancelado**
 
 Un pedido cancelado tendrá fecha de realización y fecha de cancelación, pero
-no puede tener fecha de entrada. Un pedido cancelado no puede recibirse una
-vez cancelado.
+no puede tener fecha de entrada.
+
+**RS9: Pedido cancelado o recibido**
+Un pedido cancelado no puede recibirse una vez cancelado. Asimismo un pedido
+recibido no puede cancelarse una vez recibido.
+
+**RS10: Nuevo pedido**
+
+Un pedido nuevo no puede tener título, grupo, cantidad o formato vacíos. La
+fecha de realización debe establecerse en la actual.
+
+**RS11: Actualizar Stock en pedido recibido**
+
+Si un disco ya existe en catálogo por título y grupo en base de datos, se
+actualiza su stock al recibir un pedido. Caso opuesto, se crea en catálogo.
 
 # Diseño
 
@@ -411,7 +420,7 @@ vez cancelado.
 
 ## Diseño lógico
 
-**Catálogo**(\pk{id}, Titulo, Grupo, Genero, Precio)
+**Catálogo**(\pk{id}, Título, Grupo, Género, Precio)
 
 **CD**(\pk{id}, Cantidad)
 
