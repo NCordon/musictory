@@ -15,13 +15,12 @@ toc-depth: 2
 # Paquetes a usar en la compilación de latex
 header-includes:
   - \usepackage{graphicx}
-  - \usepackage{ulem}
   - \usepackage{verbatim}
 ---
 
 \newcommand{\pk}[1]{\underline{#1}}
 \newcommand{\fk}[2]{\qquad FK: {#1} $\longrightarrow$ {#2}}
-\newcommand{\ck}[1]{\dashuline{#1}}
+\newcommand{\ck}[1]{\qquad CK: {#1}}
 
 \newcommand{\imgn}[2]{
   \begin{center}
@@ -484,7 +483,9 @@ Permite modificar el stock CD asociado a un elemento del catálogo
 
 ## Diseño lógico
 
-**Catálogo**(\pk{id}, \ck{Título}, \ck{Grupo}, Género, Portada url)
+**Catálogo**(\pk{id}, Título, Grupo, Género, Portada url)
+
+\ck{Título, Grupo}
 
 **CD**(\pk{id}, id Catálogo, Cantidad, Precio)
 
@@ -513,16 +514,107 @@ Las sentencias DDL para el SGBD Oracle han sido:
 
 # Descripción de la solución implementada
 ## Tecnologías usadas
+
+* Ruby on Rails 5
+* SGBD de desarrollo: SQLite3
+* SGBD de explotación: Oracle
+
 ## Guía de instalación
 
 Se ha usado como base de datos local `sqlite3`, que puede instalarse usando:
 
-`sudo apt-get install sqlite3`
+~~~
+sudo apt-get install sqlite3
+~~~
 
-Como base de datos de *test* se ha empleado la base de datos proporcionada por
-la UGR con SGBD Oracle para efectuar dichas prácticas. Para conectar a dicha base
-de datos, es necesario tener instalado localmente el *Instant Client* de Oracle. Se necesitan también las *gemas* de Ruby `ruby-oci8` y `activerecord-oracle_enhanced-adapter`, que pueden instalarse de la siguiente forma:
+Como base de datos de explotación, para defensa del trabajo, se ha
+empleado la base de datos proporcionada por
+la UGR con SGBD Oracle para efectuar dichas prácticas. Para conectar a
+dicha base de datos, será necesario tener instalado localmente el
+*Instant Client* de Oracle. Se necesitan también las *gemas* de Ruby
+`ruby-oci8` y `activerecord-oracle_enhanced-adapter`.
 
-``sudo gem install ruby-oci8``
+En el archivo `Gemfile` aparecen detalladas las dependencias que usa la
+aplicación.
 
-``activerecord-oracle_enhanced-adapter``
+Es tener instalado `Ruby`, lo cual puede hacerse desde Ubuntu usando:
+
+~~~
+sudo apt-get install ruby2.3
+~~~
+
+y la *gema* `bundler`:
+
+~~~
+gem install bundler
+~~~
+
+Una vez hecho esto, basta ir a la carpeta `app` y ejecutar:
+
+~~~
+./bin/setup
+~~~
+
+que se encargará de instalar todas las dependencias necesarias y
+preparar la base de datos.
+
+Supondremos en lo que sigue que nos encontramos en la carpeta `app`
+(dentro de la cual debe haber otra carpeta `app` a su vez).
+
+Una vez hecho esto, se puede levantar el servidor haciendo:
+
+~~~
+./bin/rails server
+~~~
+
+que hará que `Rails` escuche en `localhost`, normalmente a través del
+puerto 3000;
+
+## Arquitectura
+
+La aplicación usa Modelo-Vista-Controlador para servir páginas.
+
+Los siguientes modelos se han creado en la carpeta `app/models`:
+
+~~~
+catalogo.rb -> Catalogo
+cd.rb -> Cd
+vinilo.rb -> Vinilo
+venta.rb -> Venta
+pedido.rb -> Pedido
+~~~
+
+Los modelos se encargan de efectuar la comunicación con la base de
+datos y comprobar las restricciones semánticas y de integridad
+de los datos que queremos insertar o actualizar.
+
+A cada modelo le corresponde un controlador, que a través de una ruta
+con cabecera HTTP y según la configuración de entrada que poseamos en
+el archivo `config/routes.rb` sirve las páginas de la aplicación
+empleando un método de la clase correspondiente. Los siguientes
+controladores pueden encontrarse en la carpeta `app/controllers`:
+
+~~~
+catalogos_controller.rb -> CatalogosController
+cds_controller.rb -> CdsController
+vinilos_controller.rb -> VinilosController
+ventas_controller.rb -> VentasController
+pedidos_controller.rb -> PedidosController
+~~~
+
+Las vistas son las páginas que se sirven según la ruta que solicitemos
+al servidor y el método del controlador que tenga asociado. Pueden
+encontrase en la carpeta `app/views`. Podemos encontrar las siguientes subcarpetas ahí:
+
+~~~
+catalogos
+cds
+vinilos
+ventas
+pedidos
+~~~
+
+Los archivos `html.erb` de una carpeta, a saber `files`, usarán como
+plantilla `app/views/layouts/files.html.erb` y como hojas de estilo
+las disponibles en `app/assets/stylesheets/`, aunque no deben ser
+necesariamente las homónimas.
