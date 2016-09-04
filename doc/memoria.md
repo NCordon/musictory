@@ -16,6 +16,7 @@ toc-depth: 2
 header-includes:
   - \usepackage{graphicx}
   - \usepackage{ulem}
+  - \usepackage{verbatim}
 ---
 
 \newcommand{\pk}[1]{\underline{#1}}
@@ -501,6 +502,13 @@ Permite modificar el stock CD asociado a un elemento del catálogo
 Realización, Fecha Entrada, Fecha Cancelación, Título, Grupo)
 
 ## Diseño físico
+
+### Sentencias DDL
+
+Las sentencias DDL para el SGBD Oracle han sido:
+
+\verbatiminput{structure.sql}
+
 ### Disparadores PL/SQL
 
 # Descripción de la solución implementada
