@@ -436,7 +436,44 @@ actualiza su stock al recibir un pedido. Caso opuesto, se crea en catálogo.
 
 \imgn{1.1}{./diagramas/diagrama_final.png}
 
+## Operaciones de datos
+
+### O1: Alta de un pedido
+
+Se da de alta un pedido con un título de disco, un grupo y un formato
+
+### O2: Cancelación de una venta
+
+Se elimina la información de una venta de base de datos
+
+### O3: Listado de ventas
+
+Se efectúa un listado con el título y el grupo del álbum asociados a una venta,
+el formato físico de la venta, el precio y la fecha de la operación.
+
+### O4: Modificación de stock
+
+Permite modificar tanto los datos de catálogo (foto de portada, título, grupo,
+género) con el stock (precio y cantidad) tanto en CD y Vinilo para un determinado
+álbum.
+
 ## Esquemas de operación y navegación
+
+### O1: Alta de un pedido
+
+\imgn{0.4}{./diagramas/op_alta_pedido.png}
+
+### O2: Cancelación de una venta
+
+\imgn{0.3}{./diagramas/op_cancelacion_venta.png}
+
+### O3: Listado de ventas
+
+\imgn{0.8}{./diagramas/op_listado_ventas.png}
+
+### O4: Modificación de stock
+
+\imgn{0.8}{./diagramas/op_modificacion_stock.png}
 
 ## Diseño lógico
 
@@ -457,16 +494,10 @@ actualiza su stock al recibir un pedido. Caso opuesto, se crea en catálogo.
 **Pedido**(\pk{id Pedido}, Cantidad, Formato, Fecha
 Realización, Fecha Entrada, Fecha Cancelación, Título, Grupo)
 
+## Diseño físico
 ### Disparadores PL/SQL
 
-## Diseño físico
-## Descripción de la solución implementada
-
-
-
-
-
-# Implementación
+# Descripción de la solución implementada
 ## Tecnologías usadas
 ## Guía de instalación
 
