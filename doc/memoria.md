@@ -451,11 +451,9 @@ Se elimina la información de una venta de base de datos
 Se efectúa un listado con el título y el grupo del álbum asociados a una venta,
 el formato físico de la venta, el precio y la fecha de la operación.
 
-### O4: Modificación de stock
+### O4: Modificación de stock CD
 
-Permite modificar tanto los datos de catálogo (foto de portada, título, grupo,
-género) con el stock (precio y cantidad) tanto en CD y Vinilo para un determinado
-álbum.
+Permite modificar el stock CD asociado a un elemento del catálogo
 
 ## Esquemas de operación y navegación
 
@@ -463,17 +461,25 @@ género) con el stock (precio y cantidad) tanto en CD y Vinilo para un determina
 
 \imgn{0.4}{./diagramas/op_alta_pedido.png}
 
+\imgn{0.4}{./diagramas/nav_alta_pedido.png}
+
 ### O2: Cancelación de una venta
 
 \imgn{0.3}{./diagramas/op_cancelacion_venta.png}
+
+\imgn{0.3}{./diagramas/nav_cancelacion_venta.png}
 
 ### O3: Listado de ventas
 
 \imgn{0.8}{./diagramas/op_listado_ventas.png}
 
-### O4: Modificación de stock
+\imgn{0.8}{./diagramas/nav_listado_ventas.png}
+
+### O4: Modificación de stock CD  
 
 \imgn{0.8}{./diagramas/op_modificacion_stock.png}
+
+\imgn{0.8}{./diagramas/nav_modificacion_stock.png}
 
 ## Diseño lógico
 
@@ -487,7 +493,7 @@ género) con el stock (precio y cantidad) tanto en CD y Vinilo para un determina
 
 \fk{Vinilo.id Catálogo}{Catálogo.id}
 
-**Venta**(\pk{id Venta}, id Catálogo, Precio, FechaVenta, Formato)
+**Venta**(\pk{id Venta}, id Catálogo, Precio, FechaVenta, Formato, Observaciones)
 
 \fk{Vinilo.id Catálogo}{Catálogo.id}
 
