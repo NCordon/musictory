@@ -508,7 +508,7 @@ Realización, Fecha Entrada, Fecha Cancelación, Título, Grupo)
 
 Las sentencias DDL para el SGBD Oracle han sido:
 
-\verbatiminput{structure.sql}
+\verbatiminput{../app/db/structure.sql}
 
 ### Disparadores PL/SQL
 
@@ -520,7 +520,7 @@ Vinilo con cantidad 0 cuando introducimos un elemento nuevo en el catálogo.
 * \texttt{TR\_PRESERVE\_CATALOGO}: Genera una excepción si intentamos borrar un
 elemento del catálogo que tenga asociada alguna venta.
 
-\verbatiminput{triggers.sql}
+\verbatiminput{../app/db/triggers.sql}
 
 
 # Descripción de la solución implementada

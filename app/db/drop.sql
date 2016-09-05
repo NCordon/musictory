@@ -1,0 +1,12 @@
+drop table venta;
+drop table cd;
+drop table vinilo;
+drop table catalogo;
+drop table pedido;
+drop sequence venta_seq;
+drop sequence cd_seq;
+drop sequence vinilo_seq;
+drop sequence catalogo_seq;
+drop sequence pedido_seq;
+drop table ar_internal_metadata;
+drop table schema_migrations;
