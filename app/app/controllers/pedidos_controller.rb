@@ -1,9 +1,9 @@
 class PedidosController < ApplicationController
   def index
-    @pedidos = Pedido.all.order("fechaRealizacion DESC")
+    @pedidos = Pedido.all.order("fecha_realizacion DESC")
 
     if params[:search]
-      @pedidos = Pedido.search(params[:search]).order("fechaRealizacion DESC")
+      @pedidos = Pedido.search(params[:search]).order("fecha_realizacion DESC")
     end
   end
 
@@ -34,7 +34,7 @@ class PedidosController < ApplicationController
 
   def cancel_order
     @pedido = Pedido.find(params[:id])
-    @pedido.fechaCancelacion = Time.now
+    @pedido.fecha_cancelacion = Time.now
 
     if @pedido.save
       redirect_to pedidos_path
@@ -45,34 +45,34 @@ class PedidosController < ApplicationController
 
 
   def received
-    @pedidos = Pedido.where.not(fechaEntrada: nil)
+    @pedidos = Pedido.where.not(fecha_entrada: nil)
 
     if params[:search]
-      @pedidos = Pedido.where.not(fechaEntrada: nil).search(params[:search]).order("fechaEntrada DESC")
+      @pedidos = Pedido.where.not(fecha_entrada: nil).search(params[:search]).order("fecha_entrada DESC")
     end
   end
 
   def non_received
-    @pedidos = Pedido.where(fechaEntrada: nil).where(fechaCancelacion: nil)
+    @pedidos = Pedido.where(fecha_entrada: nil).where(fecha_cancelacion: nil)
 
     if params[:search]
-      @pedidos = Pedido.where(fechaEntrada: nil).where.not(fechaCancelacion: nil).search(params[:search]).order("fechaRealizacion DESC")
+      @pedidos = Pedido.where(fecha_entrada: nil).where.not(fecha_cancelacion: nil).search(params[:search]).order("fecha_realizacion DESC")
     end
   end
 
 
   def cancelled
-    @pedidos = Pedido.where.not(fechaCancelacion: nil)
+    @pedidos = Pedido.where.not(fecha_cancelacion: nil)
 
     if params[:search]
-      @pedidos = Pedido.where.not(fechaCancelacion: nil).search(params[:search]).order("fechaCancelacion DESC")
+      @pedidos = Pedido.where.not(fecha_cancelacion: nil).search(params[:search]).order("fecha_cancelacion DESC")
     end
   end
 
 
   def receive_order
     @pedido = Pedido.find(params[:id])
-    @pedido.fechaEntrada = Time.now
+    @pedido.fecha_entrada = Time.now
     @catalogo = Catalogo.where(titulo: @pedido.titulo, grupo: @pedido.grupo).first
 
     if @pedido.save
@@ -98,7 +98,7 @@ class PedidosController < ApplicationController
 
   private
     def pedido_params
-      params[:pedido][:fechaRealizacion] = Time.now
-      params.require(:pedido).permit(:titulo,:grupo,:fechaRealizacion,:formato,:cantidad)
+      params[:pedido][:fecha_realizacion] = Time.now
+      params.require(:pedido).permit(:titulo,:grupo,:fecha_realizacion,:formato,:cantidad)
     end
 end

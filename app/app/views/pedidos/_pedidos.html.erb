@@ -9,7 +9,7 @@
   <th> Cancelación </th>
 
   <% @pedidos.each do |p| %>
-      <% if p.fechaCancelacion %>
+      <% if p.fecha_cancelacion %>
         <tr class="pedido-cancelado">
       <% else %>
         <tr>
@@ -18,12 +18,12 @@
           <td><%= p.titulo %></td>
           <td><%= p.grupo %></td>
           <td><%= p.formato.upcase %></td>
-          <td><%= p.fechaRealizacion.to_date %></td>
+          <td><%= p.fecha_realizacion.to_date %></td>
           <td><%= p.cantidad %></td>
-          <td><%= p.fechaEntrada ? p.fechaEntrada.to_date : "" %></td>
-          <td><%= p.fechaCancelacion ? p.fechaCancelacion.to_date : "" %></td>
+          <td><%= p.fecha_entrada ? p.fecha_entrada.to_date : "" %></td>
+          <td><%= p.fecha_cancelacion ? p.fecha_cancelacion.to_date : "" %></td>
           <td><ul class="index-buttons">
-            <% if not p.fechaCancelacion and not p.fechaEntrada %>
+            <% if not p.fecha_cancelacion and not p.fecha_entrada %>
               <li> <%= link_to 'Pedido recibido', receive_order_pedido_path(p) %></li>
               <li> <%= link_to 'Cancelar pedido', cancel_order_pedido_path(p) %></li>
             <% else %>

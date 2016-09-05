@@ -11,10 +11,10 @@ class Venta < ApplicationRecord
     },
     on: :create
 
-  validates :fechaVenta,
+  validates :fecha_venta,
     presence: {message: "no puede ser vacío"}
 
-  validates_date_of :fechaVenta,
+  validates_date_of :fecha_venta,
     before_or_equal_to:  Proc.new { Time.now },
     message: "debe ser anterior a hoy"
 
@@ -43,7 +43,7 @@ class Venta < ApplicationRecord
   end
 
   def self.search(search)
-    joins(:catalogo).where("titulo LIKE ? OR grupo LIKE ? OR fechaVenta LIKE ?",
+    joins(:catalogo).where("titulo LIKE ? OR grupo LIKE ? OR fecha_venta LIKE ?",
       "%#{search}%", "%#{search}%", "%#{search}%")
   end
 end

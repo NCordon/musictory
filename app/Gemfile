@@ -8,8 +8,8 @@ group :development do
   gem 'sqlite3'
 end
 group :test do
-  gem 'ruby-oci8'
-  gem 'activerecord-oracle_enhanced-adapter', '~> 1.7.0'
+  gem 'ruby-oci8', '~> 2.2.2'
+  gem 'activerecord-oracle_enhanced-adapter', '~> 1.7.1'
 end
 # Use Puma as the app server
 gem 'puma', '~> 3.0'

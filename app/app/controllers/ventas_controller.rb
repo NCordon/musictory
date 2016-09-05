@@ -1,9 +1,9 @@
 class VentasController < ApplicationController
   def index
-    @ventas = Venta.all.order("fechaVenta DESC")
+    @ventas = Venta.all.order("fecha_venta DESC")
 
     if params[:search]
-      @ventas = Venta.search(params[:search]).order("fechaVenta DESC")
+      @ventas = Venta.search(params[:search]).order("fecha_venta DESC")
     end
   end
 
@@ -63,7 +63,7 @@ class VentasController < ApplicationController
       elsif params[:venta][:formato] === "vinilo"
         params[:venta][:precio] = Vinilo.where(catalogo_id: params[:catalogo_id]).first.precio
       end
-      params.require(:venta).permit(:precio,:fechaVenta,:formato,:observaciones)
+      params.require(:venta).permit(:precio,:fecha_venta,:formato,:observaciones)
     end
 
 
