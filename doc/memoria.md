@@ -512,6 +512,17 @@ Las sentencias DDL para el SGBD Oracle han sido:
 
 ### Disparadores PL/SQL
 
+Se crean dos *triggers* PL/SQL:
+
+* \texttt{TR\_ZERO\_STOCK}: Crea un stock por defecto de CD con cantidad 0 y otro
+Vinilo con cantidad 0 cuando introducimos un elemento nuevo en el catálogo.
+
+* \texttt{TR\_PRESERVE\_CATALOGO}: Genera una excepción si intentamos borrar un
+elemento del catálogo que tenga asociada alguna venta.
+
+\verbatiminput{triggers.sql}
+
+
 # Descripción de la solución implementada
 ## Tecnologías usadas
 
