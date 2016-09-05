@@ -4,7 +4,7 @@ class CreateCatalogo < ActiveRecord::Migration[5.0]
       t.string :titulo
       t.string :grupo
       t.string :genero
-      t.decimal :precio
+      t.decimal :precio, precision: 5, scale: 2
 
       t.timestamps
     end

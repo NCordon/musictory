@@ -27,4 +27,9 @@ test:
 
 production:
   <<: *default
-  database: db/production.sqlite3
+  adapter: oracle_enhanced
+  host: oracle0.ugr.es
+  port: 1521
+  database: practbd.oracle0.ugr.es
+  username: <%= ENV['DB_USER'] %>
+  password: <%= ENV['DB_PASS'] %>
