@@ -1,9 +1,9 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
-  rescue_from ActiveRecord::StatementInvalid, :with => :trigger_error_handler
+  #rescue_from ActiveRecord::StatementInvalid, :with => :trigger_error_handler
 
-  def trigger_error_handler(exception)
-
-  end
+  #def trigger_error_handler(exception)
+  #  render '/shared/trigger_error'
+  #end
 end
