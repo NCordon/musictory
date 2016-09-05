@@ -4,9 +4,9 @@ class CatalogosController < ApplicationController
     @catalogo = Catalogo.new
 
     if params[:search]
-      @catalogos = Catalogo.search(params[:search])
+      @catalogos = Catalogo.search(params[:search]).order("created_at DESC")
     else
-      @catalogos = Catalogo.all
+      @catalogos = Catalogo.all.order("created_at DESC")
     end
   end
 

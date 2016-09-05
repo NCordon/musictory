@@ -45,7 +45,7 @@ class PedidosController < ApplicationController
 
 
   def received
-    @pedidos = Pedido.where.not(fecha_entrada: nil)
+    @pedidos = Pedido.where.not(fecha_entrada: nil).order("fecha_entrada DESC")
 
     if params[:search]
       @pedidos = Pedido.where.not(fecha_entrada: nil).search(params[:search]).order("fecha_entrada DESC")
@@ -53,7 +53,7 @@ class PedidosController < ApplicationController
   end
 
   def non_received
-    @pedidos = Pedido.where(fecha_entrada: nil).where(fecha_cancelacion: nil)
+    @pedidos = Pedido.where(fecha_entrada: nil).where(fecha_cancelacion: nil).order("fecha_realizacion DESC")
 
     if params[:search]
       @pedidos = Pedido.where(fecha_entrada: nil).where.not(fecha_cancelacion: nil).search(params[:search]).order("fecha_realizacion DESC")
@@ -62,7 +62,7 @@ class PedidosController < ApplicationController
 
 
   def cancelled
-    @pedidos = Pedido.where.not(fecha_cancelacion: nil)
+    @pedidos = Pedido.where.not(fecha_cancelacion: nil).order("fecha_cancelacion DESC")
 
     if params[:search]
       @pedidos = Pedido.where.not(fecha_cancelacion: nil).search(params[:search]).order("fecha_cancelacion DESC")
