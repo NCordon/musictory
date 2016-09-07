@@ -15,11 +15,11 @@ class Catalogo < ApplicationRecord
   has_one :cd, dependent: :destroy
   has_one :vinilo, dependent: :destroy
 
-  after_create :setStock
+  #after_create :setStock
   accepts_nested_attributes_for :cd
   accepts_nested_attributes_for :vinilo
 
-  has_many :ventas, dependent:  :restrict_with_error
+  has_many :ventas#, dependent:  :restrict_with_error
     #message: "no se puede eliminar, tiene facturación asociada"
   #has_many :pedidos, dependent: :destroy
 
