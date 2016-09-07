@@ -13,7 +13,7 @@ CREATE TABLE cd
   id INTEGER PRIMARY KEY NOT NULL,
   cantidad INTEGER,
   catalogo_id INTEGER REFERENCES catalogo(id),
-  precio DECIMAL
+  precio NUMBER(5,2)
 );
 
 
@@ -22,7 +22,7 @@ CREATE TABLE vinilo
   id INTEGER PRIMARY KEY NOT NULL,
   cantidad INTEGER,
   catalogo_id INTEGER REFERENCES catalogo(id),
-  precio DECIMAL
+  precio NUMBER(5,2)
 );
 
 
@@ -30,7 +30,7 @@ CREATE TABLE venta
 (
   id INTEGER PRIMARY KEY NOT NULL,
   catalogo_id INTEGER REFERENCES catalogo(id),
-  precio DECIMAL,
+  precio NUMBER(5,2),
   fechaVenta DATE,
   formato INTEGER,
   observaciones VARCHAR2(255)
