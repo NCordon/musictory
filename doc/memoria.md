@@ -567,11 +567,13 @@ y la *gema* `bundler`:
 Una vez hecho esto, basta ir a la carpeta `app` y ejecutar:
 
 ~~~
-  ./bin/setup
+  bundle install
+  RAILS_ENV=development ./bin/rails db:migrate
 ~~~
 
 que se encargará de instalar todas las dependencias necesarias y
-preparar la base de datos.
+preparar la base de datos de test (la de producción no funcionará puesto que
+faltan las claves correspondientes en el archivo de configuración).
 
 Supondremos en lo que sigue que nos encontramos en la carpeta `app`
 (dentro de la cual debe haber otra carpeta `app` a su vez).
