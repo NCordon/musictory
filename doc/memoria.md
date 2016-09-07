@@ -111,6 +111,7 @@ fecha de venta el día actual y disminuir el stock asociado al artículo.
 * *Salida*: RD4 para cada elemento
 
 **RF7: Eliminar elemento del catálogo**
+
 * *Actor:* Gestor de *stock*
 * *Entrada:* Identificador del catálogo
 * *Procesamiento:* Elimina un elemento del catálogo del comercio
@@ -118,6 +119,7 @@ fecha de venta el día actual y disminuir el stock asociado al artículo.
 
 
 **RF8: Buscar en el catálogo**
+
 * *Actor:* Gestor de *stock*
 * *Entrada:* Cadena de caracteres a contrastar con título o grupo
 * *Procesamiento:* Genera un listado de elementos del catálogo cuyo título o
@@ -275,7 +277,7 @@ coincidente con lointroducido.
 
 **RD3: Datos almacenados en \underline{VINILO}**
 
-* ID del vinilo
+* ID del Vinilo
 * ID del catálogo
 * Cantidad de Vinilos en *stock*(entero)
 * Precio
@@ -326,14 +328,13 @@ coincidente con lointroducido.
 
 **RS1: Nuevo álbum en catálogo**
 
-Al dar de alta un álbum en el catálogo, el grupo, título e identificador no
-pueden ser vacíos. Asimismo, el stock tanto en CD como en Vinilo por defecto
-debe ser 0.
+Al dar de alta un álbum en el catálogo, el stock tanto en CD como en Vinilo por
+defecto debe ser 0.
 
 **RS2: Unicidad de título y grupo**
 
 Al dar de alta un álbum en el catálogo, el par (grupo, título) debe ser único en
-el sistema
+el sistema y no vacío.
 
 **RS3: Nueva venta**
 
@@ -359,24 +360,23 @@ Un pedido no recibido tendrá únicamente fecha realización.
 
 **RS8: Pedido recibido**
 
-Un pedido tendrá además de fecha de realización, fecha de entrada.
-
+Un pedido tendrá además de fecha de realización, fecha de entrada. Un pedido
+recibido no puede cancelarse una vez recibido, es decir, no puede tener fecha de
+cancelación si ya tiene fecha de entrada
 
 **RS9: Pedido cancelado**
 
 Un pedido cancelado tendrá fecha de realización y fecha de cancelación, pero
-no puede tener fecha de entrada.
+no puede tener fecha de entrada. Esto hace que un pedido cancelado no pueda
+recibirse.
 
-**RS10: Pedido cancelado o recibido**
-Un pedido cancelado no puede recibirse una vez cancelado. Asimismo un pedido
-recibido no puede cancelarse una vez recibido.
 
-**RS11: Nuevo pedido**
+**RS10: Nuevo pedido**
 
 Un pedido nuevo no puede tener título, grupo, cantidad o formato vacíos. La
 fecha de realización debe establecerse en la actual.
 
-**RS12: Actualizar Stock en pedido recibido**
+**RS11: Actualizar Stock en pedido recibido**
 
 Si un disco ya existe en catálogo por título y grupo en base de datos, se
 actualiza su stock al recibir un pedido. Caso opuesto, se crea en catálogo.
@@ -516,9 +516,13 @@ Se crean dos *triggers* PL/SQL:
 
 * \texttt{TR\_ZERO\_STOCK}: Crea un stock por defecto de CD con cantidad 0 y otro
 Vinilo con cantidad 0 cuando introducimos un elemento nuevo en el catálogo.
+Preserva RS1. [^1]
+
+[^1]: \texttt{CD\_SEQ} y \texttt{VINILO\_SEQ} son dos secuencias creadas empezando
+en 10000 para asignar el ID a estas tablas.
 
 * \texttt{TR\_PRESERVE\_CATALOGO}: Genera una excepción si intentamos borrar un
-elemento del catálogo que tenga asociada alguna venta.
+elemento del catálogo que tenga asociada alguna venta. Preserva RS6.
 
 \verbatiminput{../app/db/triggers.sql}
 
@@ -535,7 +539,7 @@ elemento del catálogo que tenga asociada alguna venta.
 Se ha usado como base de datos local `sqlite3`, que puede instalarse usando:
 
 ~~~
-sudo apt-get install sqlite3
+  sudo apt-get install sqlite3
 ~~~
 
 Como base de datos de explotación, para defensa del trabajo, se ha
@@ -548,22 +552,22 @@ dicha base de datos, será necesario tener instalado localmente el
 En el archivo `Gemfile` aparecen detalladas las dependencias que usa la
 aplicación.
 
-Es tener instalado `Ruby`, lo cual puede hacerse desde Ubuntu usando:
+Es necesario tener instalado `Ruby`, lo cual puede hacerse desde Ubuntu usando:
 
 ~~~
-sudo apt-get install ruby2.3
+  sudo apt-get install ruby2.3
 ~~~
 
 y la *gema* `bundler`:
 
 ~~~
-gem install bundler
+  gem install bundler
 ~~~
 
 Una vez hecho esto, basta ir a la carpeta `app` y ejecutar:
 
 ~~~
-./bin/setup
+  ./bin/setup
 ~~~
 
 que se encargará de instalar todas las dependencias necesarias y
@@ -575,11 +579,12 @@ Supondremos en lo que sigue que nos encontramos en la carpeta `app`
 Una vez hecho esto, se puede levantar el servidor haciendo:
 
 ~~~
-./bin/rails server
+  ./bin/rails server
 ~~~
 
 que hará que `Rails` escuche en `localhost`, normalmente a través del
-puerto 3000;
+puerto 3000. Podemos acceder a la aplicación por tanto en cualquier navegador
+a través de [http://localhost:3000](http://localhost:3000)
 
 ## Arquitectura
 
@@ -588,11 +593,11 @@ La aplicación usa Modelo-Vista-Controlador para servir páginas.
 Los siguientes modelos se han creado en la carpeta `app/models`:
 
 ~~~
-catalogo.rb -> Catalogo
-cd.rb -> Cd
-vinilo.rb -> Vinilo
-venta.rb -> Venta
-pedido.rb -> Pedido
+  catalogo.rb -> Catalogo
+  cd.rb -> Cd
+  vinilo.rb -> Vinilo
+  venta.rb -> Venta
+  pedido.rb -> Pedido
 ~~~
 
 Los modelos se encargan de efectuar la comunicación con la base de
@@ -606,11 +611,11 @@ empleando un método de la clase correspondiente. Los siguientes
 controladores pueden encontrarse en la carpeta `app/controllers`:
 
 ~~~
-catalogos_controller.rb -> CatalogosController
-cds_controller.rb -> CdsController
-vinilos_controller.rb -> VinilosController
-ventas_controller.rb -> VentasController
-pedidos_controller.rb -> PedidosController
+  catalogos_controller.rb -> CatalogosController
+  cds_controller.rb -> CdsController
+  vinilos_controller.rb -> VinilosController
+  ventas_controller.rb -> VentasController
+  pedidos_controller.rb -> PedidosController
 ~~~
 
 Las vistas son las páginas que se sirven según la ruta que solicitemos
@@ -618,11 +623,11 @@ al servidor y el método del controlador que tenga asociado. Pueden
 encontrase en la carpeta `app/views`. Podemos encontrar las siguientes subcarpetas ahí:
 
 ~~~
-catalogos
-cds
-vinilos
-ventas
-pedidos
+  catalogos
+  cds
+  vinilos
+  ventas
+  pedidos
 ~~~
 
 Los archivos `html.erb` de una carpeta, a saber `files`, usarán como
