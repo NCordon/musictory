@@ -7,18 +7,43 @@ Licensed in Apache
 ## Documentation
 Can be compiled going to `./doc` and making either:
 
-``pandoc -V lang=spanish memoria.md -o memoria.pdf --template default.latex -N``
+~~~
+  pandoc -V lang=spanish memoria.md -o memoria.pdf --template default.latex -N
+~~~
 
 or:
 
-``make``
+~~~
+  make
+~~~
 
 ## Use
+
+First we must do:
+~~~
+  bundle install
+  app/bin/rails db:migrate
+~~~
+
 ### Development env
 To run in `development` environment:
 
 ~~~
-app/bin/rails server
+  app/bin/rails server
+~~~
+
+### Test env
+To run in `test` and `development` environment,a  suitable configuration for own database will be needed in `config/database.yml`and the pertinent user and password will need to be added to `config/application.yml`:
+
+~~~
+  DB_USER: user
+  DB_PASS: pass
+~~~
+
+To serve the application in `test` environment:
+
+~~~
+  app/bin/rails server -e test
 ~~~
 
 ### Production env
@@ -29,18 +54,10 @@ echo -n "production:\n  SECRET_KEY_BASE: `RAILS_ENV=production rake secret`" >> 
 RAILS_ENV=production bundle exec rake assets:precompile
 ~~~
 
-A suitable configuration for own database will be needed in `config/database.yml` por `production` at least and the pertinent
-user and password will need to be added to `config/application.yml`:
-
-~~~
-DB_USER: user
-DB_PASS: pass
-~~~
-
 To serve the application in `production` environment:
 
 ~~~
-app/bin/rails server -e production
+  app/bin/rails server -e production
 ~~~
 
 
